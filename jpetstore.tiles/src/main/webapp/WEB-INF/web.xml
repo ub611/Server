@@ -33,17 +33,6 @@
     <servlet-name>petstore</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  <!-- 
-  <servlet>
-    <servlet-name>remoting</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <load-on-startup>2</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>remoting</servlet-name>
-    <url-pattern>*.service</url-pattern>
-  </servlet-mapping> 
-  -->
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
