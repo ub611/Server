@@ -10,21 +10,17 @@ import com.example.jpetstore.dao.mybatis.mapper.ProductMapper;
 import com.example.jpetstore.domain.Product;
 import com.example.petMate.dao.ItemDao;
 import com.example.petMate.domain.Item;
+import com.example.petMate.mybatis.mapper.ItemMapper;
 
 @Repository
 public class MybatisItemDao implements ItemDao{
 	@Autowired
 	private ItemMapper itemMapper;
 
-	public List<Product> getProductListByCategory(String categoryId) 
-			throws DataAccessException {
-	    return productMapper.getProductListByCategory(categoryId);
-	}
-
 	@Override
 	public List<Item> getItemList() {
 		// TODO Auto-generated method stub
-		return null;
+		return itemMapper.getItemList();
 	}
 
 	@Override

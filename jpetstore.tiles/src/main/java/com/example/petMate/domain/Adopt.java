@@ -19,8 +19,4 @@ public class Adopt implements Serializable{
 	private int petIdx;		//필요 없는 필드 가튼데 , , ,
 	
 	//GetterSetter
-
-	
-	
-
 }

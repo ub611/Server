@@ -26,12 +26,8 @@ public class ItemController {
 
 	@RequestMapping("/shop/viewCategory.do")
 	public String dbTest() throws Exception {
-		Category category = this.petStore.getCategory(categoryId);
-		PagedListHolder<Product> productList = new PagedListHolder<Product>(this.petStore.getProductListByCategory(categoryId));
-		productList.setPageSize(4);
-		model.put("category", category);
-		model.put("productList", productList);
-		return "tiles/Category";
+
+		return "";
 	}
 	
 
