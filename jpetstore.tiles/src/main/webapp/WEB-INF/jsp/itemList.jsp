@@ -1,5 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 <table class="n23">
     <tr bgcolor="#CCCCCC">
       <td><b>Order ID</b></td> <td><b>Date</b></td> <td><b>Total Price</b></td>

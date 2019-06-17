@@ -23,11 +23,11 @@ public class ItemController {
 	
 	private static Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
-	@RequestMapping("/item")
+	@RequestMapping("/item.do")
 	public String handleRequest(Model model) throws Exception {
 		List<Item> items = petmate.getItemList();
 		model.addAttribute("items", items);
 		logger.info("items logggggg" + items.toString());
-		return "item/itemList";
+		return "/itemList";
 	}
 }
