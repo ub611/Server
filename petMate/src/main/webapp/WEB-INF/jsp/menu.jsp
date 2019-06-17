@@ -46,7 +46,7 @@
           <a class="nav-link js-scroll-trigger" href="#adopt">Adopt</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/items.do">Item</a>
+          <a class="nav-link js-scroll-trigger" href="/items.do?sort=0">Item</a>
         </li>
       </ul>
     </div>

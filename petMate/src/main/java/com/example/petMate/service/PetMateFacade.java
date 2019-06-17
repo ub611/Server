@@ -19,7 +19,7 @@ public interface PetMateFacade {
 
 
 	// Item 
-	List<Item> getItemList();// throws DataAccessException;
+	List<Item> getItemList(int sort);// throws DataAccessException;
 
 	Item getItemByItemIdx(int itemIdx);// throws DataAccessException;
 

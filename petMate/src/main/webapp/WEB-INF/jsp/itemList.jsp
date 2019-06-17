@@ -2,13 +2,156 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<jsp:include page="/WEB-INF/jsp/menu.jsp"/>
+
+<h2 class="mb-5">Item</h2>
+
+<div class="container">
+  <div class="w-100">
+	<div class="container">
+	<div><button><a href="/items/new.do">new Item</a></button></div>
+	<div class="row">
+		<ul class="list-group">
+          <li class="list-group-item"><a href="/items.do?sort=0">All</a></li>
+          <li class="list-group-item"><a href="/items.do?sort=1" >Food & Snack</a></li>
+          <li class="list-group-item"><a href="/items.do?sort=2" >House</a></li>
+          <li class="list-group-item"><a href="/items.do?sort=3">Toy</a></li>
+          <li class="list-group-item"><a href="/items.do?sort=4" >Walk</a></li>
+        </ul>
+	</div>
+	</div>
+</div>
+    <div class="row">
+        <div class="col-lg-12 my-3">
+            <div class="pull-right">
+                <div class="btn-group">
+                    <button class="btn btn-info" id="list">
+                        List View
+                    </button>
+                    <button class="btn btn-danger" id="grid">
+                        Grid View
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div id="products" class="row view-group">
+                <div class="item col-xs-4 col-lg-4">
+                      <c:forEach var="item" items="${items}">
+                    <div class="thumbnail card">
+                        <div class="img-event">
+                            <img class="group list-group-image img-fluid" src="${item.ii_url[0]}" alt="" />
+                        </div>
+                        <div class="caption card-body">
+                            <h4 class="group card-title inner list-group-item-heading">
+                                <a href="/items/${item.i_idx}">${item.i_title}</a></h4>
+                            <p class="group inner list-group-item-text">
+                                ${item.i_detail}</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p class="lead">
+                                        ￦ ${item.i_price}</p>
+                                </div>
+                                <div><p>${item.i_date}</p></div>
+                                <div class="col-xs-12 col-md-6">
+                                    <a class="btn btn-success" href="http://www.jquery2dotnet.com">Add to cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </c:forEach>
+                    
+                </div>
+                </div>
+                </div>
+
+<style>
+.view-group {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding-left: 0;
+    margin-bottom: 0;
+}
+.thumbnail
+{
+    margin-bottom: 30px;
+    padding: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    border-radius: 0px;
+}
+
+.item.list-group-item
+{
+    float: none;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 30px;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+    border: 0;
+}
+.item.list-group-item .img-event {
+    float: left;
+    width: 30%;
+}
+
+.item.list-group-item .list-group-image
+{
+    margin-right: 10px;
+}
+.item.list-group-item .thumbnail
+{
+    margin-bottom: 0px;
+    display: inline-block;
+}
+.item.list-group-item .caption
+{
+    float: left;
+    width: 70%;
+    margin: 0;
+}
+
+.item.list-group-item:before, .item.list-group-item:after
+{
+    display: table;
+    content: " ";
+}
+
+.item.list-group-item:after
+{
+    clear: both;
+}
+</style>
+<script>
+$(document).ready(function() {
+    $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
+    $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
+});
+</script>
+<%-- 
+1ver
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
+
+<section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="item">
   <div class="w-100">
-        <h2 class="mb-5">Item</h2>
-		<button><a href="/items/new.do">new Item</a></button>
+    <h2 class="mb-5">Item</h2>
+	<button><a href="/items/new.do">new Item</a></button>
 	<div class="container">
 	<div class="row">
 		<ul class="list-group">
@@ -20,8 +163,8 @@
         </ul>
 	</div>
 	</div>
-      </div>
-
+</div>
+</section>
 
 
 <div class="container">
@@ -29,9 +172,10 @@
     <section id="pinBoot">
       <c:forEach var="item" items="${items}">
          <article class="white-panel"><img src="${item.ii_url[0]}" alt="">
-         	<h4><a href="/items/"+${item.i_idx}>${item.i_title}</a></h4>
+         	<h4><a href="/items/${item.i_idx}">${item.i_title}</a></h4>
          		<p>${item.i_date}</p>
          		<p>${item.i_detail}</p>
+         		<p>￦ ${item.i_price}</p>
       	 </article>
       </c:forEach>
     </section>
@@ -255,4 +399,4 @@ $(document).ready(function() {
 	    }
 
 	})(jQuery, window, document);
-</script> 
+</script>  --%>

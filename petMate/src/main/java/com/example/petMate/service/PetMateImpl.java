@@ -51,9 +51,14 @@ public class PetMateImpl implements PetMateFacade {
 	}
 
 	@Override
-	public List<Item> getItemList() {
+	public List<Item> getItemList(int sort) {
 		// TODO Auto-generated method stub
-		List<Item> items = itemDao.getItemList();
+		List<Item> items;
+		if(sort == 0){
+			items = itemDao.getAllItemList();
+		}else{
+			items = itemDao.getItemListByCategory(sort);
+		}
 		for(Item t : items) {
 			String[] urls = itemDao.getItemImageUrls(t.getI_idx());
 			t.setIi_url(urls);
@@ -65,7 +70,7 @@ public class PetMateImpl implements PetMateFacade {
 	@Override
 	public Item getItemByItemIdx(int itemIdx) {
 		// TODO Auto-generated method stub
-		return null;
+		return itemDao.getItemByItemIdx(itemIdx);
 	}
 
 	@Override
