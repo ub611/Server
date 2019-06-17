@@ -21,7 +21,7 @@
   
   
   <servlet>
-    <servlet-name>petMate</servlet-name>
+    <servlet-name>dispatcherServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
      <init-param>
       <param-name>contextConfigLocation</param-name>
@@ -31,8 +31,8 @@
   </servlet>
   
   	<servlet-mapping>
-		<servlet-name>petMate</servlet-name>
-		<url-pattern>/</url-pattern>
+		<servlet-name>dispatcherServlet</servlet-name>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
   	<filter>
@@ -50,6 +50,6 @@
 	</filter-mapping>
 	
   <welcome-file-list>
-    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 </web-app>
