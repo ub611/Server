@@ -14,6 +14,10 @@ public interface ItemMapper {
 	@Select("SELECT * FROM item ORDER BY i_date")
 	List<Item> getItemList();
 
+	@Select("SELECT * FROM item WHERE i_category=#{sort} ORDER BY i_date")
+	List<Item> getItemListBy(int sort);
+	
+	@Select("SELECT * FROM item WHERE i_idx=#{item_idx}")
 	Item getItemByItemIdx(int item_idx);
 
 	Item getItemByItemTitle(String item_title);

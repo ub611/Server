@@ -5,7 +5,9 @@ import com.example.petMate.domain.Item;
 
 public interface ItemDao {
 
-	  List<Item> getItemList();// throws DataAccessException;
+	  List<Item> getAllItemList();// throws DataAccessException;
+	  
+	  List<Item> getItemListByCategory(int sort);// throws DataAccessException;
 
 	  Item getItemByItemIdx(int item_idx);// throws DataAccessException;
 

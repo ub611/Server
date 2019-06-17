@@ -15,15 +15,20 @@ public class MybatisItemDao implements ItemDao{
 	private ItemMapper itemMapper;
 
 	@Override
-	public List<Item> getItemList() {
+	public List<Item> getAllItemList() {
 		// TODO Auto-generated method stub
 		return itemMapper.getItemList();
+	}
+	@Override
+	public List<Item> getItemListByCategory(int sort) {
+		// TODO Auto-generated method stub
+		return itemMapper.getItemListBy(sort);
 	}
 
 	@Override
 	public Item getItemByItemIdx(int item_idx) {
 		// TODO Auto-generated method stub
-		return null;
+		return itemMapper.getItemByItemIdx(item_idx);
 	}
 
 	@Override
