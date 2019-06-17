@@ -29,11 +29,14 @@ public class ItemController {
 	@RequestMapping("/items.do")
 	public String getLists(@RequestParam("sort") int sort, Model model) throws Exception {
 		List<Item> items = petmate.getItemList(sort);
-		model.addAttribute("items", items);
-		logger.info("items logggggg : " + items.toString());
-		return "/itemList";
+		if(items == null) {
+			return "Error";
+		}else {
+			model.addAttribute("items", items);
+			logger.info("items logggggg : " + items.toString());
+			return "/itemList";
+		}
 	}
-	
 	
 	/*
 	 * Item detail Get
@@ -42,7 +45,7 @@ public class ItemController {
 	public String getListByIdx(@PathVariable("item_idx") int item_idx, Model model) throws Exception {
 		Item item = petmate.getItemByItemIdx(item_idx);
 		if(item == null) {
-			return "error";
+			return "Error";
 		}else {
 			model.addAttribute("item", item);
 			logger.info("items logggggg : " + item.toString());

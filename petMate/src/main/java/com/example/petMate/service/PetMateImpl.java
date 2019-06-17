@@ -70,7 +70,10 @@ public class PetMateImpl implements PetMateFacade {
 	@Override
 	public Item getItemByItemIdx(int itemIdx) {
 		// TODO Auto-generated method stub
-		return itemDao.getItemByItemIdx(itemIdx);
+		Item item = itemDao.getItemByItemIdx(itemIdx);
+		String[] urls = itemDao.getItemImageUrls(itemIdx);
+		item.setIi_url(urls);
+		return item;
 	}
 
 	@Override
