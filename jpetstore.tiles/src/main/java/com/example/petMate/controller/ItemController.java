@@ -1,47 +1,33 @@
 package com.example.petMate.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import java.io.Console;
+import java.util.List;
 
-import com.example.jpetstore.domain.Category;
-import com.example.jpetstore.domain.Product;
-import com.example.jpetstore.service.PetStoreFacade;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.example.petMate.domain.Item;
+import com.example.petMate.service.PetMateFacade;
+import com.example.petMate.service.PetMateImpl;
 
 @Controller
-@SessionAttributes({"category", "productList"})
 public class ItemController { 
-	private PetStoreFacade petStore;
 
 	@Autowired
-	public void setPetStore(PetStoreFacade petStore) {
-		this.petStore = petStore;
-	}
-
-	@RequestMapping("/shop/viewCategory.do")
-	public String dbTest() throws Exception {
-
-		return "";
-	}
+	private PetMateFacade petmate;
 	
-
-	@RequestMapping("/shop/viewCategory2.do")
-	public String handleRequest2(
-			@RequestParam("page") String page,
-			@ModelAttribute("category") Category category,
-			@ModelAttribute("productList") PagedListHolder<Product> productList,
-			BindingResult result) throws Exception {
-		if (category == null || productList == null) {
-			throw new IllegalStateException("Cannot find pre-loaded category and product list");
-		}
-		if ("next".equals(page)) { productList.nextPage(); }
-		else if ("previous".equals(page)) { productList.previousPage(); }
-		return "tiles/Category";
+	private static Logger logger = LoggerFactory.getLogger(ItemController.class);
+	
+	@RequestMapping("/item")
+	public String handleRequest(Model model) throws Exception {
+		List<Item> items = petmate.getItemList();
+		model.addAttribute("items", items);
+		logger.info("items logggggg" + items.toString());
+		return "item/itemList";
 	}
 }

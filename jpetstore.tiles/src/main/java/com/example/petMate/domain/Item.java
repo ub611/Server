@@ -1,67 +1,92 @@
 package com.example.petMate.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 @SuppressWarnings("serial")
 public class Item implements Serializable{
 	
 	//item
-	private int itemIdx;
-	private String itemTitle;
-	private String itemPrice; 		//number 아닌가
-	private int itemStock;		//재고
-	private String itemDetail;		//상세설명
+	private int i_idx;
+	private String i_title;
+	private String i_price; 		//number 아닌가
+	private int i_stock;		//재고
+	private String i_detail;		//상세설명
+	private Date i_date;		// 등록 날
+
 	
 	//category
-	private int catogoryIdx;
+	private int i_category;
 	
 	//user
-	private int userIdx;		//seller? buyer?
+	private int user_u_idx;		//seller? buyer?
 
-	//GetterSetter
-	public int getItemIdx() {
-		return itemIdx;
-	}
-	public void setItemIdx(int itemIdx) {
-		this.itemIdx = itemIdx;
-	}
-	public String getItemTitle() {
-		return itemTitle;
-	}
-	public void setItemTitle(String itemTitle) {
-		this.itemTitle = itemTitle;
-	}
-	public String getItemPrice() {
-		return itemPrice;
-	}
-	public void setItemPrice(String itemPrice) {
-		this.itemPrice = itemPrice;
-	}
-	public int getItemStock() {
-		return itemStock;
-	}
-	public void setItemStock(int itemStock) {
-		this.itemStock = itemStock;
-	}
-	public String getItemDetail() {
-		return itemDetail;
-	}
-	public void setItemDetail(String itemDetail) {
-		this.itemDetail = itemDetail;
-	}
-	public int getCatogoryIdx() {
-		return catogoryIdx;
-	}
-	public void setCatogoryIdx(int catogoryIdx) {
-		this.catogoryIdx = catogoryIdx;
-	}
-	public int getUserIdx() {
-		return userIdx;
-	}
-	public void setUserIdx(int userIdx) {
-		this.userIdx = userIdx;
-	}
 	
+	//GetterSetter
+	public int getI_idx() {
+		return i_idx;
+	}
+
+	public void setI_idx(int i_idx) {
+		this.i_idx = i_idx;
+	}
+
+	public String getI_title() {
+		return i_title;
+	}
+
+	public void setI_title(String i_title) {
+		this.i_title = i_title;
+	}
+
+	public String getI_price() {
+		return i_price;
+	}
+
+	public void setI_price(String i_price) {
+		this.i_price = i_price;
+	}
+
+	public int getI_stock() {
+		return i_stock;
+	}
+
+	public void setI_stock(int i_stock) {
+		this.i_stock = i_stock;
+	}
+
+	public String getI_detail() {
+		return i_detail;
+	}
+
+	public void setI_detail(String i_detail) {
+		this.i_detail = i_detail;
+	}
+
+	public Date getI_date() {
+		return i_date;
+	}
+
+	public void setI_date(Date i_date) {
+		this.i_date = i_date;
+	}
+
+	public int getI_category() {
+		return i_category;
+	}
+
+	public void setI_category(int i_category) {
+		this.i_category = i_category;
+	}
+
+	public int getUser_u_idx() {
+		return user_u_idx;
+	}
+
+	public void setUser_u_idx(int user_u_idx) {
+		this.user_u_idx = user_u_idx;
+	}
+
 	
 	
 }

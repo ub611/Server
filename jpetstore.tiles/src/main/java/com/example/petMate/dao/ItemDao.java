@@ -1,7 +1,6 @@
 package com.example.petMate.dao;
 
 import java.util.List;
-
 import com.example.petMate.domain.Item;
 
 public interface ItemDao {
