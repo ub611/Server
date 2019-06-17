@@ -7,75 +7,72 @@ import java.util.Date;
 public class buy implements Serializable{
 	
 	//but
-	private int buyIdx;
-	private Date buytDate;
-	private int buyAmount;
-	private String buyState;
+	private int b_idx;
+	private Date b_date;
+	private int b_amount;
+	private String b_state;
 	
 	//uesr
-	private int sellerIdx;		
-	private int buyerIdx;	
+	private int seller_idx;		
+	private int buyer_idx;	
 	
 	//item
-	private int itemIdx;		//what item
+	private int item_idx;		//what item
 
-	//GetterSetter
-	public int getBuyIdx() {
-		return buyIdx;
+	public int getB_idx() {
+		return b_idx;
 	}
 
-	public void setBuyIdx(int butIdx) {
-		this.buyIdx = butIdx;
+	public void setB_idx(int b_idx) {
+		this.b_idx = b_idx;
 	}
 
-	public Date getBuytDate() {
-		return buytDate;
+	public Date getB_date() {
+		return b_date;
 	}
 
-	public void setBuytDate(Date buytDate) {
-		this.buytDate = buytDate;
+	public void setB_date(Date b_date) {
+		this.b_date = b_date;
 	}
 
-	public int getBuyAmount() {
-		return buyAmount;
+	public int getB_amount() {
+		return b_amount;
 	}
 
-	public void setBuyAmount(int buyAmount) {
-		this.buyAmount = buyAmount;
+	public void setB_amount(int b_amount) {
+		this.b_amount = b_amount;
 	}
 
-	public String getBuyState() {
-		return buyState;
+	public String getB_state() {
+		return b_state;
 	}
 
-	public void setBuyState(String buyState) {
-		this.buyState = buyState;
+	public void setB_state(String b_state) {
+		this.b_state = b_state;
 	}
 
-	public int getSellerIdx() {
-		return sellerIdx;
+	public int getSeller_idx() {
+		return seller_idx;
 	}
 
-	public void setSellerIdx(int sellerIdx) {
-		this.sellerIdx = sellerIdx;
+	public void setSeller_idx(int seller_idx) {
+		this.seller_idx = seller_idx;
 	}
 
-	public int getBuyerIdx() {
-		return buyerIdx;
+	public int getBuyer_idx() {
+		return buyer_idx;
 	}
 
-	public void setBuyerIdx(int buyerIdx) {
-		this.buyerIdx = buyerIdx;
+	public void setBuyer_idx(int buyer_idx) {
+		this.buyer_idx = buyer_idx;
 	}
 
-	public int getItemIdx() {
-		return itemIdx;
+	public int getItem_idx() {
+		return item_idx;
 	}
 
-	public void setItemIdx(int itemIdx) {
-		this.itemIdx = itemIdx;
+	public void setItem_idx(int item_idx) {
+		this.item_idx = item_idx;
 	}
-	
-	
-	
+
 }

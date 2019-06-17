@@ -6,37 +6,33 @@ import java.io.Serializable;
 public class ItemImage implements Serializable{
 	
 	//itemImg
-	private int itemImageIdx;
-	private String itemImageUrl;
+	private int ii_idx;
+	private String ii_url;
 	
 	//item
-	private int itemIdx;
+	private int item_i_idx;
 
-	//GetterSetter
-	public int getItemImageIdx() {
-		return itemImageIdx;
+	public int getIi_idx() {
+		return ii_idx;
 	}
 
-	public void setItemImageIdx(int itemImageIdx) {
-		this.itemImageIdx = itemImageIdx;
+	public void setIi_idx(int ii_idx) {
+		this.ii_idx = ii_idx;
 	}
 
-	public String getItemImageUrl() {
-		return itemImageUrl;
+	public String getIi_url() {
+		return ii_url;
 	}
 
-	public void setItemImageUrl(String itemImageUrl) {
-		this.itemImageUrl = itemImageUrl;
+	public void setIi_url(String ii_url) {
+		this.ii_url = ii_url;
 	}
 
-	public int getItemIdx() {
-		return itemIdx;
+	public int getItem_i_idx() {
+		return item_i_idx;
 	}
 
-	public void setItemIdx(int itemIdx) {
-		this.itemIdx = itemIdx;
-	}
-	
-	
-	
+	public void setItem_i_idx(int item_i_idx) {
+		this.item_i_idx = item_i_idx;
+	}	
 }

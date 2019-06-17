@@ -7,16 +7,82 @@ import java.util.Date;
 public class Adopt implements Serializable{
 	
 	//adopt
-	private int adoptIdx;
-	private Date adoptDate;
-	private String adoptState;
+	private int a_idx;
+	private Date a_date;
+	private String a_state;
+	private String a_title;
+	private String a_content;
 	
 	//user
-	private int adopterIdx;		//분양해갈사람
-	private int onwerIdx;	//분양 해주는 사람
+	private int adopter_idx;		//분양해갈사람
+	private int owner_idx;	//분양 해주는 사람
 	
 	//pet
-	private int petIdx;		//필요 없는 필드 가튼데 , , ,
-	
+	private int pet_p_idx;		
 	//GetterSetter
+
+	public int getA_idx() {
+		return a_idx;
+	}
+
+	public void setA_idx(int a_idx) {
+		this.a_idx = a_idx;
+	}
+
+	public Date getA_date() {
+		return a_date;
+	}
+
+	public void setA_date(Date a_date) {
+		this.a_date = a_date;
+	}
+
+	public String getA_state() {
+		return a_state;
+	}
+
+	public void setA_state(String a_state) {
+		this.a_state = a_state;
+	}
+
+	public String getA_title() {
+		return a_title;
+	}
+
+	public void setA_title(String a_title) {
+		this.a_title = a_title;
+	}
+
+	public String getA_content() {
+		return a_content;
+	}
+
+	public void setA_content(String a_content) {
+		this.a_content = a_content;
+	}
+
+	public int getAdopter_idx() {
+		return adopter_idx;
+	}
+
+	public void setAdopter_idx(int adopter_idx) {
+		this.adopter_idx = adopter_idx;
+	}
+
+	public int getOwner_idx() {
+		return owner_idx;
+	}
+
+	public void setOwner_idx(int owner_idx) {
+		this.owner_idx = owner_idx;
+	}
+
+	public int getPet_p_idx() {
+		return pet_p_idx;
+	}
+
+	public void setPet_p_idx(int pet_p_idx) {
+		this.pet_p_idx = pet_p_idx;
+	}
+	
 }

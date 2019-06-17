@@ -6,75 +6,73 @@ import java.io.Serializable;
 public class Pet implements Serializable {
 
 	//pet
-	private int petIdx;
-	private int petAge;
-	private String petGender;
-	private String petName;
-	private String petIsInjection;
+	private int p_idx;
+	private int p_age;
+	private String p_gender;
+	private String p_name;
+	private String p_isinjection;
 	
 	//user
-	private int userIdx;
+	private int user_u_idx;
 	
 	//category
-	private int categoryIdx;
+	private int category_c_idx;
 
-	
-	//GetterSetter
-	public int getPetIdx() {
-		return petIdx;
+	public int getP_idx() {
+		return p_idx;
 	}
 
-	public void setPetIdx(int petIdx) {
-		this.petIdx = petIdx;
+	public void setP_idx(int p_idx) {
+		this.p_idx = p_idx;
 	}
 
-	public int getPetAge() {
-		return petAge;
+	public int getP_age() {
+		return p_age;
 	}
 
-	public void setPetAge(int petAge) {
-		this.petAge = petAge;
+	public void setP_age(int p_age) {
+		this.p_age = p_age;
 	}
 
-	public String getPetGender() {
-		return petGender;
+	public String getP_gender() {
+		return p_gender;
 	}
 
-	public void setPetGender(String petGender) {
-		this.petGender = petGender;
+	public void setP_gender(String p_gender) {
+		this.p_gender = p_gender;
 	}
 
-	public String getPetName() {
-		return petName;
+	public String getP_name() {
+		return p_name;
 	}
 
-	public void setPetName(String petName) {
-		this.petName = petName;
+	public void setP_name(String p_name) {
+		this.p_name = p_name;
 	}
 
-	public String getPetIsInjection() {
-		return petIsInjection;
+	public String getP_isinjection() {
+		return p_isinjection;
 	}
 
-	public void setPetIsInjection(String petIsInjection) {
-		this.petIsInjection = petIsInjection;
+	public void setP_isinjection(String p_isinjection) {
+		this.p_isinjection = p_isinjection;
 	}
 
-	public int getUserIdx() {
-		return userIdx;
+	public int getUser_u_idx() {
+		return user_u_idx;
 	}
 
-	public void setUserIdx(int userIdx) {
-		this.userIdx = userIdx;
+	public void setUser_u_idx(int user_u_idx) {
+		this.user_u_idx = user_u_idx;
 	}
 
-	public int getCategoryIdx() {
-		return categoryIdx;
+	public int getCategory_c_idx() {
+		return category_c_idx;
 	}
 
-	public void setCategoryIdx(int categoryIdx) {
-		this.categoryIdx = categoryIdx;
+	public void setCategory_c_idx(int category_c_idx) {
+		this.category_c_idx = category_c_idx;
 	}
-	
+
 	
 }
