@@ -7,11 +7,13 @@ public interface ItemDao {
 
 	  List<Item> getItemList();// throws DataAccessException;
 
-	  Item getItemByItemIdx(int itemIdx);// throws DataAccessException;
+	  Item getItemByItemIdx(int item_idx);// throws DataAccessException;
 
-	  Item getItemByItemTitle(String itemTitle);// throws DataAccessException;
+	  Item getItemByItemTitle(String item_title);// throws DataAccessException;
 
-	  void updateItem(Item itemIdx, Item Item);// throws DataAccessException;
+	  void updateItem(Item item_idx, Item Item);// throws DataAccessException;
 	  
 	  List<String> getItemnameList(); // throws DataAccessException;
+	  
+	  String[] getItemImageUrls(int item_idx);
 }

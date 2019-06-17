@@ -21,19 +21,19 @@ public class MybatisItemDao implements ItemDao{
 	}
 
 	@Override
-	public Item getItemByItemIdx(int itemIdx) {
+	public Item getItemByItemIdx(int item_idx) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Item getItemByItemTitle(String itemTitle) {
+	public Item getItemByItemTitle(String item_title) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void updateItem(Item itemIdx, Item Item) {
+	public void updateItem(Item item_idx, Item Item) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -42,6 +42,12 @@ public class MybatisItemDao implements ItemDao{
 	public List<String> getItemnameList() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String[] getItemImageUrls(int item_idx ){
+		// TODO Auto-generated method stub
+		return itemMapper.getItemImageUrls(item_idx);
 	}
 
 

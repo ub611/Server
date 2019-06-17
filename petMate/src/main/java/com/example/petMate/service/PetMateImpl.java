@@ -1,6 +1,5 @@
 package com.example.petMate.service;
 
-import java.io.Console;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -9,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.petMate.controller.ItemController;
 import com.example.petMate.dao.ItemDao;
-import com.example.petMate.dao.mybatis.MybatisItemDao;
 import com.example.petMate.domain.Account;
 import com.example.petMate.domain.Item;
 
@@ -20,9 +17,8 @@ import com.example.petMate.domain.Item;
 public class PetMateImpl implements PetMateFacade {
 	@Autowired
 	private ItemDao itemDao;
-	
+		
 	private static Logger logger = LoggerFactory.getLogger(PetMateImpl.class);
-
 
 	@Override
 	public Account getAccount(String username) {
@@ -58,6 +54,10 @@ public class PetMateImpl implements PetMateFacade {
 	public List<Item> getItemList() {
 		// TODO Auto-generated method stub
 		List<Item> items = itemDao.getItemList();
+		for(Item t : items) {
+			String[] urls = itemDao.getItemImageUrls(t.getI_idx());
+			t.setIi_url(urls);
+		}
 		logger.info("aaa" + items.toString());
 		return items;
 	}

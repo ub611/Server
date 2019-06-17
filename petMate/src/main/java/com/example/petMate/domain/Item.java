@@ -13,8 +13,10 @@ public class Item implements Serializable{
 	private int i_stock;		//재고
 	private String i_detail;		//상세설명
 	private Date i_date;		// 등록 날
-
 	
+	//item image url
+	private String[] ii_url;
+
 	//category
 	private int i_category;
 	
@@ -87,6 +89,11 @@ public class Item implements Serializable{
 		this.user_u_idx = user_u_idx;
 	}
 
-	
-	
+	public String[] getIi_url() {
+		return ii_url;
+	}
+
+	public void setIi_url(String[] ii_url) {
+		this.ii_url = ii_url;
+	}
 }
