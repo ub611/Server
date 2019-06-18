@@ -1,81 +1,85 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!------ Include the above in your HEAD tag ---------->
 
-<form class="form-compact" action="">
-            <div class="row paddingBottom20">
-                <div class="container col-4">
-                    <div class="row">
-                        <h6 class="text-center col-12 mb-0">Contact Information</h6>
-                        <sub class="text-right text-muted col-12"><a href="#" tabindex="-1"><i class="far fa-edit"></i></a></sub>
-                    </div>
-                    <div class="dropdown-divider mb-3"></div>
-                    <div class="form-group row">
-                        <label for="firstName" class="col-4 col-form-label-sm text-right">First Name:</label> 
-                        <div class="col-8">
-                            <div class="input-group"> 
-                                <input id="firstName" name="text" type="text" class="form-control form-control-sm" readonly>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="form-group row align-items-center">
-                        <label for="lastName" class="col-4 col-form-label-sm text-right">Last Name:</label> 
-                        <div class="col-8">
-                          <div class="input-group"> 
-                            <input id="lastName" name="text" type="text" class="form-control form-control-sm" readonly>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="form-group row align-items-center">
-                        <label for="position" class="col-4 col-form-label-sm text-right">Position:</label> 
-                        <div class="col-8">
-                          <div class="input-group"> 
-                            <select id="position" class="form-control" disabled>
-                                <option></option>
-                                <option>Shift Supervisor</option>
-                                <option>Airport Manager</option>
-                                <option>District Manager</option>
-                                <option>Regional Manager</option>
-                                <option>Terrirory Performance Manager</option>
-                                <option>Ops. Manage</option>
-                                <option>Other</option>
-                            </select>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="form-group row align-items-center">
-                        <label for="emailAddress" class="col-4 col-form-label-sm text-right">Email Address:</label> 
-                        <div class="col-8">
-                          <div class="input-group"> 
-                            <input id="emailAddress" name="text" type="email" class="form-control form-control-sm extendable">
-                          </div>
-                        </div>
-                    </div>
-                    <div class="form-group row align-items-center">
-                        <label for="office" class="col-4 col-form-label-sm text-right">Office:</label> 
-                        <div class="col-8">
-                          <div class="input-group">
-                            <input id="office" name="text" type="number" class="form-control form-control-sm" readonly>
-                          </div>
-                        </div>
-                    </div>
-                    <div class="form-group row align-items-center">
-                        <label for="cell" class="col-4 col-form-label-sm text-right">Cell:</label> 
-                        <div class="col-8">
-                          <div class="input-group">
-                            <input id="cell" name="text" type="number" class="form-control form-control-sm" readonly>
-                          </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
-        
-<style>
-.extendable:focus {
-    position: absolute;
-    width: 110%;
-    top: -1rem;
-}
-</style>
+
+<jsp:include page="/WEB-INF/jsp/menu.jsp"/>
+
+<h2 class="mb-5">New Item</h2>
+
+
+<div class="container">
+	<form:form class="form-horizontal" action="new.do" method="post" enctype="multipart/form-data" commandName="itemCommand">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Fill out the item contents</legend>
+	
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Title</label>  
+  <div class="col-md-4">
+  <input name="i_title" class="form-control input-md" id="i_title" type="text" placeholder="이름을 입력해주세요.">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Stock</label>  
+  <div class="col-md-4">
+  <input name="i_stock" class="form-control input-md" id="i_stock" type="text" placeholder="2">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Price</label>  
+  <div class="col-md-4">
+  <input name="i_price" class="form-control input-md" id="i_price" type="text" placeholder="10000">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Detail</label>  
+  <div class="col-md-4">
+  <input name="i_detail" class="form-control input-md" id="i_detail" type="text" placeholder="상품 상세 정보를 입력해주세요.">
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Category</label>
+  <div class="col-md-4">
+    <select name="i_category" class="form-control" id="i_category">
+      <option value="1">Food & Snack</option>
+      <option value="2">Houseware</option>
+      <option value="3">Toy</option>
+      <option value="4">Goods for Walk</option>
+    </select>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" >Item Image</label>
+  <div class="col-md-4">
+  	<input name="ii_url" class="form-control input-md" id="ii_url" type="file">
+  </div>
+</div>
+
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id">Double Button</label>
+  <div class="col-md-8">
+<!--     <button name="button1id" class="btn btn-success" id="button1id">Create</button>
+ -->    <input name="button2id" class="btn btn-success" id="button2id" type="submit" value="Create"/>
+  </div>
+</div>
+
+</fieldset>
+</form:form>
+
+</div>

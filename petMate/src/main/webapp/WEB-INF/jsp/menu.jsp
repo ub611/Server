@@ -1,4 +1,3 @@
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -45,7 +44,7 @@
           <a class="nav-link js-scroll-trigger" href="#adopt">Adopt</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/items.do?sort=0">Item</a>
+          <a class="nav-link js-scroll-trigger" href="/petMate/items.do?sort=0">Item</a>
         </li>
       </ul>
     </div>

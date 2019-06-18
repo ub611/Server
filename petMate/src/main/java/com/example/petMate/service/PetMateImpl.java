@@ -1,5 +1,7 @@
 package com.example.petMate.service;
 
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -7,8 +9,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.example.petMate.command.ItemCommand;
 import com.example.petMate.dao.ItemDao;
+import com.example.petMate.dao.mybatis.mapper.ItemMapper;
 import com.example.petMate.domain.Account;
 import com.example.petMate.domain.Item;
 
@@ -17,7 +22,16 @@ import com.example.petMate.domain.Item;
 public class PetMateImpl implements PetMateFacade {
 	@Autowired
 	private ItemDao itemDao;
-		
+	
+    private S3FileUploadService s3FileUploadService;
+	
+    @Autowired
+	public PetMateImpl(ItemDao itemDao, S3FileUploadService s3FileUploadService) {
+		super();
+		this.itemDao = itemDao;
+		this.s3FileUploadService = s3FileUploadService;
+	}
+
 	private static Logger logger = LoggerFactory.getLogger(PetMateImpl.class);
 
 	@Override
@@ -92,6 +106,27 @@ public class PetMateImpl implements PetMateFacade {
 	public List<String> getItemnameList() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	 
+	@Override
+	@Transactional
+	public int createItem(ItemCommand itemCommand) throws IOException {
+		// 아이템 디비 저장 및 아이템 이미지 디비 저장
+		// TODO Auto-generated method stub
+        
+        Calendar calendar = Calendar.getInstance();
+        java.util.Date date = calendar.getTime();
+        itemCommand.setI_date(date);
+        int i_idx = itemDao.createItem(itemCommand);
+        
+        if (itemCommand.getIi_url() != null) {
+        	for(MultipartFile url : itemCommand.getIi_url()) {            
+    			itemDao.createItemImage(s3FileUploadService.upload(url, "item"), i_idx);
+            }
+        }
+
+
+		return i_idx;
 	}
 
 }
