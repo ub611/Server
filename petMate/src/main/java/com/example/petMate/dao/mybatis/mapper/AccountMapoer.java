@@ -5,22 +5,14 @@ import org.apache.ibatis.annotations.*;
 import com.example.petMate.domain.Account;
 
 public interface AccountMapoer {
-//	  Account getAccountByUsername(String username);
-	  
-	  Account getAccountByUsernameAndPassword(String username, String password);
-	  
-	  @Insert("INSERT INTO Students (NAME, EMAIL ) VALUES (#{name},#{email})")
-	  @Options(useGeneratedKeys = true, keyProperty = "id")
-	  void insertAccount(Account account);
-	  
-	  void insertProfile(Account account);
-	  
-	  void insertSignon(Account account);
-
-	  void updateAccount(Account account);
-
-	  void updateProfile(Account account);
-
-	  void updateSignon(Account account);
+	@Insert("INSERT INTO user VALUES (#{u_idx}, #{u_name}, #{u_address}. #{u_phone}, #{u_pw}, #{u_salt}, #{u_profile})")
+	@Options(useGeneratedKeys = true, keyProperty = "u_idx")
+	void insertAccount(Account account);		//join
+	
+//	@Select("SELECT * FROM user")
+	Account getAccount(String username, String pwd);		//set up for info for update
+	
+//	@Update("Update user SET #{u_name} = ")
+	void updateAccount(Account account);		//update info 
 
 }
