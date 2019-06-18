@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +10,7 @@
           <span class="text-primary">Mate</span>
         </h1>
 
-        <div class="subheading mb-5"> dayoung9650 Â· ub611 Â· jisuuuu Â· HanSeonmin <br>
+        <div class="subheading mb-5"> dayoung9650 ÃÂ· ub611 ÃÂ· jisuuuu ÃÂ· HanSeonmin <br>
 
           <a href="mailto:name@email.com">sendto@email.com</a>
         </div>
@@ -191,7 +190,7 @@
           <li class="list-group-item"><a href="http://regalospersonales.com/personalizados/" target="_blank">regalos originales con foto</a></li>
           <li class="list-group-item"><a href="https://tarjetasdevisita.com/" target="_blank">crear tarjetas online</a></li>
 
-          <li class="list-group-item"><a href="http://regalospersonales.com/personalizados/listado/regalos-san-valentin/esp&data=7" target="_blank">regalos San ValentÃ­n</a></li>
+          <li class="list-group-item"><a href="http://regalospersonales.com/personalizados/listado/regalos-san-valentin/esp&data=7" target="_blank">regalos San ValentÃÂ­n</a></li>
         </ul>
 	</div>
 	</div>
@@ -249,14 +248,14 @@
 
   </div>
 
-  <!— Bootstrap core JavaScript —>
+  <!â Bootstrap core JavaScript â>
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!— Plugin JavaScript —>
+  <!â Plugin JavaScript â>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-  <!— Custom scripts for this template —>
+  <!â Custom scripts for this template â>
   <script src="js/resume.min.js"></script>
 
 </body>

@@ -5,17 +5,15 @@ import com.example.petMate.domain.Account;
 import com.example.petMate.domain.Item;
 
 public interface PetMateFacade {
-
 	// User
-	Account getAccount(String username);// throws DataAccessException;
-
 	Account getAccount(String username, String password);// throws DataAccessException;
+	
+	Account getAccountById(String username);
 
 	void insertAccount(Account account);// throws DataAccessException;
 
 	void updateAccount(Account account);// throws DataAccessException;
 
-	List<String> getUsernameList(); // throws DataAccessException;
 
 
 	// Item 

@@ -8,17 +8,18 @@ public class Account implements Serializable {
   /* Private Fields */
 	
 	//user
-	private int u_idx;
+	private String u_idx;
 	private String u_name;
 	private String u_address;
 	private String u_phone;
 	private String u_pw;
 	private String u_salt;
 	private String u_profile;
-	public int getU_idx() {
+	
+	public String getU_idx() {
 		return u_idx;
 	}
-	public void setU_idx(int u_idx) {
+	public void setU_idx(String u_idx) {
 		this.u_idx = u_idx;
 	}
 	public String getU_name() {
@@ -58,6 +59,20 @@ public class Account implements Serializable {
 		this.u_profile = u_profile;
 	}
 	
+	public Account() {
+	}
+	
+	public Account(String u_idx, String u_name, String u_address, String u_phone, String u_pw, String u_salt,
+			String u_profile) {
+		super();
+		this.u_idx = u_idx;
+		this.u_name = u_name;
+		this.u_address = u_address;
+		this.u_phone = u_phone;
+		this.u_pw = u_pw;
+		this.u_salt = u_salt;
+		this.u_profile = u_profile;
+	}
 	
 	
   

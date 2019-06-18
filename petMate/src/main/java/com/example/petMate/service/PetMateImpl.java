@@ -5,9 +5,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.petMate.dao.AccountDao;
 import com.example.petMate.dao.ItemDao;
 import com.example.petMate.domain.Account;
 import com.example.petMate.domain.Item;
@@ -17,19 +19,27 @@ import com.example.petMate.domain.Item;
 public class PetMateImpl implements PetMateFacade {
 	@Autowired
 	private ItemDao itemDao;
-		
+	
+	@Autowired
+	private AccountDao accountDao;
+	
 	private static Logger logger = LoggerFactory.getLogger(PetMateImpl.class);
 
+
 	@Override
-	public Account getAccount(String username) {
+	public Account getAccountById(String username) throws DataAccessException{
 		// TODO Auto-generated method stub
-		return null;
+		logger.info("before getAccount-param1, username = " + username);
+		
+		return accountDao.getAccountById(username);
 	}
 
 	@Override
-	public Account getAccount(String username, String password) {
+	public Account getAccount(String username, String password) throws DataAccessException{
 		// TODO Auto-generated method stub
-		return null;
+		logger.info("before getAccount-param2, username = " + username);
+
+		return accountDao.getAccount(username, password);
 	}
 
 	@Override
@@ -44,11 +54,6 @@ public class PetMateImpl implements PetMateFacade {
 
 	}
 
-	@Override
-	public List<String> getUsernameList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<Item> getItemList(int sort) {
@@ -93,5 +98,6 @@ public class PetMateImpl implements PetMateFacade {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

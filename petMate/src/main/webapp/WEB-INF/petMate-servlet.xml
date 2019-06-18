@@ -19,8 +19,19 @@
  	<mvc:annotation-driven />
 <!--  	 <mvc:default-servlet-handler /> -->
  	<!-- <mvc:view-controller path="index.html" view-name="index" />  --> 
+ 
+  	<mvc:view-controller path="/signinForm.do" view-name="SignInForm"/> 
+  	<mvc:view-controller path="/mypage.do" view-name="MyPage"/> 
+  	
+ 
+ <!-- 
+	<mvc:interceptors>
+		<mvc:interceptor>
+    	    <mvc:mapping path="/signin.do"/>
+        	<bean class="com.example.petMate.controller.SignInInterceptor" />
+    	</mvc:interceptor>
+	</mvc:interceptors> -->
 
-	
 	<!--  tiles view가 존재하지 않을 경우 JSP view 이용 -->
   	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
