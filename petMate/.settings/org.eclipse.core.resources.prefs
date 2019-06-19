@@ -1,4 +1,8 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=25c52a0958df33e2148f85a24e978ba3c25a34ac
 eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/jsp/EditAccountForm.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/NewItemForm.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/NewItemImages.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/itemDetail.jsp=UTF-8
