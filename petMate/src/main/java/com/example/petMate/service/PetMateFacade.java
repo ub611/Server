@@ -5,20 +5,29 @@ import java.util.List;
 
 import com.example.petMate.command.ItemCommand;
 import com.example.petMate.domain.Account;
+import com.example.petMate.domain.Adopt;
 import com.example.petMate.domain.Item;
+import com.example.petMate.domain.Pet;
+import com.example.petMate.domain.buy;
 
 public interface PetMateFacade {
-
 	// User
-	Account getAccount(String username);// throws DataAccessException;
-
 	Account getAccount(String username, String password);// throws DataAccessException;
+	
+	Account getAccountById(String username);
 
 	void insertAccount(Account account);// throws DataAccessException;
 
 	void updateAccount(Account account);// throws DataAccessException;
+	
+//	Item getItem(String u_idx);
+//	
+//	buy getBuyIamBuyer(String u_idx);
+//
+//	Pet getIamAdopter(String u_idx);
+//	
+//	Adopt getPet(String u_idx);
 
-	List<String> getUsernameList(); // throws DataAccessException;
 
 
 	// Item 

@@ -1,12 +1,15 @@
-<%@ include file="IncludeTop.jsp"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-<!-- <div style="text-align:center;">
-    <spring:hasBindErrors name="accountForm" />
-    <form:errors path="accountForm" cssClass="error" />
-</div>
- -->
+
+<!-- 첫 화면에서는 정보 보여주기, modify시 update 가능하게 -->
+<jsp:include page="/WEB-INF/jsp/menu.jsp"/>
  
 <div align="center">
 <form:form commandName="accountForm" method="post">
@@ -21,19 +24,19 @@
             <td>User ID:</td>
             <td>
             <c:if test="${accountForm.newAccount}">
-              <form:input path="account.username" />
-              <B><form:errors path="account.username" cssClass="error" /></B>
+              <form:input path="account.u_idx" />
+              <B><form:errors path="account.u_idx" cssClass="error" /></B>
             </c:if> 
             <c:if test="${!accountForm.newAccount}">
-              <c:out value="${accountForm.account.username}" />
+              <c:out value="${accountForm.account.u_idx}" />
             </c:if>
             </td>
           </tr>
           <tr>
             <td>New password:</td>
             <td>
-              <form:password path="account.password" /> 
-              <B><form:errors path="account.password" cssClass="error" /></B></td>
+              <form:password path="account.u_pw" /> 
+              <B><form:errors path="account.u_pw" cssClass="error" /></B></td>
           </tr>
           <tr>
             <td>Repeat password:</td>
@@ -42,9 +45,6 @@
               <B><form:errors path="repeatedPassword" cssClass="error" /></B></td>
           </tr>
         </table> 
-        
-        <%@ include file="IncludeAccountFields.jsp"%>
-
       </td>
     </tr>
   </table>
@@ -53,8 +53,6 @@
       value="Save Account Information" />
 </form:form>
 <p></p>
-  <h3><b><a href='<c:url value="/shop/listOrders.do"/>'>My Orders</a></b></h3>
   
 </div>
 
-<%@ include file="IncludeBottom.jsp"%>

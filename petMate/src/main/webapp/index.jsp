@@ -1,4 +1,5 @@
-]<!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <body id="page-top">
@@ -25,7 +26,7 @@
           <a href="https://github.com/jisuuuu">
             <i class="fab fa-github"></i>
           </a>
-          <a href="https://github.com/HanSeonmin">
+         <a href="https://github.com/HanSeonmin">
             <i class="fab fa-github"></i>
           </a>
         </div>
