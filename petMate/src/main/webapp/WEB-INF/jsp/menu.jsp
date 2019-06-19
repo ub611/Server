@@ -19,9 +19,17 @@
 
 </head>
 
+<%! String sessionhref; %>		<!-- For isLogin -->
+<%
+	if(session.getAttribute("u_idx") != null)		//if userLogin
+		sessionhref = "/signup.do";			//goto myPage
+  else
+	  sessionhref = "/signinForm.do";		//or goto SignIn
+%>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href="#myPage">		<!-- login으로 -->
-      <span class="d-block d-lg-none">Pet Mate</span>
+    <a class="navbar-brand js-scroll-trigger" href=<%=sessionhref%>>		<!-- login으로 -->
+      <span class="d-block d-lg-none"><br>Pet Mate</span>
       <span class="d-none d-lg-block">
         <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
       </span>
@@ -32,19 +40,19 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#Home">Home</a>
+          <a class="nav-link js-scroll-trigger" href="/home.do">Home</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#myPage">MyPage</a>
+          <a class="nav-link js-scroll-trigger" href="/signup.do">MyPage</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#cart">Cart</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#adopt">Adopt</a>
+          <a class="nav-link js-scroll-trigger" href="/item.do">Adopt</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/petMate/items.do?sort=0">Item</a>
+          <a class="nav-link js-scroll-trigger" href="/items.do?sort=0">Item</a>
         </li>
       </ul>
     </div>

@@ -8,16 +8,21 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.petMate.command.ItemCommand;
 import com.example.petMate.controller.ItemController;
+import com.example.petMate.dao.AccountDao;
 import com.example.petMate.dao.ItemDao;
 import com.example.petMate.dao.mybatis.mapper.ItemMapper;
 import com.example.petMate.domain.Account;
+import com.example.petMate.domain.Adopt;
 import com.example.petMate.domain.Item;
+import com.example.petMate.domain.Pet;
+import com.example.petMate.domain.buy;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,37 +45,31 @@ public class PetMateImpl implements PetMateFacade {
 		this.s3FileUploadService = s3FileUploadService;
 	}
 
-	private static Logger logger = LoggerFactory.getLogger(PetMateImpl.class);
+	@Autowired
+	private AccountDao accountDao;
 
 	@Override
-	public Account getAccount(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public Account getAccountById(String username) throws DataAccessException{
+		// TODO Auto-generated method stub		
+		return accountDao.getAccountById(username);
 	}
 
 	@Override
-	public Account getAccount(String username, String password) {
+	public Account getAccount(String username, String password) throws DataAccessException{
 		// TODO Auto-generated method stub
-		return null;
+		return accountDao.getAccount(username, password);
 	}
 
 	@Override
 	public void insertAccount(Account account) {
-		// TODO Auto-generated method stub
-
+		accountDao.insertAccount(account);
 	}
 
 	@Override
 	public void updateAccount(Account account) {
-		// TODO Auto-generated method stub
-
+		accountDao.updateAccount(account);
 	}
-
-	@Override
-	public List<String> getUsernameList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	@Override
 	public List<Item> getItemList(int sort) {
@@ -125,21 +124,21 @@ public class PetMateImpl implements PetMateFacade {
 		java.util.Date date = calendar.getTime();
 		itemCommand.setI_date(date);
 		
-		logger.info("itemCommand : " + itemCommand.toString());
+		logger1.info("itemCommand : " + itemCommand.toString());
 //		logger.info("image urls : " + Arrays.toString(itemCommand.getIi_url()));
-		logger.info("image urls : " + itemCommand.getIi_url());	
+		logger1.info("image urls : " + itemCommand.getIi_url());	
 
 		itemDao.createItem(itemCommand);
 		int i_idx =Integer.valueOf(itemCommand.getI_idx());
 		
-		logger.info("i_idx : " + i_idx);
+		logger1.info("i_idx : " + i_idx);
 
 //		MultipartFile[] urls = itemCommand.getIi_url();
 		List<MultipartFile> urls = itemCommand.getIi_url();
-		logger.info("urls : " + urls);
+		logger1.info("urls : " + urls);
 
 		for(MultipartFile url : itemCommand.getIi_url()) {    
-			logger.info("MultipartFile : " + url);
+			logger1.info("MultipartFile : " + url);
 			itemDao.createItemImage(s3FileUploadService.upload(url, "item"), i_idx);
 		}
 		return i_idx;

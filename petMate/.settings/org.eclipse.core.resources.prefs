@@ -1,6 +1,15 @@
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/main/webapp/WEB-INF/jsp/NewItemForm.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/NewItemImages.jsp=UTF-8
+=======
+encoding//src/main/webapp/WEB-INF/jsp/EditAccountForm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/MyPage.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/MyPageItem.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/MyPagePet.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/SignUpForm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/index.jsp=UTF-8
+>>>>>>> 25c52a0958df33e2148f85a24e978ba3c25a34ac
 encoding//src/main/webapp/WEB-INF/jsp/itemDetail.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/itemList.jsp=UTF-8
 encoding//src/main/webapp/index.jsp=UTF-8
