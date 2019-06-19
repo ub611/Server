@@ -11,17 +11,22 @@
 
 
 <div class="container">
-	<form:form class="form-horizontal" action="new.do" method="post" enctype="multipart/form-data" commandName="itemCommand">
-<fieldset>
+<%-- 	<form:form commandName="itemCommand" class="form-horizontal" action="new.do" method="post" enctype="multipart/form-data" >
+ --%>
+ <form class="form-horizontal" action="step1.do" method="post"  >
+ <fieldset>
 
 <!-- Form Name -->
+
+
+
 <legend>Fill out the item contents</legend>
 	
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Title</label>  
   <div class="col-md-4">
-  <input name="i_title" class="form-control input-md" id="i_title" type="text" placeholder="이름을 입력해주세요.">
+  <input name="i_title" class="form-control input-md"  type="text" placeholder="이름을 입력해주세요." value="${itemCommand.i_title}">
   </div>
 </div>
 
@@ -29,7 +34,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Stock</label>  
   <div class="col-md-4">
-  <input name="i_stock" class="form-control input-md" id="i_stock" type="text" placeholder="2">
+  <input name="i_stock" class="form-control input-md" type="text" placeholder="2" value="${itemCommand.i_stock}">
   </div>
 </div>
 
@@ -37,7 +42,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Price</label>  
   <div class="col-md-4">
-  <input name="i_price" class="form-control input-md" id="i_price" type="text" placeholder="10000">
+  <input name="i_price" class="form-control input-md"  type="text" placeholder="10000" value="${itemCommand.i_price}">
   </div>
 </div>
 
@@ -45,7 +50,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Detail</label>  
   <div class="col-md-4">
-  <input name="i_detail" class="form-control input-md" id="i_detail" type="text" placeholder="상품 상세 정보를 입력해주세요.">
+  <input name="i_detail" class="form-control input-md" type="text" placeholder="상품 상세 정보를 입력해주세요." value="${itemCommand.i_detail}">
   </div>
 </div>
 
@@ -53,7 +58,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="selectbasic">Category</label>
   <div class="col-md-4">
-    <select name="i_category" class="form-control" id="i_category">
+    <select name="i_category" class="form-control" >
       <option value="1">Food & Snack</option>
       <option value="2">Houseware</option>
       <option value="3">Toy</option>
@@ -62,24 +67,16 @@
   </div>
 </div>
 
-<div class="form-group">
-  <label class="col-md-4 control-label" >Item Image</label>
-  <div class="col-md-4">
-  	<input name="ii_url" class="form-control input-md" id="ii_url" type="file">
-  </div>
-</div>
-
-
 <!-- Button (Double) -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="button1id">Double Button</label>
   <div class="col-md-8">
 <!--     <button name="button1id" class="btn btn-success" id="button1id">Create</button>
- -->    <input name="button2id" class="btn btn-success" id="button2id" type="submit" value="Create"/>
+ -->    <input name="button2id" class="btn btn-success" id="button2id" type="submit" value="Next"/>
   </div>
 </div>
 
 </fieldset>
-</form:form>
+<%-- </form:form> --%>
+</form>
 
 </div>

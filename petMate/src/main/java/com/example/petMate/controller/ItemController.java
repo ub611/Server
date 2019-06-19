@@ -1,5 +1,7 @@
 package com.example.petMate.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.petMate.command.ItemCommand;
 import com.example.petMate.domain.Item;
@@ -28,7 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
-@SessionAttributes("ItemCommand")
+@SessionAttributes("itemCommand")
 public class ItemController { 
 
 	@Autowired
@@ -37,9 +41,9 @@ public class ItemController {
 	private static Logger logger = LoggerFactory.getLogger(ItemController.class);
 	
 	
-	@ModelAttribute("ItemCommand")
-	public ItemCommand formData() {
-		return new ItemCommand();
+	@ModelAttribute("itemCommand")
+	public ItemCommand formData( ) {
+		return  new ItemCommand();
 	}
 	
 	/*
@@ -73,42 +77,79 @@ public class ItemController {
 	}
 	
 	
+	
 	/*
-	 * Item 등록 폼
+	 * Item 등록 new -> step1
 	 */
-	@RequestMapping("/items/new.do")
-	public String addItemForm() throws Exception {
+	@RequestMapping(value="/items/step1.do", method = RequestMethod.GET)
+	public String addItem(@ModelAttribute("itemCommand") ItemCommand itemCommand,
+			BindingResult result,
+			HttpServletRequest request,
+			HttpServletResponse response, SessionStatus status) throws Exception {
 		return "NewItemForm";
 	}
 	
 	/*
-	 * Item 등록 submit
+	 * Item 등록 step1
 	 */
-	@RequestMapping(value="/items/new.do", method = RequestMethod.POST)
-	public String addItem(@ModelAttribute("ItemCommand") ItemCommand itemCommand,
+	@RequestMapping(value="/items/step1.do", method = RequestMethod.POST)
+	public String addItemGet(@ModelAttribute("itemCommand") ItemCommand itemCommand,
+			BindingResult result,
 			HttpServletRequest request,
-			HttpServletResponse response,
-			final MultipartFile[] pic_url, SessionStatus status, BindingResult result ) throws Exception {
+			HttpServletResponse response, SessionStatus status) throws Exception {
 		String u_idx = (String) request.getSession().getAttribute("u_idx");
 
 		u_idx = "3";
-		logger.info("new Item logggggg : " + u_idx + " " + pic_url);
 		
 		if(u_idx == null || u_idx.equals("") ) {
 			//로그인 페이지로 리다이렉트!
-			logger.info("new Item logggggg : " + request.getContextPath() + "/item");
-			response.sendRedirect(request.getContextPath() + "/items/new.do");
+			response.sendRedirect(request.getContextPath() + "/items.do");
 		}
 		
-		logger.info("new Item logggggg : " + itemCommand.toString());
 		if(!itemCommand.validateProperties()) {
+			logger.info("new Item logggggg : " + itemCommand.toString());
 			return "Error";
 		}
 		try {
+    		logger.info("new Item : " + itemCommand.toString());
 			itemCommand.setUser_u_idx(Integer.valueOf(u_idx));
-			itemCommand.setIi_url(pic_url);
+			return "NewItemImages";
+		}catch(Exception e) {
+            e.printStackTrace();
+            return "Error";
+		}
+	}
+	
+	/*
+	 * Item 등록 summit
+	 */
+	@RequestMapping(value="/items/new.do", method = RequestMethod.POST)
+	public String addItem(@ModelAttribute("itemCommand") ItemCommand itemCommand,
+			BindingResult result,
+			HttpServletResponse response,
+			HttpServletRequest request,
+			@RequestParam("ii_url") MultipartFile ii_url, 
+			@RequestParam("ii_url1") MultipartFile ii_url1, 
+			@RequestParam("ii_url2") MultipartFile ii_url2, 
+			@RequestParam("ii_url3") MultipartFile ii_url3, 
+			@RequestParam("ii_url4") MultipartFile ii_url4, 
+			SessionStatus status) throws Exception {
+		try {
+			List<MultipartFile> url = new ArrayList<MultipartFile>();
+			if(!ii_url.isEmpty()) {
+				url.add(ii_url);
+			}if(!ii_url1.isEmpty()) {
+				url.add(ii_url1);
+			}if(!ii_url2.isEmpty()) {
+				url.add(ii_url2);
+			}if(!ii_url3.isEmpty()) {
+				url.add(ii_url3);
+			}if(!ii_url4.isEmpty()) {
+				url.add(ii_url4);
+			}
+			itemCommand.setIi_url(url);
             petmate.createItem(itemCommand);
-    		status.setComplete();
+            status.setComplete();
     		return "NewItemConfirm";
 		}catch(Exception e) {
             e.printStackTrace();

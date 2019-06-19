@@ -12,7 +12,7 @@
 <div class="container">
   <div class="w-100">
 	<div class="container">
-	<div><button><a href="items/new.do">new Item</a></button></div>
+	<div><button><a href="items/step1.do">new Item</a></button></div>
 	<div class="row">
 		<ul class="list-group">
           <li class="list-group-item"><a href="/items.do?sort=0">All</a></li>

@@ -40,9 +40,9 @@ public class MybatisItemDao implements ItemDao{
 	}
 
 	@Override
-	public int updateItem(Item item_idx, Item Item) {
+	public int updateItem(Item item_idx, Item item) {
 		// TODO Auto-generated method stub
-		return itemMapper.updateItem(item_idx, Item);
+		return itemMapper.updateItem(item_idx, item);
 		
 	}
 	
