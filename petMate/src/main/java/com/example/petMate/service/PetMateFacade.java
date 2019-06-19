@@ -2,7 +2,10 @@ package com.example.petMate.service;
 
 import java.util.List;
 import com.example.petMate.domain.Account;
+import com.example.petMate.domain.Adopt;
 import com.example.petMate.domain.Item;
+import com.example.petMate.domain.Pet;
+import com.example.petMate.domain.buy;
 
 public interface PetMateFacade {
 	// User
@@ -13,6 +16,14 @@ public interface PetMateFacade {
 	void insertAccount(Account account);// throws DataAccessException;
 
 	void updateAccount(Account account);// throws DataAccessException;
+	
+//	Item getItem(String u_idx);
+//	
+//	buy getBuyIamBuyer(String u_idx);
+//
+//	Pet getIamAdopter(String u_idx);
+//	
+//	Adopt getPet(String u_idx);
 
 
 

@@ -23,7 +23,7 @@
 <%! String sessionhref; %>		<!-- For isLogin -->
 <%
 	if(session.getAttribute("u_idx") != null)		//if userLogin
-		sessionhref = "#myPage";			//goto myPage
+		sessionhref = "/signup.do";			//goto myPage
   else
 	  sessionhref = "/signinForm.do";		//or goto SignIn
 %>

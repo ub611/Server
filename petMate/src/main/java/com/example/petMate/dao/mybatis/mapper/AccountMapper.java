@@ -30,30 +30,40 @@ public interface AccountMapper {
 			+ "WHERE u_idx=#{account.u_idx}")
 	void updateAccount(@Param("account")Account account);		//update info 
 
-	
 	//PetmateFacade에없음
 	
 	@Select("SELECT * "
-			+ "FROM buy " 
-			+ "WHERE buyer_idx=#{username}")		//buyer_idx join
-	buy getBuyHistory(@Param("username")String username);
-	
-	
-	@Select("SELECT * "
 			+ "FROM item " 
-			+ "WHERE user_u_idx=#{username}")		//item idx join
-	Item getItem(@Param("username")String username);
+			+ "WHERE user_u_idx=#{u_idx}")		//item idx join
+	Item getItem(@Param("u_idx")String u_idx);
+	
+	/*i_title, i_price, i_stock, i_detail, i_date
+	 *
+	 * */
 	
 	@Select("SELECT * "
-			+ "FROM adopt " 
-			+ "WHERE owner_idx=#{username}")		//pet_p_idx join
-	Adopt getAdoptHistory(@Param("username")String username);
+			+ "FROM buy, item " 
+			+ "WHERE buy.buyer_idx=#{u_idx} AND item.i_idx=buy.item_i_idx")		
+	buy getBuyIamBuyer(@Param("u_idx")String u_idx);
+	
+	/*buy,b_date, buy.seller_idx, item.i_title, item.i_price, item.i_detail*/
 	
 	
 	@Select("SELECT * "
-			+ "FROM pet "
-			+ "WHERE user_u_idx=#{username}")			//category조인
-	Pet getPet(@Param("username") String username);
+			+ "FROM pet, adopt, category "
+			+ "WHERE adopt.adopter_idx=#{u_idx} AND pet.p_cate=category.c_idx")			//category조인
+	Pet getIamAdopter(@Param("u_idx")String u_idx);
+	/*pet.p_age, pet.p_gender, pet.p_name, pet.p_isInjection, 
+	 * pet.p_cate_detail, adopt.owner_idx, adopt.a_state, adopt.a_date, category.c_name*/
+	
+	
+	@Select("SELECT * "
+			+ "FROM pet, category " 
+			+ "WHERE pet.user_u_idx=#{username} AND pet.p_cate=category.c_idx")		//pet_p_idx join
+	Adopt getPet(@Param("u_idx")String u_idx);
+	/*pet.p_age, pet.p_gender, pet.p_name, pet.p_isInjection, pet.p_cate_detail, category.c_name*/
+	
+
 	
 
 }

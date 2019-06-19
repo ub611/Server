@@ -11,9 +11,12 @@
 
 <h2 class="mb-5">MyPage</h2>
 
+<br><br>
 <button type="button" onclick="location.href='/signoff.do'">logout</button>
-<button type="button" onclick="location.href='/mypage/${AccountForm.account.u_idx}/item.do'">item</button>		<!-- buy 2개씩 보여주기 -->
-<button type="button" onclick="location.href='/mypage/${AccountForm.account.u_idx}/pet.do'">pet</button>		<!--  adopt -->
+<!-- <button type="button" onclick="location.href='/mypage/item.do'">item</button> -->		<!-- buy 2개씩 보여주기 -->
+<button type="button" onclick="/mypage/${AccountForm.account.u_idx}/pet.do'">pet</button>		<!--  adopt -->
+<br>
+
 
 <div class="container">
 	<form:form commandName="AccountForm" class="form-horizontal"

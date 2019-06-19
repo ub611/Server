@@ -52,7 +52,6 @@ public class SignUpController {
 		HttpSession session = request.getSession(); 
 		String isLogin = (String) session.getAttribute("u_idx");
 		if (isLogin != null) {	// edit an existing account
-			logger.info("session != null");
 			return new AccountForm(petMate.getAccountById((String)session.getAttribute("u_idx")));
 		}
 		else {	// create a new account
@@ -71,21 +70,16 @@ public class SignUpController {
 			@ModelAttribute("AccountForm") AccountForm account,
 			BindingResult result) throws Exception {
 		
-		logger.info(account.getAccount().getU_idx());
 		
 //		validator.validate(account, result);
 		
-		logger.info("before result.hasErrors()");
-
 		if (result.hasErrors()) return formViewName;
 		
-		logger.info("after result.hasErrors()");
 
 		try {
 			if (account.isNewAccount()) {
 				logger.info(account.getAccount().toString());
 				petMate.insertAccount(account.getAccount());
-				logger.info("insert after");
 			}
 			else {
 //				petMate.updateAccount(account.getAccount());
