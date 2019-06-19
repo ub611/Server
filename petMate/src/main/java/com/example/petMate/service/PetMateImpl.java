@@ -54,7 +54,7 @@ public class PetMateImpl implements PetMateFacade {
 
 	@Override
 	public void updateAccount(Account account) {
-		// TODO Auto-generated method stub
+		accountDao.updateAccount(account);
 
 	}
 

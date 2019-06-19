@@ -32,7 +32,7 @@ public class SignUpController {
 		this.petMate = petMate;
 	}
 	
-	@Value("EditAccountForm")
+	@Value("MyPage")
 	private String formViewName;
 	
 	@Value("index")
@@ -46,14 +46,14 @@ public class SignUpController {
 		
 	//내 거래내역, 내 펫 등록내역 보여줘야함
 	
-	@ModelAttribute("AccountCommand")
+	@ModelAttribute("AccountForm")
 	public AccountForm formBackingObject(HttpServletRequest request) 
 			throws Exception {
 		HttpSession session = request.getSession(); 
 		String isLogin = (String) session.getAttribute("u_idx");
 		if (isLogin != null) {	// edit an existing account
 			logger.info("session != null");
-			return new AccountForm(); //new AccountCommand(petMate.getAccountById((String)session.getAttribute("u_idx")));
+			return new AccountForm(petMate.getAccountById((String)session.getAttribute("u_idx")));
 		}
 		else {	// create a new account
 			return new AccountForm();
@@ -68,34 +68,31 @@ public class SignUpController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(
 			HttpServletRequest request, HttpSession session,
-			@ModelAttribute("AccountCommand") AccountForm account,
+			@ModelAttribute("AccountForm") AccountForm account,
 			BindingResult result) throws Exception {
 		
 		logger.info(account.getAccount().getU_idx());
+		
+//		validator.validate(account, result);
+		
+		logger.info("before result.hasErrors()");
 
-//		if (request.getParameter("account.listOption") == null) {
-//			accountForm.getAccount().setListOption(false);
-//		}
-//		if (request.getParameter("account.bannerOption") == null) {
-//			accountForm.getAccount().setBannerOption(false);
-//		}
-		
-//		validator.validate(accountForm, result);
-		
 		if (result.hasErrors()) return formViewName;
 		
+		logger.info("after result.hasErrors()");
+
 		try {
-//			if (accountForm.isNewAccount()) {
+			if (account.isNewAccount()) {
 				logger.info(account.getAccount().toString());
 				petMate.insertAccount(account.getAccount());
 				logger.info("insert after");
-//			}
-//			else {
+			}
+			else {
 //				petMate.updateAccount(account.getAccount());
-			//}
+			}
 		}
 		catch (DataIntegrityViolationException ex) {
-			result.rejectValue("account.username", "USER_ID_ALREADY_EXISTS",
+			result.rejectValue("account.u_idx", "USER_ID_ALREADY_EXISTS",
 					"User ID already exists: choose a different ID.");
 			return formViewName; 
 		}

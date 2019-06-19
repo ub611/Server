@@ -25,10 +25,11 @@ public interface AccountMapper {
 			+ "#{account.u_phone}, #{account.u_pw}, 123, #{account.u_profile})")
 	void insertAccount(@Param("account")Account account);
 	
-	//	@Update("Update user SET #{u_idx} = ")
+	@Update("UPDATE user SET u_name=#{account.u_name}, u_pw=#{account.u_pw}, "
+			+ "u_address=#{account.u_address}, u_phone=#{account.u_phone} "
+			+ "WHERE u_idx=#{account.u_idx}")
 	void updateAccount(@Param("account")Account account);		//update info 
 
-	
 	
 	//PetmateFacade에없음
 	

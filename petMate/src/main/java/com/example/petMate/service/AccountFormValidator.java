@@ -1,38 +1,39 @@
 package com.example.petMate.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
 import com.example.petMate.controller.AccountForm;
+import com.example.petMate.controller.SignUpController;
 import com.example.petMate.domain.Account;
 
 @Component
 public class AccountFormValidator implements Validator {
+	private static Logger logger = LoggerFactory.getLogger(AccountFormValidator.class);
 
 	public boolean supports(Class<?> clazz) {
 		return Account.class.isAssignableFrom(clazz);
 	}
 
 	public void validate(Object obj, Errors errors) {
-		AccountForm accountForm = (AccountForm)obj; 
+		AccountForm accountForm = (AccountForm)obj;
 		Account account = accountForm.getAccount();
 
 		//수정하
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.firstName", "FIRST_NAME_REQUIRED", "First name is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.lastName", "LAST_NAME_REQUIRED", "Last name is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.email", "EMAIL_REQUIRED", "Email address is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.phone", "PHONE_REQUIRED", "Phone number is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.address1", "ADDRESS_REQUIRED", "Address (1) is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.city", "CITY_REQUIRED", "City is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.state", "STATE_REQUIRED", "State is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.zip", "ZIP_REQUIRED", "ZIP is required.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.country", "COUNTRY_REQUIRED", "Country is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.u_idx", "ID_REQUIRED", "Id is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.u_name", "NAME_REQUIRED", "name is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.u_phone", "PHONE_REQUIRED", "phone address is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.u_address", "ADDRESS_REQUIRED", "address number is required.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.u_pw", "PASSWORD_REQUIRED", "password is required.");
+		
 		
 		if (accountForm.isNewAccount()) {
 			//account.setStatus("OK");
-			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.username", "USER_ID_REQUIRED", "User ID is required.");
+			ValidationUtils.rejectIfEmptyOrWhitespace(errors, "account.u_idx", "USER_ID_REQUIRED", "User ID is required.");
+			
 			if (account.getU_pw() == null || account.getU_pw().length() < 1 ||
 					!account.getU_pw().equals(accountForm.getRepeatedPassword())) {
 				errors.reject("PASSWORD_MISMATCH",
@@ -44,6 +45,7 @@ public class AccountFormValidator implements Validator {
 				errors.reject("PASSWORD_MISMATCH", "Passwords did not match. Matching passwords are required.");
 			}
 		}
+		
 	}
 
 }
