@@ -13,7 +13,7 @@ public class Pet implements Serializable {
 	private String p_isinjection;
 	
 	//user
-	private int user_u_idx;
+	private String user_u_idx;
 	
 	//category
 	private int category_c_idx;
@@ -58,11 +58,11 @@ public class Pet implements Serializable {
 		this.p_isinjection = p_isinjection;
 	}
 
-	public int getUser_u_idx() {
+	public String getUser_u_idx() {
 		return user_u_idx;
 	}
 
-	public void setUser_u_idx(int user_u_idx) {
+	public void setUser_u_idx(String user_u_idx) {
 		this.user_u_idx = user_u_idx;
 	}
 

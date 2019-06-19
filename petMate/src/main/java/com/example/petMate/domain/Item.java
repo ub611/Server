@@ -21,7 +21,7 @@ public class Item implements Serializable{
 	private int i_category;
 	
 	//user
-	private int user_u_idx;		//seller? buyer?
+	private String user_u_idx;		//seller? buyer?
 
 	
 	//GetterSetter
@@ -81,11 +81,11 @@ public class Item implements Serializable{
 		this.i_category = i_category;
 	}
 
-	public int getUser_u_idx() {
+	public String getUser_u_idx() {
 		return user_u_idx;
 	}
 
-	public void setUser_u_idx(int user_u_idx) {
+	public void setUser_u_idx(String user_u_idx) {
 		this.user_u_idx = user_u_idx;
 	}
 

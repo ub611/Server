@@ -7,6 +7,8 @@
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
+
+<!-- 첫 화면에서는 정보 보여주기, modify시 update 가능하게 -->
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
  
 <div align="center">

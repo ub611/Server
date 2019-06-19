@@ -14,8 +14,8 @@ public class Adopt implements Serializable{
 	private String a_content;
 	
 	//user
-	private int adopter_idx;		//분양해갈사람
-	private int owner_idx;	//분양 해주는 사람
+	private String adopter_idx;		//분양해갈사람
+	private String owner_idx;	//분양 해주는 사람
 	
 	//pet
 	private int pet_p_idx;		
@@ -61,19 +61,19 @@ public class Adopt implements Serializable{
 		this.a_content = a_content;
 	}
 
-	public int getAdopter_idx() {
+	public String getAdopter_idx() {
 		return adopter_idx;
 	}
 
-	public void setAdopter_idx(int adopter_idx) {
+	public void setAdopter_idx(String adopter_idx) {
 		this.adopter_idx = adopter_idx;
 	}
 
-	public int getOwner_idx() {
+	public String getOwner_idx() {
 		return owner_idx;
 	}
 
-	public void setOwner_idx(int owner_idx) {
+	public void setOwner_idx(String owner_idx) {
 		this.owner_idx = owner_idx;
 	}
 

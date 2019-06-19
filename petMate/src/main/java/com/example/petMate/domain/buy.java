@@ -13,8 +13,8 @@ public class buy implements Serializable{
 	private String b_state;
 	
 	//uesr
-	private int seller_idx;		
-	private int buyer_idx;	
+	private String seller_idx;		
+	private String buyer_idx;	
 	
 	//item
 	private int item_idx;		//what item
@@ -51,19 +51,19 @@ public class buy implements Serializable{
 		this.b_state = b_state;
 	}
 
-	public int getSeller_idx() {
+	public String getSeller_idx() {
 		return seller_idx;
 	}
 
-	public void setSeller_idx(int seller_idx) {
+	public void setSeller_idx(String seller_idx) {
 		this.seller_idx = seller_idx;
 	}
 
-	public int getBuyer_idx() {
+	public String getBuyer_idx() {
 		return buyer_idx;
 	}
 
-	public void setBuyer_idx(int buyer_idx) {
+	public void setBuyer_idx(String buyer_idx) {
 		this.buyer_idx = buyer_idx;
 	}
 

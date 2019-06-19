@@ -41,7 +41,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="#Home">Home</a>
+          <a class="nav-link js-scroll-trigger" href="/home.do">Home</a>
         </li>
          <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="/mypage.do">MyPage</a>

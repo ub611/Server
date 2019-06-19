@@ -42,6 +42,8 @@ public class SignUpController {
 //		this.validator = validator;
 //	}
 		
+	//내 거래내역, 내 펫 등록내역 보여줘야함
+	
 	@ModelAttribute("accountForm")
 	public AccountForm formBackingObject(HttpServletRequest request) 
 			throws Exception {
