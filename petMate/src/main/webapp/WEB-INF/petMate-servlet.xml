@@ -39,17 +39,23 @@
 		<property name="prefix" value="/WEB-INF/jsp/"/>
 		<property name="suffix" value=".jsp"/>
 		<property name="order" value="2" />	
-	</bean>   
+	</bean>  
+<!-- 	<bean id="s3FileUploadService" class="com.example.petMate.service.S3FileUploadService">
+			<constructor-arg ref="amazonS3Client"/>
+	</bean> -->
 	
-<!-- 	<bean id="messageSource"
-		class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basenames">
-			<list>
-				<value>messages.validation</value>
-			</list>
-		</property>
-	</bean>  -->
-	
+<!-- 	<bean id="amazonS3Client" class="com.amazonaws.services.s3.AmazonS3Client"/>   
+ --><!-- 	
+<bean class="org.springframwork.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="locations">	
+		<value>classpath:application.properties</value>
+	</property>
+</bean> -->
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</bean>
+
+ 	<context:property-placeholder location="classpath:application.properties"/> 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:resources mapping="/css/**" location="/css/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>

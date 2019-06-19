@@ -21,7 +21,6 @@ import com.example.petMate.service.AccountFormValidator;
 import com.example.petMate.service.PetMateFacade;
 
 @Controller
-@RequestMapping("/signup.do")
 public class SignUpController {
 	private static Logger logger = LoggerFactory.getLogger(SignUpController.class);
 
@@ -59,12 +58,12 @@ public class SignUpController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/signup.do", method = RequestMethod.GET)
 	public String showForm() {
 		return formViewName;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value="/signup.do", method = RequestMethod.POST)
 	public String onSubmit(
 			HttpServletRequest request, HttpSession session,
 			@ModelAttribute("AccountForm") AccountForm account,

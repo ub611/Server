@@ -23,7 +23,6 @@ public class Item implements Serializable{
 	//user
 	private String user_u_idx;		//seller? buyer?
 
-	
 	//GetterSetter
 	public int getI_idx() {
 		return i_idx;

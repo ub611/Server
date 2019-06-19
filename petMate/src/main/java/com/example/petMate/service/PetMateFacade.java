@@ -1,6 +1,9 @@
 package com.example.petMate.service;
 
+import java.io.IOException;
 import java.util.List;
+
+import com.example.petMate.command.ItemCommand;
 import com.example.petMate.domain.Account;
 import com.example.petMate.domain.Adopt;
 import com.example.petMate.domain.Item;
@@ -37,5 +40,7 @@ public interface PetMateFacade {
 	void updateItem(Item itemIdx, Item Item);// throws DataAccessException;
 
 	List<String> getItemnameList(); // throws DataAccessException;
+	
+	int createItem(ItemCommand itemCommand) throws IOException; //throws DataAccessException;
 
 }

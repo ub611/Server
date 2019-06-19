@@ -1,5 +1,7 @@
 eclipse.preferences.version=1
 encoding//src/main/webapp/WEB-INF/jsp/EditAccountForm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/NewItemForm.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/NewItemImages.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/MyPage.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/MyPageItem.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/MyPagePet.jsp=UTF-8
