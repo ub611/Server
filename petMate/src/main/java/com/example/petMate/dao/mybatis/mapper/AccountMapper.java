@@ -9,9 +9,6 @@ import com.example.petMate.domain.Pet;
 import com.example.petMate.domain.buy;
 
 public interface AccountMapper {
-//	@Insert("INSERT INTO user VALUES (#{u_idx}, #{u_name}, #{u_address}. #{u_phone}, #{u_pw}, #{u_salt}, #{u_profile})")
-	void insertAccount(Account account);		//join
-	
 	@Select("SELECT * "
 			+ "FROM user "
 			+ "WHERE u_idx=#{username} AND u_pw=#{password}")
@@ -22,8 +19,18 @@ public interface AccountMapper {
 			+ "WHERE u_idx=#{username}")
 	Account getAccountById(@Param("username")String username);
 
+	
+	@Insert("INSERT INTO user "
+			+ "VALUES(#{account.u_idx}, #{account.u_name}, #{account.u_address}, "
+			+ "#{account.u_phone}, #{account.u_pw}, 123, #{account.u_profile})")
+	void insertAccount(@Param("account")Account account);
+	
 	//	@Update("Update user SET #{u_idx} = ")
-	void updateAccount(Account account);		//update info 
+	void updateAccount(@Param("account")Account account);		//update info 
+
+	
+	
+	//PetmateFacade에없음
 	
 	@Select("SELECT * "
 			+ "FROM buy " 

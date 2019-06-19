@@ -36,7 +36,7 @@
     </table>
     <button>login</button>
   </form>
-  <a href='<c:url value="/signup.do"/>'> 
+  <a href='<c:url value="/signupForm.do"/>'> 
      <button>join</button>
   </a> 
 </div>

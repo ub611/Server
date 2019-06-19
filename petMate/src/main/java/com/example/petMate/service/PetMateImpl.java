@@ -44,7 +44,11 @@ public class PetMateImpl implements PetMateFacade {
 
 	@Override
 	public void insertAccount(Account account) {
-		// TODO Auto-generated method stub
+		logger.info("Before insertAccount, account_username = " + account.getU_name());
+		
+		accountDao.insertAccount(account);
+		
+		logger.info("After InsertAccount");
 
 	}
 

@@ -1,8 +1,8 @@
 package com.example.petMate.controller;
 
+import java.beans.PropertyEditorSupport;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.util.WebUtils;
-
 import com.example.petMate.service.AccountFormValidator;
 import com.example.petMate.service.PetMateFacade;
 
@@ -44,12 +46,14 @@ public class SignUpController {
 		
 	//내 거래내역, 내 펫 등록내역 보여줘야함
 	
-	@ModelAttribute("accountForm")
+	@ModelAttribute("AccountCommand")
 	public AccountForm formBackingObject(HttpServletRequest request) 
 			throws Exception {
 		HttpSession session = request.getSession(); 
-		if (session != null) {	// edit an existing account
-			return new AccountForm(petMate.getAccountById((String)session.getAttribute("u_idx")));
+		String isLogin = (String) session.getAttribute("u_idx");
+		if (isLogin != null) {	// edit an existing account
+			logger.info("session != null");
+			return new AccountForm(); //new AccountCommand(petMate.getAccountById((String)session.getAttribute("u_idx")));
 		}
 		else {	// create a new account
 			return new AccountForm();
@@ -64,8 +68,10 @@ public class SignUpController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String onSubmit(
 			HttpServletRequest request, HttpSession session,
-			@ModelAttribute("accountForm") AccountForm accountForm,
+			@ModelAttribute("AccountCommand") AccountForm account,
 			BindingResult result) throws Exception {
+		
+		logger.info(account.getAccount().getU_idx());
 
 //		if (request.getParameter("account.listOption") == null) {
 //			accountForm.getAccount().setListOption(false);
@@ -79,12 +85,14 @@ public class SignUpController {
 		if (result.hasErrors()) return formViewName;
 		
 		try {
-			if (accountForm.isNewAccount()) {
-				petMate.insertAccount(accountForm.getAccount());
-			}
-			else {
-				petMate.updateAccount(accountForm.getAccount());
-			}
+//			if (accountForm.isNewAccount()) {
+				logger.info(account.getAccount().toString());
+				petMate.insertAccount(account.getAccount());
+				logger.info("insert after");
+//			}
+//			else {
+//				petMate.updateAccount(account.getAccount());
+			//}
 		}
 		catch (DataIntegrityViolationException ex) {
 			result.rejectValue("account.username", "USER_ID_ALREADY_EXISTS",
@@ -101,6 +109,5 @@ public class SignUpController {
 //		session.setAttribute("userSession", userSession);
 		return successViewName;  
 	}
-	
 
 }
