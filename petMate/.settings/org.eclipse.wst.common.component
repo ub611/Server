@@ -11,7 +11,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
                 
         <property name="java-output-path" value="/jpetstore/target/classes"/>
-        <property name="context-root" value="/"/>
+        <property name="context-root" value="/petMate"/>
             
     </wb-module>
     
