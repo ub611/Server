@@ -55,7 +55,7 @@
 <div class="form-group">
   <div class="col-md-8">
 <!--   		<button name="button2id" class="btn btn-success" onclick="location.href='/step1.do'" value="Back"></button>
- -->  <button class="btn"><a href="step1.do" >Back</a></button>
+ -->  <button class="btn"><a href='<c:url value="/items/step1.do"/>'>Back</a></button>
 	   <input name="button2id" class="btn btn-success" id="button2id" type="submit" value="Create"/>
   </div>
 </div>

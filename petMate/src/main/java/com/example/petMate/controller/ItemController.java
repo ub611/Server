@@ -158,20 +158,27 @@ public class ItemController {
 	}
 	
 	/*
-	 * Item 수정
+	 * Item 수정 POST
 	 */
 //	@RequestMapping(value="/items/edit.do",method = RequestMethod.POST)
 //	public String editItem(@ModelAttribute("Item") ItemCommand itemCommand,  Model model) throws Exception {
 //		List<Item> items = petmate.getItemList();
 //		model.addAttribute("items", items);
 //		logger.info("items logggggg : " + items.toString());
-//		return "/";
+//		return "NewItemForm";
 //	}
+	/*
+	 * Item 수정 Form 
+	 */
+	@RequestMapping("/items/edit.do")
+	public String editItemForm() throws Exception {
+		return "EditItemForm";
+	}
 	
 	/*
-	 * Item 수량 변경
+	 * Item 수량 변경 GET
 	 */
-//	@RequestMapping(value="/items/new.do",method = RequestMethod.POST)
+//	@RequestMapping("/items/stock/edit.do")
 //	public String editItemStock(@ModelAttribute("Item") ItemCommand itemCommand,  Model model) throws Exception {
 //		List<Item> items = petmate.getItemList();
 //		model.addAttribute("items", items);
