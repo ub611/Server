@@ -22,11 +22,11 @@
 
 <div class="container" style="margin:20px">
   <div class="row">
-  <c:forEach var="pet" items="${petList}">
+  <c:forEach var="pet" items="${petList}">r
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-0 shadow">
       
-        <img src="https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy.jpg?imwidth=450" class="card-img-top" alt="...">
+        <img src="${pet.p_url}" class="card-img-top" alt="...">
         <div class="card-body text-center">
           <h5 class="card-title mb-0">${pet.p_name} :: ${pet.p_cate_detail}</h5>
           <div class="card-text text-black-50">Age :: ${pet.p_age}</div>

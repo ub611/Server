@@ -3,6 +3,8 @@ package com.example.petMate.service;
 import java.io.IOException;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.example.petMate.command.ItemCommand;
 import com.example.petMate.command.MyPageAdoptCommand;
 import com.example.petMate.command.MyPageBuyCommand;
@@ -56,8 +58,8 @@ public interface PetMateFacade {
 	String selectPetNameByAdopt(int pet_p_idx) throws Exception;
 	String selectPetAgeByAdopt(int pet_p_idx) throws Exception;
 	int selectPetIdxLatest() throws Exception;
-	int insertPet(Pet pet) throws Exception;
-	int updatePet(Pet pet) throws Exception;
+	int insertPet(Pet pet, MultipartFile pi_url) throws Exception;
+	int updatePet(Pet pet, MultipartFile pi_url) throws Exception;
 	int deletePet(int p_idx) throws Exception;
 
 	// Adopt

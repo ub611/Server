@@ -2,12 +2,14 @@ package com.example.petMate.domain;
 
 import java.io.Serializable;
 
+import org.springframework.web.multipart.MultipartFile;
+
 @SuppressWarnings("serial")
 public class PetImage implements Serializable{
 	
 	//image
 	private int pi_idx;
-	private String pi_url;
+	private MultipartFile pi_url;
 	
 	//pet
 	private int pet_p_idx;
@@ -20,11 +22,12 @@ public class PetImage implements Serializable{
 		this.pi_idx = pi_idx;
 	}
 
-	public String getPi_url() {
+
+	public MultipartFile getPi_url() {
 		return pi_url;
 	}
 
-	public void setPi_url(String pi_url) {
+	public void setPi_url(MultipartFile pi_url) {
 		this.pi_url = pi_url;
 	}
 

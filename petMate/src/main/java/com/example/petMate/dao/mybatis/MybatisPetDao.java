@@ -62,6 +62,24 @@ public class MybatisPetDao implements PetDao {
 	public int deletePet(int p_idx) {
 		return petMapper.deletePet(p_idx);
 	}
+
+	@Override
+	public int insertPetImage(int p_idx, String pi_url) {
+		// TODO Auto-generated method stub
+		return petMapper.insertPetImage(p_idx, pi_url);
+	}
+
+	@Override
+	public int deletePetImage(int p_idx) {
+		// TODO Auto-generated method stub
+		return petMapper.deletePetImage(p_idx);
+	}
+
+	@Override
+	public String selectUrlByIdx(int p_idx) {
+		// TODO Auto-generated method stub
+		return petMapper.selectUrlByIdx(p_idx);
+	}
 	
 	
 }

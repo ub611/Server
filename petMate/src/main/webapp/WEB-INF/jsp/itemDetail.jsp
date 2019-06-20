@@ -19,16 +19,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    
 <%@include file="/WEB-INF/jsp/menu.jsp" %>
-
-<c:if test = "${u_idx eq item.user_u_idx}">
-	equal
-</c:if>
-
-
-<c:if test = "${ u_idx ne item.user_u_idx}">
-	Notequal
-</c:if>
 
  	<div class="container">
   					<div class="row">

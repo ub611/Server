@@ -16,4 +16,9 @@ public interface PetDao {
 	int insertPet(Pet pet);
 	int updatePet(Pet pet);
 	int deletePet(int p_idx);
+	
+	int insertPetImage(int p_idx, String pi_url);
+	int deletePetImage(int p_idx);
+	
+	String selectUrlByIdx(int p_idx);
 }

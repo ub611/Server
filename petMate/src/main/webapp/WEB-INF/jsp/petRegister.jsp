@@ -17,10 +17,9 @@
   <div class="row">
       <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xs-offset-3">
       	<c:if test="${pet==null}">
-      		<form action="/petRegister.do" method="POST">
-        </c:if>
+      		<form action="/petRegister.do" method="POST" enctype="multipart/form-data"></c:if>
       	<c:if test="${pet!=null}">
-        	<form action="/petEdit.do" method="POST">
+      		<form action="/petEdit.do" method="POST" enctype="multipart/form-data">
         	  <input type="hidden" name="p_idx" value=${pet.p_idx } />
         	  <input type="hidden" name="u_idx" value=${adopt.owner_idx } />
         </c:if>
@@ -35,8 +34,11 @@
 	            	<c:choose>
 		            	<c:when test="${adopt.a_state eq '1'}"><option value="1" selected>completed</option></c:when>
 		            	<c:otherwise><option value="1">completed</option></c:otherwise>
-	            	</c:choose>                </select>
+	            	</c:choose>               
+	            </select>
 	          </c:if>
+	          
+	          
               <div class="form-group">
                   <label class="form-label" for="p_name">Pet's name</label>
                   <input type="text" class="form-control" id="p_name" name="p_name" tabindex="1" required 
@@ -48,6 +50,7 @@
                 value="${pet.p_age}"/>
               </div>
               <hr/>
+              
               <div>
                 <label class="form-label" for="p_cate">Pet's category</label>
                 <select name="p_cate" required >
@@ -66,11 +69,13 @@
 	            	</c:choose>
                 </select>
               </div>
+              
               <div>
                 <label class="form-label" for="p_cate_detail">Pet's detail category</label>
                 <input type="text" class="form-control" id="p_cate_detail" name="p_cate_detail" placeholder="Maltese, Ragdoll..." tabindex="3" required 
                 value="${pet.p_cate_detail}"/>
               </div>
+              
               <hr/>
               <div> 
                 <label class="form-label" for="p_gender">Pet's gender</label>
@@ -106,7 +111,7 @@
               <textarea class="form-control" rows="5" cols="50" id="a_content" name="a_content" placeholder="..." tabindex="4" required 
               >${adopt.a_content}</textarea>
               <hr>
-              <input type="file" name="report" />
+              <input type="file" name="pi_url" />
               <div class="text-right">
                   <button type="submit" class="btn btn-start-order">
                   	<c:if test="${pet==null}">
@@ -117,7 +122,8 @@
 					</c:if>
 				  </button>
               </div>
-          </form>
+              </form>
+
       </div>
   </div>
 </div>

@@ -13,6 +13,7 @@ public class Pet implements Serializable {
 	private int p_isInjection;
 	private int p_cate;
 	private String p_cate_detail;
+	private String p_url;
 	
 	//user
 	private String user_u_idx;
@@ -91,6 +92,23 @@ public class Pet implements Serializable {
 	public void setCategory_c_idx(int category_c_idx) {
 		this.category_c_idx = category_c_idx;
 	}
+
+	public String getP_url() {
+		return p_url;
+	}
+
+	public void setP_url(String p_url) {
+		this.p_url = p_url;
+	}
+
+	@Override
+	public String toString() {
+		return "Pet [p_idx=" + p_idx + ", p_age=" + p_age + ", p_gender=" + p_gender + ", p_name=" + p_name
+				+ ", p_isInjection=" + p_isInjection + ", p_cate=" + p_cate + ", p_cate_detail=" + p_cate_detail
+				+ ", p_url=" + p_url + ", user_u_idx=" + user_u_idx + ", category_c_idx=" + category_c_idx + "]";
+	}
+	
+	
 
 	
 }

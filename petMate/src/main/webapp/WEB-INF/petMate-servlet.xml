@@ -52,8 +52,7 @@
 	</property>
 </bean> -->
 
-	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	</bean>
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
 
  	<context:property-placeholder location="classpath:application.properties"/> 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
