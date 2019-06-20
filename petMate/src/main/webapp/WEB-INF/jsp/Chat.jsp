@@ -2,6 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<jsp:include page="/WEB-INF/jsp/menu.jsp" />
+
 <meta charset="utf-8">
 <title>채팅</title>
 <script type="text/javascript" src="/js/jquery-1.11.1.min.js"></script>
@@ -16,7 +21,7 @@
         // 웹소켓 생성
         // 생성자에 관해서는 이전 포스팅 참고
         // 여기서는 이 페이지로 대화 내용을 보내는 것이므로 소켓 경로가 이 페이지(여기)이다
-        wsocket = new WebSocket("ws://localhost:8080/chat-ws");
+        wsocket = new WebSocket("ws://52.79.125.229:8080/chat-ws");
         
         // 이렇듯 소켓을 생성하는 단계에서
         // .onopen, onmessage, onclose에 해당하는 함수를 정의
@@ -129,19 +134,23 @@
 </script>
 <style>
 #chatArea {
-    width: 200px; height: 100px; overflow-y: auto; border: 1px solid black;
+    width: 400px; height: 500px; overflow-y: auto; border: 1px solid black;
 }
 </style>
 </head>
 <body>
-    이름:<input type="text" id="nickname">
-    <input type="button" id="enterBtn" value="입장">
-    <input type="button" id="exitBtn" value="나가기">
-    
-    <h1>대화 영역</h1>
-    <div id="chatArea"><div id="chatMessageArea"></div></div>
-    <br/>
-    <input type="text" id="message">
-    <input type="button" id="sendBtn" value="전송">
+<br>
+	<h2 class="mb-5">&nbsp;&nbsp;&nbsp;Chatting</h2>
+
+  	&nbsp;&nbsp;	<input size="22px" type="text" id="nickname" placeholder="Input your Id">
+    &nbsp;&nbsp;<button type="button" id="enterBtn" class="btn btn-outline-primary slideup">&nbsp;&nbsp;Chat!&nbsp;&nbsp; </button>
+    <!-- <input type="button" id="enterBtn" value="입장"> -->
+    &nbsp;<button type="button" id=exitBtn class="btn btn-outline-danger slideleft">&nbsp;&nbsp;Exit!&nbsp;&nbsp; </button>  
+    <!-- <input type="button" id="exitBtn" value="나가기"> -->
+    <br><br>
+	<div style="margin-left: 12px;"  id="chatArea"><div style="padding-left: 10px;"  id="chatMessageArea"></div></div><br>
+    &nbsp;&nbsp;<input size="34px" type="text" id="message" placeholder="Input Message">
+    <input type="button"  class="btn btn-outline-primary slideup" id="sendBtn" value=&nbsp;&nbsp;Send!&nbsp;&nbsp;>
+    <br><br>
 </body>
 </html>
