@@ -1,83 +1,79 @@
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!------ Include the above in your HEAD tag ---------->
+
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 
+<h2 class="mb-5">New Item</h2>
 
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+
 <div class="container">
-	<div class="row">
-    	 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-radius: 16px;">
-                        <div class="well profile col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                                <figure>
-                                     <img src="${itemCommand.ii_url}" alt="" class="img-circle" style="width:75px;" id="user-img">
-                                </figure>
-                                <h5 style="text-align:center;"><strong id="user-name">${itemCommand.i_title}</strong></h5>                               
-                                <p style="text-align:center;font-size: smaller;" id="user-frid">Stock: ${itemCommand.i_stock} </p>                      
-                                <p style="text-align:center;font-size: smaller;overflow-wrap: break-word;" id="user-email">Detail : ${itemCommand.i_detail} </p>
-                                <p style="text-align:center;font-size: smaller;"><strong>price: </strong><span class="tags" id="user-status">${itemCommand.i_price}</span></p>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
-                                <p style="text-align:center;font-size: smaller;"><strong>Category: </strong></p>
-                                <p style="text-align:center;font-size: smaller;" id="user-role">${itemCommand.i_category}</p>
-                                <button class="btn"><a href="edit.do" >Edit</a></button>
-                                <button class="btn"><a href="?sort=0" >Confirm</a></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-	</div>
+<%-- 	<form:form commandName="itemCommand" class="form-horizontal" action="new.do" method="post" enctype="multipart/form-data" >
+ --%>
+ <form class="form-horizontal" action="step1.do" method="post"  >
+ <fieldset>
 
+<!-- Form Name -->
 
-<style>
-
-<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
-<div class="container">
-	<div class="row">
-    	 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="border-radius: 16px;">
-                        <div class="well profile col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                                <figure>
-                                     <img src="http://www.localcrimenews.com/wp-content/uploads/2013/07/default-user-icon-profile.png" alt="" class="img-circle" style="width:75px;" id="user-img">
-                                </figure>
-                                <h5 style="text-align:center;"><strong id="user-name">Arun Kumar Perumal</strong></h5>
-                                <p style="text-align:center;font-size: smaller;" id="user-frid">FBT000000213 </p>
-                                <p style="text-align:center;font-size: smaller;overflow-wrap: break-word;" id="user-email">arunkumarperumal8791@gmail.com </p>
-                                <p style="text-align:center;font-size: smaller;"><strong>A/C status: </strong><span class="tags" id="user-status">Active</span></p>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
-                                <p style="text-align:center;font-size: smaller;"><strong>Job role</strong></p>
-                                <p style="text-align:center;font-size: smaller;" id="user-role">Software Engineer</p>
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider text-center"></div>
-                                    <div class="col-lg-6 left" style="text-align:center;overflow-wrap: break-word;">
-                                        <h4><p style="text-align: center;"><strong id="user-globe-rank">245 </strong></p></h4>           
-                                        <p><small class="label label-success">Global Ranking</small></p>
-                                        <!--<button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Follow </button>-->
-                                    </div>
-                                    <div class=" col-lg-6 left" style="text-align:center;overflow-wrap: break-word;">
-                                        <h4><p style="text-align: center;"><strong id="user-college-rank">245 </strong></p></h4>                   
-                                        <p> <small class="label label-warning">College Ranking</small></p>
-                                        <!-- <button class="btn btn-info btn-block"><span class="fa fa-user"></span> View Profile </button>-->
-                                    </div>
-                              </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>    
-        </div>
-	</div>
+<legend>Fill out the item contents</legend>
+	
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Title</label>  
+  <div class="col-md-4">
+  <input name="i_title" class="form-control input-md"  type="text" placeholder="이름을 입력해주세요." value="${itemCommand.i_title}" readonly >
+  </div>
 </div>
-</style>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Stock</label>  
+  <div class="col-md-4">
+  <input name="i_stock" class="form-control input-md" type="text" placeholder="2" value="${itemCommand.i_stock}" readonly >
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Price</label>  
+  <div class="col-md-4">
+  <input name="i_price" class="form-control input-md"  type="text" placeholder="10000" value="${itemCommand.i_price}" readonly >
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Detail</label>  
+  <div class="col-md-4">
+  <input name="i_detail" class="form-control input-md" type="text" placeholder="상품 상세 정보를 입력해주세요." value="${itemCommand.i_detail}" readonly >
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="selectbasic">Category</label>
+  <div class="col-md-4">
+    <select name="i_category" class="form-control" id="selecteded">
+      <option disabled="disabled" value="1">Food & Snack</option>
+      <option disabled="disabled" value="2">Houseware</option>
+      <option disabled="disabled" value="3">Toy</option>
+      <option disabled="disabled" value="4">Goods for Walk</option>
+    </select>
+  </div>
+</div>
+<div>
+<button class="btn"><a href='<c:url value="edit.do"/>'>Edit</a></button>
+<button class="btn"><a href='<c:url value="/items/${itemCommand.i_idx}"/>' >Go Item Detail</a></button>
+</div>
+</fieldset>
+</form>
+
+</div>
+
+<script>
+$("#selecteded").val(${itemCommand.i_category}).prop("selected", true);
+</script> 

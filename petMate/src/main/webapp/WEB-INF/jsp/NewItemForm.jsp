@@ -18,8 +18,6 @@
 
 <!-- Form Name -->
 
-
-
 <legend>Fill out the item contents</legend>
 	
 <!-- Text input-->
@@ -58,7 +56,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="selectbasic">Category</label>
   <div class="col-md-4">
-    <select name="i_category" class="form-control" >
+    <select name="i_category" class="form-control" id="selecteded">
       <option value="1">Food & Snack</option>
       <option value="2">Houseware</option>
       <option value="3">Toy</option>
@@ -80,3 +78,7 @@
 </form>
 
 </div>
+
+<script>
+$("#selecteded").val(${itemCommand.i_category}).prop("selected", true);
+</script> 

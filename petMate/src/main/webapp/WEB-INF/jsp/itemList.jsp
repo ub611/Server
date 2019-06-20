@@ -1,4 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
@@ -135,12 +135,12 @@ $(document).ready(function() {
     $('#list').click(function(event){event.preventDefault();$('#products .item').addClass('list-group-item');});
     $('#grid').click(function(event){event.preventDefault();$('#products .item').removeClass('list-group-item');$('#products .item').addClass('grid-group-item');});
 });
-</script>
-<%-- 
-1ver
+</script> --%>
+
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -148,12 +148,14 @@ $(document).ready(function() {
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 
-<section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="item">
-  <div class="w-100">
+<!-- <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="item">
+ -->  <div class="w-100">
+ 	<div class="container">
     <h2 class="mb-5">Item</h2>
-	<button><a href="/items/new.do">new Item</a></button>
-	<div class="container">
-	<div class="row">
+    <div class="container">	<div><button><a href="items/step1.do">new Item</a></button></div>
+</div>
+
+	<div class="col">
 		<ul class="list-group">
           <li class="list-group-item"><a href="/items.do?sort=0">All</a></li>
           <li class="list-group-item"><a href="/items.do?sort=1" >Food & Snack</a></li>
@@ -164,9 +166,9 @@ $(document).ready(function() {
 	</div>
 	</div>
 </div>
-</section>
-
-
+<!-- </section>
+ -->
+<br><br>
 <div class="container">
   <div class="row">
     <section id="pinBoot">
@@ -399,4 +401,4 @@ $(document).ready(function() {
 	    }
 
 	})(jQuery, window, document);
-</script>  --%>
+</script> 

@@ -40,9 +40,9 @@ public class MybatisItemDao implements ItemDao{
 	}
 
 	@Override
-	public int updateItem(Item item_idx, Item item) {
+	public int updateItem(ItemCommand item) {
 		// TODO Auto-generated method stub
-		return itemMapper.updateItem(item_idx, item);
+		return itemMapper.updateItem(item);
 		
 	}
 	
@@ -73,5 +73,15 @@ public class MybatisItemDao implements ItemDao{
 	public int createItemImage(String ii_url, int i_idx) {
 		// TODO Auto-generated method stu
 		return itemMapper.createImages(ii_url, i_idx);
+	}
+	@Override
+	public int deleteItem(int i_idx) {
+		// TODO Auto-generated method stub
+		return itemMapper.deleteItem(i_idx);
+	}
+	@Override
+	public int deleteItemImages(int i_idx) {
+		// TODO Auto-generated method stub
+		return itemMapper.deleteItemImages(i_idx);
 	}
 }

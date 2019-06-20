@@ -20,7 +20,9 @@ import com.example.petMate.command.MyPageItemCommand;
 import com.example.petMate.command.MyPagePetCommand;
 import com.example.petMate.controller.ItemController;
 import com.example.petMate.dao.AccountDao;
+import com.example.petMate.dao.AdoptDao;
 import com.example.petMate.dao.ItemDao;
+import com.example.petMate.dao.PetDao;
 import com.example.petMate.dao.mybatis.mapper.ItemMapper;
 import com.example.petMate.domain.Account;
 import com.example.petMate.domain.Adopt;
@@ -36,6 +38,11 @@ import org.slf4j.LoggerFactory;
 public class PetMateImpl implements PetMateFacade {
 	@Autowired
 	private ItemDao itemDao;
+	@Autowired
+	private AdoptDao adoptDao;	
+	@Autowired
+	private PetDao petDao;
+
 
 	private S3FileUploadService s3FileUploadService;
 
@@ -97,7 +104,9 @@ public class PetMateImpl implements PetMateFacade {
 		// TODO Auto-generated method stub
 		Item item = itemDao.getItemByItemIdx(itemIdx);
 		String[] urls = itemDao.getItemImageUrls(itemIdx);
-		item.setIi_url(urls);
+		if(urls.length!=0) {
+			item.setIi_url(urls);
+		}
 		return item;
 	}
 
@@ -108,8 +117,21 @@ public class PetMateImpl implements PetMateFacade {
 	}
 
 	@Override
-	public void updateItem(Item itemIdx, Item Item) {
+	public int updateItem(ItemCommand itemCommand) throws IOException {
 		// TODO Auto-generated method stub
+		itemDao.updateItem(itemCommand);
+		int i_idx =Integer.valueOf(itemCommand.getI_idx());
+
+		for(MultipartFile url : itemCommand.getIi_url()) {    
+			logger1.info("MultipartFile : " + url);
+			try {
+				itemDao.createItemImage(s3FileUploadService.upload(url, "item"), i_idx);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return i_idx;
 
 	}
 
@@ -149,6 +171,13 @@ public class PetMateImpl implements PetMateFacade {
 	}
 
 	@Override
+	@Transactional
+	public int deleteItem(int i_idx) throws IOException {
+		// TODO Auto-generated method stub
+		itemDao.deleteItemImages(i_idx);
+		return itemDao.deleteItem(i_idx);
+	}
+	
 	public List<MyPageItemCommand> getItem(String u_idx) {
 		return accountDao.getItem(u_idx);
 	}
@@ -169,5 +198,89 @@ public class PetMateImpl implements PetMateFacade {
 	public List<MyPagePetCommand> getPet(String u_idx) {
 		// TODO Auto-generated method stub
 		return accountDao.getPet(u_idx);
+	}
+	
+	@Override
+	public List<Adopt> selectAdoptList() throws Exception {
+		List<Adopt> adopts = adoptDao.selectAdoptList();
+		return adopts;
+	}
+
+	@Override
+	public Adopt selectAdoptByIdx(int a_idx) throws Exception {
+		Adopt adopt = adoptDao.selectBoardByIdx(a_idx);
+		return adopt;
+	}
+	
+	@Override 
+	public Adopt selectAdoptByPet(int pet_p_idx) throws Exception {
+		return adoptDao.selectAdoptByPet(pet_p_idx);
+	}
+	@Override
+	public String selectPetNameByAdopt(int pet_p_idx) throws Exception {
+		return petDao.selectPetNameByAdopt(pet_p_idx);
+	}
+	@Override
+	public String selectPetAgeByAdopt(int pet_p_idx) throws Exception {
+		return petDao.selectPetAgeByAdopt(pet_p_idx);
+	}
+	
+	@Override
+	public int insertAdopt(Adopt adopt) throws Exception {
+		logger1.info("\n*****PetMateImpl::insertAdopt:: " + adopt.getA_content() + ":: " + adopt.getA_title());
+		
+		return adoptDao.insertAdopt(adopt);
+	}
+
+	@Override
+	public int updateAdopt(Adopt adopt) throws Exception {
+		return adoptDao.updateAdopt(adopt);
+	}
+
+	@Override
+	public int deleteAdopt(int a_idx) throws Exception {
+		return adoptDao.deleteAdopt(a_idx);
+	}
+
+	@Override
+	public int deleteAdoptByPet(int p_idx) throws Exception {
+		return adoptDao.deleteAdoptByPet(p_idx);
+	}
+
+	@Override
+	public List<Pet> selectPetList() throws Exception {
+		List<Pet> pets = petDao.selectPetList();
+		return pets;
+	}
+
+	@Override
+	public Pet selectPetByIdx(int p_idx) throws Exception {
+		Pet pet = petDao.selectPetByIdx(p_idx);
+		return pet;
+	}
+
+	@Override
+	public List<Pet> selectPetByUserIdx(int u_idx) throws Exception {
+		List<Pet> pets = petDao.selectPetByUserIdx(u_idx);
+		return pets;
+	}
+	
+	@Override
+	public int selectPetIdxLatest() throws Exception {
+		return petDao.selectPetIdxLatest();
+	}
+	@Override
+	public int insertPet(Pet pet) throws Exception {
+		return petDao.insertPet(pet);
+	}
+
+	@Override
+	public int updatePet(Pet pet) throws Exception {
+		return petDao.updatePet(pet);
+	}
+
+	@Override
+	public int deletePet(int p_idx) throws Exception {
+		return petDao.deletePet(p_idx);
 	}
 }

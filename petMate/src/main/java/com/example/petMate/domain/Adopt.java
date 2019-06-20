@@ -9,7 +9,7 @@ public class Adopt implements Serializable{
 	//adopt
 	private int a_idx;
 	private Date a_date;
-	private String a_state;
+	private int a_state;
 	private String a_title;
 	private String a_content;
 	
@@ -37,11 +37,11 @@ public class Adopt implements Serializable{
 		this.a_date = a_date;
 	}
 
-	public String getA_state() {
+	public int getA_state() {
 		return a_state;
 	}
 
-	public void setA_state(String a_state) {
+	public void setA_state(int a_state) {
 		this.a_state = a_state;
 	}
 

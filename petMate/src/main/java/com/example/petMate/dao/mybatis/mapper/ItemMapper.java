@@ -3,11 +3,13 @@ package com.example.petMate.dao.mybatis.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.petMate.command.ItemCommand;
 import com.example.petMate.domain.Item;
@@ -28,11 +30,14 @@ public interface ItemMapper {
 	@Select("SELECT * FROM item WHERE i_title=#{item_title}")
 	Item getItemByItemTitle(String item_title);
 
-	int updateItem(Item item_idx, Item Item);	
+	@Update("UPDATE item SET i_title=#{itemCommand.i_title}, i_stock=#{itemCommand.i_stock}, "
+			+ "i_price=#{itemCommand.i_price}, i_detail=#{itemCommand.i_detail}, i_category=#{itemCommand.i_category} "
+			+ "WHERE i_idx=#{itemCommand.i_idx}")
+    @Options(useGeneratedKeys = true, keyProperty = "item.i_idx")
+	int updateItem(@Param("itemCommand") ItemCommand item);	
 	
 	int updateItemStock(Item item_idx, int stock);
 	
-
 	List<String> getItemnameList();
 	
 	@Select("SELECT ii_url FROM item, item_image WHERE item.i_idx = item_image.item_i_idx AND item.i_idx= #{item_idx}")
@@ -46,4 +51,10 @@ public interface ItemMapper {
 	
     @Insert("INSERT INTO item_image(item_i_idx, ii_url) VALUES(#{i_idx}, #{ii_url})")
     int createImages(@Param("ii_url") final String ii_url, @Param("i_idx") final int i_idx);
+	
+    @Delete("DELETE FROM item WHERE i_idx=#{i_idx}")
+    int deleteItem(@Param("i_idx") final int i_idx);
+    
+    @Delete("DELETE FROM item_image WHERE item_i_idx=#{i_idx}")
+    int deleteItemImages(@Param("i_idx") final int i_idx);
 }
