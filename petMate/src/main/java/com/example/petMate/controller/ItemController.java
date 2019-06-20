@@ -32,25 +32,30 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
-@SessionAttributes("itemCommand")
+@SessionAttributes({"itemCommand", "item"})
 public class ItemController { 
 
 	@Autowired
 	private PetMateFacade petmate;
-	
+
 	private static Logger logger = LoggerFactory.getLogger(ItemController.class);
-	
-	
+
+
 	@ModelAttribute("itemCommand")
 	public ItemCommand formData( ) {
 		return  new ItemCommand();
 	}
-	
+	@ModelAttribute("item")
+	public Item formDataItem( ) {
+		return  new Item();
+	}
+
 	/*
 	 * Item Get 
 	 */
 	@RequestMapping("/items.do")
-	public String getLists(@RequestParam("sort") int sort, Model model) throws Exception {
+	public String getLists(@RequestParam("sort") int sort, Model model, SessionStatus status) throws Exception {
+				status.setComplete();
 		List<Item> items = petmate.getItemList(sort);
 		if(items == null) {
 			return "Error";
@@ -60,7 +65,8 @@ public class ItemController {
 			return "/itemList";
 		}
 	}
-	
+
+
 	/*
 	 * Item detail Get
 	 */
@@ -70,14 +76,18 @@ public class ItemController {
 		if(item == null) {
 			return "Error";
 		}else {
+			ItemCommand itemCommand = new ItemCommand(String.valueOf(item.getI_idx()), item.getI_title(), item.getI_price(), item.getI_stock(), item.getI_detail(), item.getI_date(),
+					item.getI_category(), item.getUser_u_idx());
 			model.addAttribute("item", item);
+			model.addAttribute("itemCommand", itemCommand);
 			logger.info("items logggggg : " + item.toString());
+			logger.info("items logggggg : " + itemCommand.toString());
 			return "itemDetail";
 		}
 	}
-	
-	
-	
+
+
+
 	/*
 	 * Item 등록 new -> step1
 	 */
@@ -88,7 +98,7 @@ public class ItemController {
 			HttpServletResponse response, SessionStatus status) throws Exception {
 		return "NewItemForm";
 	}
-	
+
 	/*
 	 * Item 등록 step1
 	 */
@@ -100,26 +110,27 @@ public class ItemController {
 		String u_idx = (String) request.getSession().getAttribute("u_idx");
 
 		u_idx = "3";
-		
+
 		if(u_idx == null || u_idx.equals("") ) {
 			//로그인 페이지로 리다이렉트!
 			response.sendRedirect(request.getContextPath() + "/items.do");
 		}
-		
+
 		if(!itemCommand.validateProperties()) {
 			logger.info("new Item logggggg : " + itemCommand.toString());
 			return "Error";
 		}
 		try {
-    		logger.info("new Item : " + itemCommand.toString());
-			itemCommand.setUser_u_idx(Integer.valueOf(u_idx));
+			logger.info("new Item : " + itemCommand.toString());
+			itemCommand.setUser_u_idx(u_idx);
 			return "NewItemImages";
+			
 		}catch(Exception e) {
-            e.printStackTrace();
-            return "Error";
+			e.printStackTrace();
+			return "Error";
 		}
 	}
-	
+
 	/*
 	 * Item 등록 summit
 	 */
@@ -148,54 +159,54 @@ public class ItemController {
 				url.add(ii_url4);
 			}
 			itemCommand.setIi_url(url);
-            petmate.createItem(itemCommand);
-            status.setComplete();
-    		return "NewItemConfirm";
+			//			if(!itemCommand.getI_idx().isEmpty()) {
+			if(itemCommand.getI_idx()!=null) {
+				petmate.updateItem(itemCommand);
+			}else {
+				petmate.createItem(itemCommand);
+			}
+			return "NewItemConfirm";
+
 		}catch(Exception e) {
-            e.printStackTrace();
-            return "Error";
+			e.printStackTrace();
+			return "Error";
 		}
 	}
-	
+
 	/*
 	 * Item 수정 POST
 	 */
-//	@RequestMapping(value="/items/edit.do",method = RequestMethod.POST)
-//	public String editItem(@ModelAttribute("Item") ItemCommand itemCommand,  Model model) throws Exception {
-//		List<Item> items = petmate.getItemList();
-//		model.addAttribute("items", items);
-//		logger.info("items logggggg : " + items.toString());
-//		return "NewItemForm";
-//	}
+	@RequestMapping(value="/items/edit.do",method = RequestMethod.POST)
+	public String editItem(@ModelAttribute("itemCommand") ItemCommand itemCommand,  Model model) throws Exception {
+		petmate.updateItem(itemCommand);
+		return "NewItemForm";
+	}
 	/*
 	 * Item 수정 Form 
 	 */
 	@RequestMapping("/items/edit.do")
-	public String editItemForm() throws Exception {
-		return "EditItemForm";
+	public String editItemForm(@ModelAttribute("itemCommand") ItemCommand itemCommand) throws Exception {
+		return "NewItemForm";
 	}
-	
 	/*
 	 * Item 수량 변경 GET
 	 */
-//	@RequestMapping("/items/stock/edit.do")
-//	public String editItemStock(@ModelAttribute("Item") ItemCommand itemCommand,  Model model) throws Exception {
-//		List<Item> items = petmate.getItemList();
-//		model.addAttribute("items", items);
-//		logger.info("items logggggg : " + items.toString());
-//		return "/";
-//	}
-	
-	
+	//	@RequestMapping("/items/stock/edit.do")
+	//	public String editItemStock(@ModelAttribute("Item") ItemCommand itemCommand,  Model model) throws Exception {
+	//		List<Item> items = petmate.getItemList();
+	//		model.addAttribute("items", items);
+	//		logger.info("items logggggg : " + items.toString());
+	//		return "/";
+	//	}
+
 	/*
 	 * Item 삭제
 	 */
-//	@RequestMapping(value="/items/new.do",method = RequestMethod.POST)
-//	public String deleteItem(@ModelAttribute("Item") ItemCommand itemCommand,  Model model) throws Exception {
-//		List<Item> items = petmate.getItemList();
-//		model.addAttribute("items", items);
-//		logger.info("items logggggg : " + items.toString());
-//		return "/";
-//	}
+	@RequestMapping(value="/items/delete/{item_idx}")
+	public void deleteItem(@PathVariable("item_idx") int item_idx, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		petmate.deleteItem(item_idx);
+		response.sendRedirect(request.getContextPath() + "/items.do?sort=0");
+//		return "items.do?sort=0";
+	}
 
 }
