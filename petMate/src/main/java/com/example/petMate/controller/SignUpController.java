@@ -25,26 +25,26 @@ public class SignUpController {
 	private static Logger logger = LoggerFactory.getLogger(SignUpController.class);
 
 	private PetMateFacade petMate;
-	
+
 	@Autowired
 	public void setPetStore(PetMateFacade petMate) {
 		this.petMate = petMate;
 	}
-	
+
 	@Value("MyPage")
 	private String formViewName;
-	
+
 	@Value("index")
 	private String successViewName;
-	
-//	@Autowired
-//	private AccountFormValidator validator;
-//	public void setValidator(AccountFormValidator validator) {
-//		this.validator = validator;
-//	}
-		
+
+	@Autowired
+	private AccountFormValidator validator;
+	public void setValidator(AccountFormValidator validator) {
+		this.validator = validator;
+	}
+
 	//내 거래내역, 내 펫 등록내역 보여줘야함
-	
+
 	@ModelAttribute("AccountForm")
 	public AccountForm formBackingObject(HttpServletRequest request) 
 			throws Exception {
@@ -57,46 +57,35 @@ public class SignUpController {
 			return new AccountForm();
 		}
 	}
-	
+
 	@RequestMapping(value="/signup.do", method = RequestMethod.GET)
 	public String showForm() {
 		return formViewName;
 	}
-	
+
 	@RequestMapping(value="/signup.do", method = RequestMethod.POST)
 	public String onSubmit(
 			HttpServletRequest request, HttpSession session,
 			@ModelAttribute("AccountForm") AccountForm account,
 			BindingResult result) throws Exception {
-		
-		
-//		validator.validate(account, result);
-		
+
+
+		validator.validate(account, result);
+
 		if (result.hasErrors()) return formViewName;
-		
+
 
 		try {
-			if (account.isNewAccount()) {
-				logger.info(account.getAccount().toString());
-				petMate.insertAccount(account.getAccount());
-			}
-			else {
-//				petMate.updateAccount(account.getAccount());
-			}
+			logger.info(account.getAccount().toString());
+			petMate.insertAccount(account.getAccount());
+
 		}
 		catch (DataIntegrityViolationException ex) {
 			result.rejectValue("account.u_idx", "USER_ID_ALREADY_EXISTS",
 					"User ID already exists: choose a different ID.");
 			return formViewName; 
 		}
-//		
-//		UserSession userSession = new UserSession(
-//			petStore.getAccount(accountForm.getAccount().getUsername()));
-//		PagedListHolder<Product> myList = new PagedListHolder<Product>(
-//			petStore.getProductListByCategory(accountForm.getAccount().getFavouriteCategoryId()));
-//		myList.setPageSize(4);
-//		userSession.setMyList(myList);
-//		session.setAttribute("userSession", userSession);
+		
 		return successViewName;  
 	}
 

@@ -9,6 +9,8 @@
 
 <c:if test="${!empty message}">
   <b><font color="red"><c:url value="${message}" /></font></b>
+  <br>
+  <c:out value="Id or Password is wrong."/>
 </c:if>
 
 <div align="center">

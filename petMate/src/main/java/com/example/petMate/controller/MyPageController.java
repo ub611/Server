@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.petMate.service.AccountFormValidator;
 import com.example.petMate.service.PetMateFacade;
 
 @Controller
@@ -22,6 +23,12 @@ public class MyPageController {
 	private static Logger logger = LoggerFactory.getLogger(MyPageController.class);
 
 	private PetMateFacade petMate;
+	
+	@Autowired
+	private AccountFormValidator validator;
+	public void setValidator(AccountFormValidator validator) {
+		this.validator = validator;
+	}
 	
 	@Value("EditAccountForm")
 	private String formViewName;
@@ -57,10 +64,9 @@ public class MyPageController {
 		
 		logger.info(account.getAccount().getU_idx());
 		
-//		validator.validate(account, result);
+		validator.validate(account, result);
 
 		if (result.hasErrors()) return formViewName;
-		
 
 		try {
 			logger.info("update Account");
@@ -71,14 +77,7 @@ public class MyPageController {
 					"User ID already exists: choose a different ID.");
 			return formViewName; 
 		}
-//		
-//		UserSession userSession = new UserSession(
-//			petStore.getAccount(accountForm.getAccount().getUsername()));
-//		PagedListHolder<Product> myList = new PagedListHolder<Product>(
-//			petStore.getProductListByCategory(accountForm.getAccount().getFavouriteCategoryId()));
-//		myList.setPageSize(4);
-//		userSession.setMyList(myList);
-//		session.setAttribute("userSession", userSession);
+
 		return successViewName;  
 	}
 

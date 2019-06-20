@@ -14,6 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.petMate.command.ItemCommand;
+import com.example.petMate.command.MyPageAdoptCommand;
+import com.example.petMate.command.MyPageBuyCommand;
+import com.example.petMate.command.MyPageItemCommand;
+import com.example.petMate.command.MyPagePetCommand;
 import com.example.petMate.controller.ItemController;
 import com.example.petMate.dao.AccountDao;
 import com.example.petMate.dao.ItemDao;
@@ -142,5 +146,28 @@ public class PetMateImpl implements PetMateFacade {
 			itemDao.createItemImage(s3FileUploadService.upload(url, "item"), i_idx);
 		}
 		return i_idx;
+	}
+
+	@Override
+	public List<MyPageItemCommand> getItem(String u_idx) {
+		return accountDao.getItem(u_idx);
+	}
+
+	@Override
+	public List<MyPageBuyCommand> getBuyIamBuyer(String u_idx) {
+		// TODO Auto-generated method stub
+		return accountDao.getBuyIamBuyer(u_idx);
+	}
+
+	@Override
+	public List<MyPageAdoptCommand> getIamAdopter(String u_idx) {
+		// TODO Auto-generated method stub
+		return accountDao.getIamAdopter(u_idx);
+	}
+
+	@Override
+	public List<MyPagePetCommand> getPet(String u_idx) {
+		// TODO Auto-generated method stub
+		return accountDao.getPet(u_idx);
 	}
 }
