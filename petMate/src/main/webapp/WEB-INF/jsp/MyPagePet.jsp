@@ -13,10 +13,11 @@
 
 <br><br>
 <button type="button" onclick="location.href='/signoff.do'">logout</button>
-<button type="button" onclick="location.href='/mypage/${AccountForm.account.u_idx}/item.doo'">item</button> 	<!-- buy 2개씩 보여주기 -->
-<!-- <button type="button" onclick="location.href='/mypage/${AccountForm.account.u_idx}/pet.do'">pet</button>	 -->	<!--  adopt -->
+<button type="button" onclick="location.href='/mypage/${u_idx}/item.do'">item</button> 	<!-- buy 2개씩 보여주기 -->
 <br>
-
+${petList} <br>
+${adoptList}
+<%-- 
 <div class="container">
 	<form:form commandName="AccountForm" class="form-horizontal"
 		action="updateAccount.do" method="post">
@@ -115,5 +116,5 @@
 
 		</fieldset>
 	</form:form>
-
+ --%>
 </div>

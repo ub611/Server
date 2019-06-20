@@ -43,7 +43,7 @@
           <a class="nav-link js-scroll-trigger" href="/home.do">Home</a>
         </li>
          <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/signup.do">MyPage</a>
+          <a class="nav-link js-scroll-trigger" href=<%=sessionhref%>>MyPage</a>
         </li>
         <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href="#cart">Cart</a>

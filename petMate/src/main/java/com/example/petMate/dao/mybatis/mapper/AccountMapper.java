@@ -1,12 +1,14 @@
 package com.example.petMate.dao.mybatis.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.*;
 
+import com.example.petMate.command.MyPageAdoptCommand;
+import com.example.petMate.command.MyPageBuyCommand;
+import com.example.petMate.command.MyPageItemCommand;
+import com.example.petMate.command.MyPagePetCommand;
 import com.example.petMate.domain.Account;
-import com.example.petMate.domain.Adopt;
-import com.example.petMate.domain.Item;
-import com.example.petMate.domain.Pet;
-import com.example.petMate.domain.buy;
 
 public interface AccountMapper {
 	@Select("SELECT * "
@@ -28,40 +30,34 @@ public interface AccountMapper {
 	@Update("UPDATE user SET u_name=#{account.u_name}, u_pw=#{account.u_pw}, "
 			+ "u_address=#{account.u_address}, u_phone=#{account.u_phone} "
 			+ "WHERE u_idx=#{account.u_idx}")
-	void updateAccount(@Param("account")Account account);		//update info 
+	void updateAccount(@Param("account")Account account);		
 
 	//PetmateFacade에없음
 	
 	@Select("SELECT * "
 			+ "FROM item " 
-			+ "WHERE user_u_idx=#{u_idx}")		//item idx join
-	Item getItem(@Param("u_idx")String u_idx);
-	
-	/*i_title, i_price, i_stock, i_detail, i_date
-	 *
-	 * */
+			+ "WHERE user_u_idx=#{u_idx}")		
+	List<MyPageItemCommand> getItem(@Param("u_idx")String u_idx);
+
 	
 	@Select("SELECT * "
 			+ "FROM buy, item " 
 			+ "WHERE buy.buyer_idx=#{u_idx} AND item.i_idx=buy.item_i_idx")		
-	buy getBuyIamBuyer(@Param("u_idx")String u_idx);
-	
-	/*buy,b_date, buy.seller_idx, item.i_title, item.i_price, item.i_detail*/
+	List<MyPageBuyCommand> getBuyIamBuyer(@Param("u_idx")String u_idx);
 	
 	
 	@Select("SELECT * "
 			+ "FROM pet, adopt, category "
-			+ "WHERE adopt.adopter_idx=#{u_idx} AND pet.p_cate=category.c_idx")			//category조인
-	Pet getIamAdopter(@Param("u_idx")String u_idx);
-	/*pet.p_age, pet.p_gender, pet.p_name, pet.p_isInjection, 
-	 * pet.p_cate_detail, adopt.owner_idx, adopt.a_state, adopt.a_date, category.c_name*/
+			+ "WHERE adopt.adopter_idx=#{u_idx} AND pet.p_cate=category.c_idx")
+	List<MyPageAdoptCommand> getIamAdopter(@Param("u_idx")String u_idx);
 	
 	
 	@Select("SELECT * "
 			+ "FROM pet, category " 
-			+ "WHERE pet.user_u_idx=#{username} AND pet.p_cate=category.c_idx")		//pet_p_idx join
-	Adopt getPet(@Param("u_idx")String u_idx);
-	/*pet.p_age, pet.p_gender, pet.p_name, pet.p_isInjection, pet.p_cate_detail, category.c_name*/
+			+ "WHERE pet.user_u_idx=#{u_idx} AND pet.p_cate=category.c_idx")
+	List<MyPagePetCommand> getPet(@Param("u_idx")String u_idx);
+	
+	
 	
 
 	
