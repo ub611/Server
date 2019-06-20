@@ -51,6 +51,19 @@ public interface PetMateFacade {
 	int deleteItem(int i_idx) throws IOException; //throws DataAccessException;
 
 
+	boolean isItemInStock(int itemIdx);
+	
+	void insertBuy(Item item, buy buy);
+
+	buy getBuy(int b_idx);
+
+	List<buy> getOrdersByUsername(String username);
+	
+	void updateItemByIdx(int item_idx);
+	
+
+	
+	
 	// Pet
 	List<Pet> selectPetList() throws Exception;
 	Pet selectPetByIdx(int p_idx) throws Exception;

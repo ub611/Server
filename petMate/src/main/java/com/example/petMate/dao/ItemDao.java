@@ -31,4 +31,10 @@ public interface ItemDao {
 	  int deleteItem(int i_idx); // throws DataAccessException;
 	  
 	  int deleteItemImages(int i_idx); // throws DataAccessException;
+	  
+	  void updateItemByIdx(int item_idx);
+	  
+	  boolean isItemInStock(int itemId);
+
+
 }

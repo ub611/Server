@@ -21,6 +21,7 @@ import com.example.petMate.command.MyPagePetCommand;
 import com.example.petMate.controller.ItemController;
 import com.example.petMate.dao.AccountDao;
 import com.example.petMate.dao.AdoptDao;
+import com.example.petMate.dao.BuyDao;
 import com.example.petMate.dao.ItemDao;
 import com.example.petMate.dao.PetDao;
 import com.example.petMate.dao.mybatis.mapper.ItemMapper;
@@ -42,6 +43,8 @@ public class PetMateImpl implements PetMateFacade {
 	private AdoptDao adoptDao;	
 	@Autowired
 	private PetDao petDao;
+	@Autowired
+	private BuyDao buyDao;
 
 
 	private S3FileUploadService s3FileUploadService;
@@ -303,4 +306,34 @@ public class PetMateImpl implements PetMateFacade {
 		// TODO Auto-generated method stub
 		return petDao.selectAllPets();
 	}
+
+	@Override
+	public boolean isItemInStock(int itemIdx){
+		return itemDao.isItemInStock(itemIdx);
+	}
+	@Override
+	public void insertBuy(Item item, buy buy) {
+		// TODO Auto-generated method stub
+		buyDao.insertBuy(item, buy);
+	}
+
+	@Override
+	public buy getBuy(int b_idx) {
+		// TODO Auto-generated method stub
+		return buyDao.getBuy(b_idx);
+	}
+
+	@Override
+	public List<buy> getOrdersByUsername(String username) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void updateItemByIdx(int item_idx) {
+		// TODO Auto-generated method stub
+		itemDao.updateItemByIdx(item_idx);
+	}
+	
 }
