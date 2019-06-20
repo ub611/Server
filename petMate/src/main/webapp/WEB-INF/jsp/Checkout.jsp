@@ -46,8 +46,7 @@
                     	</div>
                     	<div class='col-lg-12'>
                     	    <div><img src=<%=item.getIi_url()[0]%> alt="" width=300 height=300></div>
-                    		<p>Count: 
-                    		<%=cartItem.getIi_url()[0]%>
+                    		<p>Count: <%=item.getI_stock()%>
                     		</p>
                     		<p>Price: <%=item.getI_price()%>  WON</p>
 <%--                     		<p>Total Price: <%=cartItem.getTotalPrice()%>  WON</p>
