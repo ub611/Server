@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -22,6 +23,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js?ver=1"></script>
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp" />
+<% request.setCharacterEncoding("utf-8");%>
 
 <!------ Include the above in your HEAD tag ---------->
 </head>
@@ -232,7 +234,7 @@ h2::after {
 						<c:set var="size" value="${fn:length(itemList)}" />
 						<!-- 21 -->
 
-						<c:forEach var="i" begin="1" end="${size/4}" varStatus="status">
+						<c:forEach var="i" begin="1" end="${(size-4)/4}" varStatus="status">
 							<li data-target="#myCarousel" data-slide-to="${i}"></li>
 						</c:forEach>
 
@@ -250,7 +252,7 @@ h2::after {
 													<span>${item.i_price}won</span>
 												</p>
 												<p>${item.i_detail}</p>
-												<a href="/items/detail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
+												<a href="/itemsDetail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
 											</div>
 										</div>
 									</div>
@@ -313,7 +315,7 @@ h2::after {
 						<c:set var="size" value="${fn:length(buyList)}" />
 						<!-- 21 -->
 
-						<c:forEach var="i" begin="1" end="${size/4}" varStatus="status">
+						<c:forEach var="i" begin="1" end="${(size-4)/4}" varStatus="status">
 							<li data-target="#myCarousel2" data-slide-to="${i}"></li>
 						</c:forEach>
 
@@ -325,7 +327,7 @@ h2::after {
 									<div class="col-sm-3">
 										<div class="thumb-wrapper">
 											<div class="thumb-content">
-												<br> <br> <br>
+												<br>
 												<h4>${item.i_title}</h4>
 												<p class="item-price">
 													<span>${item.i_price}won</span>
@@ -351,7 +353,7 @@ h2::after {
 											<div class="col-sm-3">
 												<div class="thumb-wrapper">
 													<div class="thumb-content">
-														<br> <br> <br>
+														<br> 
 														<h4>${item.i_title}</h4>
 														<p class="item-price">
 															<span>${item.i_price}won</span>

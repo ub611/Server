@@ -2,30 +2,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <!-- bootStrap -->
-<link
-	href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Open+Sans">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <jsp:include page="/WEB-INF/jsp/menu.jsp" />
+<% request.setCharacterEncoding("utf-8");%>
 
 <!------ Include the above in your HEAD tag ---------->
 
@@ -232,7 +227,7 @@ h2::after {
 						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 						<c:set var="size" value="${fn:length(petList)}" />	<!-- 21 -->
 						
-						<c:forEach var="i" begin="1" end="${size/4}" varStatus="status">
+						<c:forEach var="i" begin="1" end="${(size-4)/4}" varStatus="status">
 							<li data-target="#myCarousel" data-slide-to="${i}"></li>
 						</c:forEach>
 
@@ -265,7 +260,6 @@ h2::after {
 										<div class="col-sm-3">
 											<div class="thumb-wrapper">
 												<div class="thumb-content">
-													<br><br><br>
 													<h4>${item.p_name}</h4>
 													<p class="item-price"><span>${item.p_gender}살</span></p>
 													<p>${item.p_age}</p>
@@ -292,7 +286,7 @@ h2::after {
 			</div>
 		</div>
 	</div>
-		<div class="container">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<h2>
@@ -305,7 +299,7 @@ h2::after {
 					<ol class="carousel-indicators">
 						<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
 						<c:set var="size" value="${fn:length(adoptList)}" />	
-						<c:forEach var="i" begin="1" end="${size/4}" varStatus="status">
+						<c:forEach var="i" begin="1" end="${(size-4)/4 }" varStatus="status">
 							<li data-target="#myCarousel2" data-slide-to="${i}"></li>
 						</c:forEach>
 
@@ -317,7 +311,6 @@ h2::after {
 							<div class="col-sm-3">
 								<div class="thumb-wrapper">
 									<div class="thumb-content">
-									<br><br><br>
 										<h4>${item.p_name}</h4>
 										<p class="item-price"><span>${item.p_age}살</span></p>
 										<p>${item.p_gender}</p>
@@ -338,7 +331,6 @@ h2::after {
 										<div class="col-sm-3">
 											<div class="thumb-wrapper">
 												<div class="thumb-content">
-												<br><br><br>
 													<h4>${item.p_name}</h4>
 													<p class="item-price"><span>${item.p_age}살</span></p>
 													<p>${item.p_gender}</p>
