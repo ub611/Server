@@ -5,17 +5,23 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 
-<h2 class="mb-5">MyPage</h2>
+<h2 class="mb-5">&nbsp;&nbsp;&nbsp;MyPage</h2>
 
-<button type="button" id="btnLogout" style="visibility:hide" onclick="location.href='/signoff.do'">logout</button>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="button" onclick="location.href='/myPageItem?u_idx=${AccountForm.account.u_idx}'" class="btn btn-outline-warning slidetopright">&nbsp;&nbsp;Item&nbsp;&nbsp; </button>
+<button type="button" onclick="location.href='/myPagePet?u_idx=${AccountForm.account.u_idx}'" class="btn btn-outline-warning slidetopright"> &nbsp;&nbsp;Pet&nbsp;&nbsp; </button>
+<button type="button" onclick="location.href='/chat.do'" class="btn btn-outline-warning slidetopright"> Chatting </button>
+&nbsp;&nbsp;
+<button type="button" onclick="location.href='/signoff.do'" class="btn btn-outline-danger slideleft"> Logout </button>
 
-<button type="button" onclick="location.href='/mypage/${AccountForm.account.u_idx}/item.do'">item</button>		<!-- buy 2개씩 보여주기 -->
-<button type="button" onclick="location.href='/mypage/${AccountForm.account.u_idx}/pet.do'">pet</button>		<!--  adopt -->
-<button type="button" onclick="location.href='/chat.do'">chat</button>
+<br><br><br>
 
 <div class="container">
 	<form:form commandName="AccountForm" class="form-horizontal"
@@ -27,6 +33,7 @@
 
 			<legend>Fill out You Information</legend>
 
+<p></p>
 			<!-- Text input-->
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="textinput">ID</label>
@@ -107,9 +114,9 @@
 					Button</label>
 				<div class="col-md-8">
 					<!--     <button name="button1id" class="btn btn-success" id="button1id">Create</button>
- -->
-					<input name="button2id" class="btn btn-success" id="button2id"
-						type="submit" value="Update" />
+ --> 
+					<input name="button2id" class="btn btn-outline-success slideright" id="button2id"
+						type="submit" value="Update" /> 
 				</div>
 			</div>
 
