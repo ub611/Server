@@ -28,7 +28,7 @@
               <B><form:errors path="account.u_idx" cssClass="error" /></B>
             </c:if> 
             <c:if test="${!accountForm.newAccount}">
-              <c:out value="${accountForm.account.u_idx}" />
+              <form:input path ="account.u_idx" value="${accountForm.account.u_idx}" />
             </c:if>
             </td>
           </tr>
