@@ -22,16 +22,22 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <jsp:include page="/WEB-INF/jsp/menu.jsp" />
 
 <!------ Include the above in your HEAD tag ---------->
 
+<br><br> <p></p>
 
-<!-- <h2 class="mb-5">MyPage</h2>
- -->
-<br><br> 
-<button type="button" onclick="location.href='/signoff.do'">logout</button> 
-<button type="button" onclick="location.href='/mypage/${u_idx}/item.do'">item</button> <!-- buy 2개씩 보여주기 --> <br>	<!--  adopt -->
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<button type="button" onclick="location.href='/myPageItem?u_idx=${u_idx}'" class="btn btn-outline-warning slidetopright">&nbsp;&nbsp;Item&nbsp;&nbsp; </button>
+<button type="button" onclick="location.href='/chat.do'" class="btn btn-outline-warning slidetopright"> Chatting </button>
+&nbsp;&nbsp;
+<button type="button" onclick="location.href='/signoff.do'" class="btn btn-outline-danger slideleft"> Logout </button>
+
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -243,7 +249,7 @@ h2::after {
 										<p class="item-price"><span>${item.p_gender}살</span></p>
 										<p>${item.p_age}</p>
 										<p>${item.c_name}</p>
-										<a href="#" class="btn btn-primary">GO TO DETAIL</a>
+										<a href="/petEdit?p_idx=${item.p_idx}" class="btn btn-primary">GO TO DETAIL</a>
 									</div>						
 								</div>
 							</div>
@@ -264,7 +270,7 @@ h2::after {
 													<p class="item-price"><span>${item.p_gender}살</span></p>
 													<p>${item.p_age}</p>
 													<p>${item.c_name}</p>
-													<a href="#" class="btn btn-primary">GO TO DETAIL</a>
+													<a href="/petEdit?p_idx=${item.p_idx}" class="btn btn-primary">GO TO DETAIL</a>
 												</div>						
 											</div>
 										</div>
@@ -286,39 +292,37 @@ h2::after {
 			</div>
 		</div>
 	</div>
-	
-	<div class="container2">
+		<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<h2>
-					List Of <b> Adopts </b>
+					List Of <b> Adopts</b>
 				</h2>
-				<div id="myCarousel2" class="carousel slide2" data-ride="carousel2" data-interval="0">
+				<div id="myCarousel2" class="carousel slide" data-ride="carousel"
+					data-interval="0">
 					<!-- Carousel indicators -->
 
-					<ol class="carousel-indicators2">
+					<ol class="carousel-indicators">
 						<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
-						<c:set var="size" value="${fn:length(adoptList)}" />	<!-- 21 -->
-						
+						<c:set var="size" value="${fn:length(adoptList)}" />	
 						<c:forEach var="i" begin="1" end="${size/4}" varStatus="status">
 							<li data-target="#myCarousel2" data-slide-to="${i}"></li>
 						</c:forEach>
 
 					</ol>
-					
-				<div class="carousel-inner2">
-					<div class="item carousel-item active2">
+				<div class="carousel2-inner">
+					<div class="item carousel-item active">
 						<div class="row">
 							<c:forEach var="item" items="${adoptList}" begin="0" end="3">
 							<div class="col-sm-3">
 								<div class="thumb-wrapper">
 									<div class="thumb-content">
 									<br><br><br>
-										<h4>${item.owner_idx} 님의 ${item.p_name}</h4>
+										<h4>${item.p_name}</h4>
 										<p class="item-price"><span>${item.p_age}살</span></p>
 										<p>${item.p_gender}</p>
-										<br><p>${item.a_date}</p>
-										<a href="#" class="btn btn-primary">GO TO DETAIL</a>
+										<p>${item.a_date}</p>
+										<a href="/adoptDetail.do?a_idx${item.a_idx}" class="btn btn-primary">GO TO DETAIL</a>
 									</div>						
 								</div>
 							</div>
@@ -327,7 +331,7 @@ h2::after {
 					</div>
 					<c:forEach var="item" items="${adoptList}" begin="4" end="${size}" varStatus="status">
 						<c:if test="${status.index % 4 == 3}">
-							<div class="item carousel-item2">
+							<div class="item carousel-item">
 								<div class="row">
 									<c:set var="idx" value="${status.index}" />	<!-- 21 -->
 									 <c:forEach var="item" items="${adoptList}" begin="${idx-3}" end="${idx}">
@@ -335,12 +339,12 @@ h2::after {
 											<div class="thumb-wrapper">
 												<div class="thumb-content">
 												<br><br><br>
-													<h4>${item.owner_idx} 님의 ${item.p_name}</h4>
+													<h4>${item.p_name}</h4>
 													<p class="item-price"><span>${item.p_age}살</span></p>
 													<p>${item.p_gender}</p>
-													<br><p>${item.a_date}</p>
+													<p>${item.a_date}</p>
 													<a href="#" class="btn btn-primary">GO TO DETAIL</a>
-												</div>					
+												</div>							
 											</div>
 										</div>
 									</c:forEach>
