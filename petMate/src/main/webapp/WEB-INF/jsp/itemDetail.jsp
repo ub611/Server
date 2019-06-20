@@ -41,7 +41,11 @@
 						<h4 class="price">current price: <span><fmt:formatNumber value="${item.i_price}"  pattern="₩ #,##0"  /></span></h4>
 						<p class="vote"><strong>${item.i_stock}</strong>개 남았습니다!</p>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button" id="CartButton">add to cart</button>
+							<button class="add-to-cart btn btn-default" type="button" id="CartButton">
+									<a href='<c:url value="/addCart.do">
+          								<c:param name="itemId" value="${item.i_idx}"/></c:url>'>add to cart
+          							</a>
+          					</button>
 							<button class="add-to-cart btn btn-default" type="button" id="BuyButton">Buy</button>
 							<button class="add-to-cart btn btn-default" type="button" id="EditButton"><a href='<c:url value="itemsEdit.do"/>' >Edit</a></button>
 							<button class="add-to-cart btn btn-default" type="button" id="DeleteButton" onclick="real_delete();">Delete</button>

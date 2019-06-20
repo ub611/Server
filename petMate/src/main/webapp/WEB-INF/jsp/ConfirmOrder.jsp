@@ -1,103 +1,49 @@
-<%@ include file="IncludeTop.jsp"%>
-
-<table id="main-menu">
-  <tr><td>
-    <a href='<c:url value="/shop/index.do"/>'>
-      <b><font color="black" size="2">&lt;&lt; Main Menu</font></b></a>
-  </td></tr>
-</table>
-
-<div align="center">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<jsp:include page = "/WEB-INF/jsp/menu.jsp"/>
+<%@page import="com.example.petMate.controller.OrderForm"%>
+<%@page import="java.util.Date"%>
+<%
+	OrderForm orderForm = (OrderForm)session.getAttribute("orderForm");
+%>
+<h2>&nbsp;&nbsp;&nbsp;Order</h2>
+<div>
   <p>
-    <b>Please confirm the information below and then press continue...</b>
+    <b>&nbsp;&nbsp;&nbsp;Please confirm the information below and then press continue...</b>
   </p>
   <p></p>
   <table class="n13">
     <tr>
       <td align="center" colspan="2">
-        <font size="4"><b>Order</b></font><br />
         <font size="3">
-          <b><fmt:formatDate value="${orderForm.order.orderDate}" 
-            pattern="yyyy/MM/dd hh:mm:ss" /></b></font>
+        </font>
       </td>
     </tr>
     <tr>
       <td colspan="2">
-        <font color="GREEN" size="4"><b>Billing Address</b></font></td>
+        <font color="GREEN" size="8"><b>&nbsp;&nbsp;&nbsp;Order Information</b></font></td>
     </tr>
     <tr>
-      <td>First name:</td>
-      <td>${orderForm.order.billToFirstName}</td>
+      <td>&nbsp;&nbsp;&nbsp;Name:</td>
+      <td>&nbsp;&nbsp;&nbsp;<%=orderForm.getAccount().getU_name() %></td>
     </tr>
+    
     <tr>
-      <td>Last name:</td>
-      <td>${orderForm.order.billToLastName}</td>
+      <td>&nbsp;&nbsp;&nbsp;Phone:</td>
+      <td>&nbsp;&nbsp;&nbsp;<%=orderForm.getAccount().getU_phone() %></td>
     </tr>
+    
     <tr>
-      <td>Address 1:</td>
-      <td>${orderForm.order.billAddress1}</td>
+      <td>&nbsp;&nbsp;&nbsp;Address:</td>
+      <td>&nbsp;&nbsp;&nbsp;<%=orderForm.getAccount().getU_address() %></td>
     </tr>
-    <tr>
-      <td>Address 2:</td>
-      <td>${orderForm.order.billAddress2}</td>
-    </tr>
-    <tr>
-      <td>City:</td>
-      <td>${orderForm.order.billCity}</td>
-    </tr>
-    <tr>
-      <td>State:</td>
-      <td>${orderForm.order.billState}</td>
-    </tr>
-    <tr>
-      <td>Zip:</td>
-      <td>${orderForm.order.billZip}</td>
-    </tr>
-    <tr>
-      <td>Country:</td>
-      <td>${orderForm.order.billCountry}</td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <font color="GREEN" size="4"><b>Shipping Address</b></font></td>
-    </tr>
-    <tr>
-      <td>First name:</td>
-      <td>${orderForm.order.shipToFirstName}</td>
-    </tr>
-    <tr>
-      <td>Last name:</td>
-      <td>${orderForm.order.shipToLastName}</td>
-    </tr>
-    <tr>
-      <td>Address 1:</td>
-      <td>${orderForm.order.shipAddress1}</td>
-    </tr>
-    <tr>
-      <td>Address 2:</td>
-      <td>${orderForm.order.shipAddress2}</td>
-    </tr>
-    <tr>
-      <td>City:</td>
-      <td>${orderForm.order.shipCity}</td>
-    </tr>
-    <tr>
-      <td>State:</td>
-      <td>${orderForm.order.shipState}</td>
-    </tr>
-    <tr>
-      <td>Zip:</td>
-      <td>${orderForm.order.shipZip}</td>
-    </tr>
-    <tr>
-      <td>Country:</td>
-      <td>${orderForm.order.shipCountry}</td>
-    </tr>
+        
   </table>
   <p>
-    <a href='<c:url value="/shop/confirmOrder.do"/>'>
-      <img border="0" src="../images/button_continue.gif" alt="" /></a>
+  <p>
+  <p>
+  <p>
+    &nbsp;&nbsp;&nbsp;<a href="/confirmOrder.do" class="btn btn-outline-success slideright">INPUT</a>
   </p>
 </div>
-
-<%@ include file="IncludeBottom.jsp"%>

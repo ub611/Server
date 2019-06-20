@@ -1,73 +1,64 @@
-<%@ include file="IncludeTop.jsp"%>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<jsp:include page = "/WEB-INF/jsp/menu.jsp"/>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="com.example.petMate.domain.Cart"%>
+<%@page import="com.example.petMate.domain.CartItem" %>
+<%@page import="com.example.petMate.domain.Item" %>
+<%@page import="java.util.Iterator" %>
+<%
+	Cart cart = (Cart)session.getAttribute("sessionCart");
+	Iterator<CartItem> items = cart.getAllCartItems();
+%>
+<!------ Include the above in your HEAD tag ---------->
 
-<table>
-  <tr>
-    <td style="text-align: left; vertical-align: top; width: 20%">
-      <table id="main-menu">
-        <tr>
-          <td><a href='<c:url value="/shop/viewCart.do"/>'><b>
-            <font color="black" size="2">&lt;&lt; Shopping Cart</font></b></a></td>
-        </tr>
-      </table>
-    </td>
-
-    <td style="text-align: center; vertical-align: top">
-      <h2>Checkout Summary</h2>
-      <table class="n25">
-        <tr bgcolor="#CCCCCC">
-          <td><b>Item ID</b></td>
-          <td><b>Product ID</b></td>
-          <td><b>Description</b></td>
-          <td><b>In Stock?</b></td>
-          <td><b>Quantity</b></td>
-          <td><b>List Price</b></td>
-          <td><b>Total Cost</b></td>
-        </tr>
-        <c:forEach var="cartItem" items="${cart.cartItemList.pageList}">
-          <tr bgcolor="#FFFF88">
-            <td><b> 
-              <a href='<c:url value="/shop/viewItem.do">
-                <c:param name="itemId" value="${cartItem.item.itemId}"/></c:url>'>
-                  <c:out value="${cartItem.item.itemId}" />
-              </a></b>
-            </td>
-            <td><c:out value="${cartItem.item.productId}" /></td>
-            <td>
-              <c:out value="${cartItem.item.attribute1}" /> 
-              <c:out value="${cartItem.item.attribute2}" /> 
-              <c:out value="${cartItem.item.attribute3}" /> 
-              <c:out value="${cartItem.item.attribute4}" /> 
-              <c:out value="${cartItem.item.attribute5}" /> 
-              <c:out value="${cartItem.item.product.name}" />
-            </td>
-            <td align="center"><c:out value="${cartItem.inStock}" /></td>
-            <td align="center"><c:out value="${cartItem.quantity}" /></td>
-            <td align="right"><fmt:formatNumber
-                value="${cartItem.item.listPrice}" pattern="$#,##0.00" /></td>
-            <td align="right"><fmt:formatNumber
-                value="${cartItem.totalPrice}" pattern="$#,##0.00" /></td>
-          </tr>
-        </c:forEach>
-        <tr bgcolor="#FFFF88">
-          <td colspan="7" align="right"><b>Sub Total: <fmt:formatNumber
-                value="${cart.subTotal}" pattern="$#,##0.00" /></b><br /></td>
-        </tr>
-      </table>
-
-      <c:if test="${!cart.cartItemList.firstPage}">
-        <a href="checkout.do?page=previousCart"><font color="green">
-          <B>&lt;&lt; Prev</B></font></a>
-      </c:if>
-      <c:if test="${!cart.cartItemList.lastPage}">
-        <a href="checkout.do?page=nextCart"><font color="green">
-          <B>Next &gt;&gt;</B></font></a>
-      </c:if>
-      <br> 
-      <a href='<c:url value="/shop/newOrder.do"/>'>
-        <img border="0" src="../images/button_continue.gif" alt="" /></a>
-    </td>
-    <td style="text-align: right; vertical-align: top; width: 20%">&nbsp;</td>
-  </tr>
-</table>
-
-<%@ include file="IncludeBottom.jsp"%>
+<h1>Checkout Summary</h1>
+    <div class="container" id="tourpackages-carousel">
+      <div class="row">
+        <div class="col-lg-12"><h2>Sub Total: <%=cart.getSubTotal() %>WON</h2>
+        
+        
+      	<div class="btn btn-outline-light slidebottomright">
+          <a href='<c:url value="/newOrder.do"/>'><font size ="5">CONTINUE</font></a>
+          <br>
+        </div>
+        </div>
+        <br><br><br><br><br><br><br><br>
+ 
+ 		<%
+ 			while (items.hasNext()) {%>
+          	<%
+          		CartItem cartItem = (CartItem) items.next();
+	      		Item item = cartItem.getItem();
+	      	%>
+        	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+          		<div class="thumbnail">
+              		<div class="caption">
+                		<div class='col-lg-12'>
+                    		<a href="/removeCart.do?itemId=<%=item.getI_idx()%>" class="glyphicon glyphicon-trash pull-right text-primary"></a>
+                		</div>
+                		<br>
+                		
+                		<div class='col-lg-12 well well-add-card'>
+                    		<h4><a class="glyphicon glyphicon-credit-card" href="/viewItem.do?itemId=<%=item.getI_idx() %>">  <%=item.getI_title()%></a></h4>
+                    	</div>
+                    	<div class='col-lg-12'>
+                    	    <div><img src=<%=item.getIi_url()[0]%> alt="" width=300 height=300></div>
+                    		<p>Count: 
+                    		<%=cartItem.getIi_url()[0]%>
+                    		</p>
+                    		<p>Price: <%=item.getI_price()%>  WON</p>
+<%--                     		<p>Total Price: <%=cartItem.getTotalPrice()%>  WON</p>
+ --%>                		</div>
+                		<span class='glyphicon glyphicon-exclamation-sign text-danger pull-right icon-style'></span>
+            		</div>
+          		</div>
+          	</div>
+          	<%} %>
+     
+        
+      
+      </div><!-- End row -->
+    </div><!-- End container -->

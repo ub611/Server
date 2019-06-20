@@ -57,4 +57,13 @@ public interface ItemMapper {
     
     @Delete("DELETE FROM item_image WHERE item_i_idx=#{i_idx}")
     int deleteItemImages(@Param("i_idx") final int i_idx);
+    
+	
+	@Update("UPDATE item SET i_stock=0 WHERE i_idx=#{item_idx}")
+	void updateItemByIdx(int item_idx);
+	
+	@Select("SELECT i_stock FROM item  WHERE i_idx = #{itemId}")
+	int getInventoryQuantity(int itemId);
+
+	
 }
