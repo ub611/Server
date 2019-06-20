@@ -18,16 +18,16 @@ import com.example.petMate.domain.ItemImage;
 //@Mapper
 public interface ItemMapper {
 
-	@Select("SELECT * FROM item ORDER BY i_date")
+	@Select("SELECT * FROM item ORDER BY i_idx DESC")
 	List<Item> getItemList();
 
-	@Select("SELECT * FROM item WHERE i_category=#{sort} ORDER BY i_date")
+	@Select("SELECT * FROM item WHERE i_category=#{sort} ORDER BY i_idx DESC")
 	List<Item> getItemListBy(int sort);
 	
-	@Select("SELECT * FROM item WHERE i_idx=#{item_idx}")
+	@Select("SELECT * FROM item WHERE i_idx=#{item_idx} AND i_stock > 0 ORDER BY i_idx DESC")
 	Item getItemByItemIdx(int item_idx);
 
-	@Select("SELECT * FROM item WHERE i_title=#{item_title}")
+	@Select("SELECT * FROM item WHERE i_title=#{item_title} ")
 	Item getItemByItemTitle(String item_title);
 
 	@Update("UPDATE item SET i_title=#{itemCommand.i_title}, i_stock=#{itemCommand.i_stock}, "

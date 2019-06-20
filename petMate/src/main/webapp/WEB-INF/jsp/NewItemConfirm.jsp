@@ -3,6 +3,9 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page language ="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8");%>
+
 <!------ Include the above in your HEAD tag ---------->
 
 
@@ -14,7 +17,7 @@
 <div class="container">
 <%-- 	<form:form commandName="itemCommand" class="form-horizontal" action="new.do" method="post" enctype="multipart/form-data" >
  --%>
- <form class="form-horizontal" action="step1.do" method="post"  >
+ <form class="form-horizontal" action="itemsStep1.do" method="post"  >
  <fieldset>
 
 <!-- Form Name -->
@@ -66,8 +69,8 @@
   </div>
 </div>
 <div>
-<button class="btn"><a href='<c:url value="edit.do"/>'>Edit</a></button>
-<button class="btn"><a href='<c:url value="/items/${itemCommand.i_idx}"/>' >Go Item Detail</a></button>
+<button class="btn"><a href='<c:url value="itemsEdit.do"/>'>Edit</a></button>
+<button class="btn"><a href='<c:url value="/itemsDetail?i_idx=${itemCommand.i_idx}"/>' >Go Item Detail</a></button>
 </div>
 </fieldset>
 </form>

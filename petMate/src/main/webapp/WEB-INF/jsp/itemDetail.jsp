@@ -36,12 +36,12 @@
 						<h3 class="product-title">${item.i_title}</h3>
 						
 						<p class="product-description">${item.i_detail}</p>
-						<h4 class="price">current price: <span>${item.i_price}</span></h4>
+						<h4 class="price">current price: <span><fmt:formatNumber value="${item.i_price}"  pattern="₩ #,##0"  /></span></h4>
 						<p class="vote"><strong>${item.i_stock}</strong>개 남았습니다!</p>
 						<div class="action">
 							<button class="add-to-cart btn btn-default" type="button" id="CartButton">add to cart</button>
 							<button class="add-to-cart btn btn-default" type="button" id="BuyButton">Buy</button>
-							<button class="add-to-cart btn btn-default" type="button" id="EditButton"><a href='<c:url value="edit.do"/>' >Edit</a></button>
+							<button class="add-to-cart btn btn-default" type="button" id="EditButton"><a href='<c:url value="itemsEdit.do"/>' >Edit</a></button>
 							<button class="add-to-cart btn btn-default" type="button" id="DeleteButton" onclick="real_delete();">Delete</button>
 						</div>
 					</div>
@@ -277,14 +277,14 @@ window.onload = buttonOnload;
 function buttonOnload(){
 	if("${u_idx}" == "${item.user_u_idx}"){
 		var cartButton = document.getElementById('CartButton'); 
-		cartButton.disabled = true;
+		cartButton.style.visibility = 'hidden';
 		var buyButton = document.getElementById('BuyButton'); 
-		buyButton.disabled = true;
+		buyButton.style.visibility = 'hidden';
 	}else{
 		var editButton = document.getElementById('EditButton'); 
-		editButton.disabled = true;
+		editButton.style.visibility = 'hidden';
 		var deleteButton = document.getElementById('DeleteButton'); 
-		deleteButton.disabled = true;
+		deleteButton.style.visibility = 'hidden';
 	}
 }
 </script>

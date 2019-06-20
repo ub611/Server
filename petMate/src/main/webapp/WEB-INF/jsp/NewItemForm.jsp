@@ -1,19 +1,16 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<% request.setCharacterEncoding("utf-8");%>
 <!------ Include the above in your HEAD tag ---------->
 
-
-<jsp:include page="/WEB-INF/jsp/menu.jsp"/>
-
+<%@include file="/WEB-INF/jsp/menu.jsp" %>
 <h2 class="mb-5">New Item</h2>
 
 
 <div class="container">
-<%-- 	<form:form commandName="itemCommand" class="form-horizontal" action="new.do" method="post" enctype="multipart/form-data" >
- --%>
- <form class="form-horizontal" action="step1.do" method="post"  >
+ <form class="form-horizontal" action="itemsStep1.do" method="post"  >
  <fieldset>
 
 <!-- Form Name -->
