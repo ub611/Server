@@ -149,11 +149,17 @@ $(document).ready(function() {
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 
 <!-- <section class="resume-section p-3 p-lg-5 d-flex align-items-center" id="item">
- -->  <div class="w-100">
- 	<div class="container">
+ -->  
+ <div class="w-100">
+<!--  	<div class="container">
     <h2 class="mb-5">Item</h2>
     <div class="container">	<div><button><a href="items/step1.do">new Item</a></button></div>
-</div>
+		</div> -->
+
+
+<div style="margin:40px"><h2>Items </h2></div>
+<div style="margin:40px"><a href="items/step1.do">Item 등록하러 가깅!</a></div>
+
 
 	<div class="col">
 		<ul class="list-group">
@@ -165,11 +171,11 @@ $(document).ready(function() {
         </ul>
 	</div>
 	</div>
-</div>
+
 <!-- </section>
  -->
-<br><br>
-<div class="container">
+<%-- <br><br>
+<div class="container" >
   <div class="row">
     <section id="pinBoot">
       <c:forEach var="item" items="${items}">
@@ -183,7 +189,30 @@ $(document).ready(function() {
     </section>
     <hr>
   </div>
-</div>
+</div> --%>
+
+
+<div class="container" style="margin:20px">
+  <div class="row">
+   <c:forEach var="item" items="${items}">
+    <div class="col-xl-3 col-md-6 mb-4">
+      <div class="card border-0 shadow">
+        <img src="${item.ii_url[0]}" alt="">
+        <div class="card-body text-center">
+          <h4><a href="/items/detail?i_idx=${item.i_idx}">${item.i_title}</a></h4>
+          <h5 class="card-title mb-0"><fmt:formatNumber value="${item.i_price}"  pattern="₩ #,##0"  /></h5>
+          <div class="card-text text-black-50">${item.i_detail}</div>
+          <div class="card-text text-black-50"><fmt:formatNumber value="${order.i_date}"
+            pattern="yyyy/MM/dd hh:mm:ss"/></div>
+        </div>
+      </div>
+    </div>
+  </c:forEach> 
+  </div>
+</div> 
+
+
+
 
 <style>
 body {

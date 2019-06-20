@@ -2,7 +2,10 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%
+	String u_idx = (String)session.getAttribute("u_idx");
+%>
+<%=u_idx%>
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 
 <div style="margin:40px">
