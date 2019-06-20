@@ -210,7 +210,7 @@ h2::after {
 &nbsp;&nbsp;&nbsp;&nbsp;
 
 <button type="button" onclick="location.href='/myPagePet?u_idx=${u_idx}'" class="btn btn-outline-warning slidetopright">&nbsp;&nbsp;Pet&nbsp;&nbsp; </button>
-<button type="button" onclick="location.href='/chat.do'" class="btn btn-outline-warning slidetopright"> Chatting </button>
+&nbsp;<button type="button" onclick="location.href='/chat.do'" class="btn btn-outline-warning slidetopright"> Chatting </button>
 &nbsp;&nbsp;
 <button type="button" onclick="location.href='/signoff.do'" class="btn btn-outline-danger slideleft"> Logout </button>
 

@@ -37,7 +37,8 @@
         <td>&nbsp;</td>
         </tr>
     </table>
-    <button type="button" class="btn btn-outline-primary slideup">LOGIN</button>
+   	 <input type="submit" value="LOGIN" class="btn btn-outline-primary slideup"> 
+    
     <a href='<c:url value="/signupForm.do"/>'> 
      <button type="button" class="btn btn-outline-primary slideup">JOIN</button>
   </a> 
