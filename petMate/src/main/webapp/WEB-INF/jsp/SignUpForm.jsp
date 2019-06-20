@@ -9,7 +9,7 @@
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp" />
 
-<h2 class="mb-5">Join Us</h2>
+<h2 class="mb-5">&nbsp;&nbsp;&nbsp;Join Us</h2>
 
 
 <div class="container">

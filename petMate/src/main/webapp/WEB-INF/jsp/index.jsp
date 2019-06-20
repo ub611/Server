@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<% response.sendRedirect(request.getContextPath() + "/petList.do"); %>
+
+<%-- <!DOCTYPE html>
 <html lang="en">
 
 <body id="page-top">
@@ -260,4 +262,4 @@
 
 </body>
 
-</html>
+</html> --%>

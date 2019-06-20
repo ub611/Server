@@ -16,11 +16,13 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     
 <%@include file="/WEB-INF/jsp/menu.jsp" %>
-
+ 
+ <h2 class="mb-5">&nbsp;&nbsp;&nbsp;&nbsp;Item Detail</h2>
+<br>
  	<div class="container">
   					<div class="row">
     				<section id="pinBoot">
-     					<c:forEach var="url" items="${item.ii_url}">
+     					&nbsp;&nbsp;<c:forEach var="url" items="${item.ii_url}">&nbsp;
         					<article class="white-panel"><img src="${url}" alt=""> </article>
       					</c:forEach>
     				</section>
