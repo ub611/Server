@@ -5,6 +5,13 @@
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 
+
+<div style="margin:40px">
+	<h2>Pets to Adopt</h2>
+</div>
+<div style="margin:40px"><a href="/petRegister.do">펫 등록하러 가깅!</a></div>
+
+
 <div class="container" style="margin:20px">
   <div class="row">
   <c:forEach var="adopt" items="${adoptList}">
@@ -13,7 +20,7 @@
       <div class="card border-0 shadow">
       
       	
-        <img src="https://zooearth.com/wp-content/uploads/2016/12/maleragdoll.jpg" class="card-img-top" alt="...">
+        <img src="${pet.pic_url}" class="card-img-top" alt="...">
         <div class="card-body text-center">
           <h5 class="card-title mb-0"><a href="/adoptDetail.do?a_idx=${adopt.a_idx}">${adopt.a_title}</a></h5>
           <div class="card-text text-black-50">${adopt.a_content}</div>

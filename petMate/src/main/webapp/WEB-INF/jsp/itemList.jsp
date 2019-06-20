@@ -174,7 +174,7 @@ $(document).ready(function() {
     <section id="pinBoot">
       <c:forEach var="item" items="${items}">
          <article class="white-panel"><img src="${item.ii_url[0]}" alt="">
-         	<h4><a href="/items/${item.i_idx}">${item.i_title}</a></h4>
+         	<h4><a href="/items/detail?i_idx=${item.i_idx}">${item.i_title}</a></h4>
          		<p>${item.i_date}</p>
          		<p>${item.i_detail}</p>
          		<p>￦ ${item.i_price}</p>

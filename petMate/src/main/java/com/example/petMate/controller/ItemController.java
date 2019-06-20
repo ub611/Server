@@ -70,8 +70,8 @@ public class ItemController {
 	/*
 	 * Item detail Get
 	 */
-	@RequestMapping("/items/{item_idx}")
-	public String getListByIdx(@PathVariable("item_idx") int item_idx, Model model) throws Exception {
+	@RequestMapping("/items/detail")
+	public String getListByIdx(@RequestParam("i_idx") int item_idx, Model model) throws Exception {
 		Item item = petmate.getItemByItemIdx(item_idx);
 		if(item == null) {
 			return "Error";
