@@ -20,7 +20,7 @@
 
 			<!-- Form Name -->
 
-			<legend>Fill out You Information</legend>
+			<legend>Fill out You Information!</legend>
 
 			<!-- Text input-->
 			<div class="form-group">
