@@ -103,8 +103,11 @@ public class PetMateImpl implements PetMateFacade {
 	public Item getItemByItemIdx(int itemIdx) {
 		// TODO Auto-generated method stub
 		Item item = itemDao.getItemByItemIdx(itemIdx);
+		
 		String[] urls = itemDao.getItemImageUrls(itemIdx);
+		logger1.info("aaa: " +urls.length);
 		if(urls.length!=0) {
+			logger1.info("aaaabbb: " +urls[0]);
 			item.setIi_url(urls);
 		}
 		return item;

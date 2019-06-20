@@ -23,6 +23,7 @@
 <div class="container" style="margin:20px">
   <div class="row">
   <c:forEach var="pet" items="${petList}">
+  
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-0 shadow">
         <img src="${pet.p_url}" class="card-img-top" alt="...">
@@ -32,10 +33,18 @@
           <div class="card-text text-black-50">Gender :: <c:choose><c:when test="${pet.getP_gender() eq 0}">boy</c:when><c:otherwise>girl</c:otherwise></c:choose></div>
           <div class="card-text text-black-50">Injection :: <c:choose><c:when test="${pet.p_isInjection eq '0'}">did</c:when><c:otherwise>didn't</c:otherwise></c:choose></div>
         </div>
-      	<div style="margin:10px">
-		 <a href="/petEdit.do?p_idx=${pet.p_idx}"> edit</a>
-		 <a href="/petDeleteConfirm.do?p_idx=${pet.p_idx}"  style="visibility: hidden">delete</a>
+
+	    <div style="margin:10px" class=" text-center">
+	    <a href="/chat.do">Chating to Owner</a>  
 	    </div>
+	    <div style="margin:10px">
+      	 <c:if test="${u_idx eq pet.user_u_idx}">
+      	 	<a href="/petEdit.do?p_idx=${pet.p_idx}"> edit   </a> 
+		 	<a href="/petDeleteConfirm.do?p_idx=${pet.p_idx}">delete</a>         
+		 </c:if>
+	    </div>
+	    
+	    
       </div>
     </div>
   </c:forEach> 

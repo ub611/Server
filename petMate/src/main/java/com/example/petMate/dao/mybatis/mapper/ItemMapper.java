@@ -18,7 +18,7 @@ import com.example.petMate.domain.ItemImage;
 //@Mapper
 public interface ItemMapper {
 
-	@Select("SELECT * FROM item ORDER BY i_idx DESC")
+	@Select("SELECT * FROM item WHERE i_stock > 0 ORDER BY i_idx DESC")
 	List<Item> getItemList();
 
 	@Select("SELECT * FROM item WHERE i_category=#{sort} ORDER BY i_idx DESC")
