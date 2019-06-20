@@ -1,11 +1,17 @@
 package com.example.petMate.dao.mybatis;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.example.petMate.command.MyPageAdoptCommand;
+import com.example.petMate.command.MyPageBuyCommand;
+import com.example.petMate.command.MyPageItemCommand;
+import com.example.petMate.command.MyPagePetCommand;
 import com.example.petMate.dao.AccountDao;
 import com.example.petMate.dao.mybatis.mapper.AccountMapper;
 import com.example.petMate.domain.Account;
@@ -47,25 +53,25 @@ public class MybatisAccountDao implements AccountDao{
 	}
 
 	@Override
-	public Item getItem(String u_idx) {
+	public List<MyPageItemCommand> getItem(String u_idx) {
 		// TODO Auto-generated method stub
 		return accountmapper.getItem(u_idx);
 	}
 
 	@Override
-	public buy getBuyIamBuyer(String u_idx) {
+	public List<MyPageBuyCommand> getBuyIamBuyer(String u_idx) {
 		// TODO Auto-generated method stub
 		return accountmapper.getBuyIamBuyer(u_idx);
 	}
 
 	@Override
-	public Pet getIamAdopter(String u_idx) {
+	public List<MyPageAdoptCommand> getIamAdopter(String u_idx) {
 		// TODO Auto-generated method stub
 		return accountmapper.getIamAdopter(u_idx);
 	}
 
 	@Override
-	public Adopt getPet(String u_idx) {
+	public List<MyPagePetCommand> getPet(String u_idx) {
 		// TODO Auto-generated method stub
 		return accountmapper.getPet(u_idx);
 	}

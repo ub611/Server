@@ -22,8 +22,7 @@
  
   	<mvc:view-controller path="/signinForm.do" view-name="SignInForm"/> 
   	<mvc:view-controller path="/signupForm.do" view-name="SignUpForm"/>
-<!--   	<mvc:view-controller path="/mypage.do" view-name="MyPage"/> 
- -->  	<mvc:view-controller path="/home.do" view-name="index"/>
+  	<mvc:view-controller path="/home.do" view-name="index"/>
   	
  
  <!-- 
