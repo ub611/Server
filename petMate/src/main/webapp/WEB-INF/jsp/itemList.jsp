@@ -144,6 +144,8 @@ $(document).ready(function() {
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<% request.setCharacterEncoding("utf-8");%>
+
 <!------ Include the above in your HEAD tag ---------->
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
@@ -158,7 +160,7 @@ $(document).ready(function() {
 
 
 <div style="margin:40px"><h2>Items </h2></div>
-<div style="margin:40px"><a href="items/step1.do">Item 등록하러 가깅!</a></div>
+<div style="margin:40px"><a href="itemsStep1.do">Item 등록하러 가깅!</a></div>
 
 
 	<div class="col">
@@ -191,7 +193,6 @@ $(document).ready(function() {
   </div>
 </div> --%>
 
-
 <div class="container" style="margin:20px">
   <div class="row">
    <c:forEach var="item" items="${items}">
@@ -199,11 +200,11 @@ $(document).ready(function() {
       <div class="card border-0 shadow">
         <img src="${item.ii_url[0]}" alt="">
         <div class="card-body text-center">
-          <h4><a href="/items/detail?i_idx=${item.i_idx}">${item.i_title}</a></h4>
+          <h4><a href="/itemsDetail?i_idx=${item.i_idx}">${item.i_title}</a></h4>
           <h5 class="card-title mb-0"><fmt:formatNumber value="${item.i_price}"  pattern="₩ #,##0"  /></h5>
           <div class="card-text text-black-50">${item.i_detail}</div>
           <div class="card-text text-black-50"><fmt:formatNumber value="${order.i_date}"
-            pattern="yyyy/MM/dd hh:mm:ss"/></div>
+pattern="yyyy/MM/dd hh:mm:ss"/></div>
         </div>
       </div>
     </div>

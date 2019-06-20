@@ -1,15 +1,12 @@
 package com.example.petMate.controller;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.MultipartRequest;
 
 import com.example.petMate.command.ItemCommand;
 import com.example.petMate.domain.Item;
@@ -70,7 +65,7 @@ public class ItemController {
 	/*
 	 * Item detail Get
 	 */
-	@RequestMapping("/items/detail")
+	@RequestMapping("/itemsDetail")
 	public String getListByIdx(@RequestParam("i_idx") int item_idx, Model model) throws Exception {
 		Item item = petmate.getItemByItemIdx(item_idx);
 		if(item == null) {
@@ -91,7 +86,7 @@ public class ItemController {
 	/*
 	 * Item 등록 new -> step1
 	 */
-	@RequestMapping(value="/items/step1.do", method = RequestMethod.GET)
+	@RequestMapping(value="/itemsStep1.do", method = RequestMethod.GET)
 	public String addItem(@ModelAttribute("itemCommand") ItemCommand itemCommand,
 			BindingResult result,
 			HttpServletRequest request,
@@ -102,18 +97,16 @@ public class ItemController {
 	/*
 	 * Item 등록 step1
 	 */
-	@RequestMapping(value="/items/step1.do", method = RequestMethod.POST)
+	@RequestMapping(value="/itemsStep1.do", method = RequestMethod.POST)
 	public String addItemGet(@ModelAttribute("itemCommand") ItemCommand itemCommand,
 			BindingResult result,
 			HttpServletRequest request,
 			HttpServletResponse response, SessionStatus status) throws Exception {
 		String u_idx = (String) request.getSession().getAttribute("u_idx");
 
-		u_idx = "3";
-
 		if(u_idx == null || u_idx.equals("") ) {
 			//로그인 페이지로 리다이렉트!
-			response.sendRedirect(request.getContextPath() + "/items.do");
+			response.sendRedirect(request.getContextPath() + "/signinForm.do");
 		}
 
 		if(!itemCommand.validateProperties()) {
@@ -134,7 +127,7 @@ public class ItemController {
 	/*
 	 * Item 등록 summit
 	 */
-	@RequestMapping(value="/items/new.do", method = RequestMethod.POST)
+	@RequestMapping(value="/itemsNew.do", method = RequestMethod.POST)
 	public String addItem(@ModelAttribute("itemCommand") ItemCommand itemCommand,
 			BindingResult result,
 			HttpServletResponse response,
@@ -176,7 +169,7 @@ public class ItemController {
 	/*
 	 * Item 수정 POST
 	 */
-	@RequestMapping(value="/items/edit.do",method = RequestMethod.POST)
+	@RequestMapping(value="/itemsEdit.do",method = RequestMethod.POST)
 	public String editItem(@ModelAttribute("itemCommand") ItemCommand itemCommand,  Model model) throws Exception {
 		petmate.updateItem(itemCommand);
 		return "NewItemForm";
@@ -184,7 +177,7 @@ public class ItemController {
 	/*
 	 * Item 수정 Form 
 	 */
-	@RequestMapping("/items/edit.do")
+	@RequestMapping("/itemsEdit.do")
 	public String editItemForm(@ModelAttribute("itemCommand") ItemCommand itemCommand) throws Exception {
 		return "NewItemForm";
 	}

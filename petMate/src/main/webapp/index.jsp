@@ -1,6 +1,7 @@
+<% response.sendRedirect(request.getContextPath() + "/petList.do"); %>
 
 
-<!DOCTYPE html>
+<%-- <!DOCTYPE html>
 <html lang="en">
 
 <body id="page-top">
@@ -157,7 +158,7 @@
       <div class="w-100">
         <h2 class="mb-5">Adopt</h2>
 		<button><a href="/adopts/new">new adopt</a></button>
-        <!-- <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
+        <div class="resume-item d-flex flex-column flex-md-row justify-content-between mb-5">
           <div class="resume-content">
             <h3 class="mb-0">University of Colorado Boulder</h3>
             <div class="subheading mb-3">Bachelor of Science</div>
@@ -178,7 +179,7 @@
           <div class="resume-date text-md-right">
             <span class="text-primary">August 2002 - May 2006</span>
           </div>
-        </div> -->
+        </div>
 
 	<div class="container">
 	<div class="row">
@@ -262,3 +263,4 @@
 </body>
 
 </html>
+ --%>

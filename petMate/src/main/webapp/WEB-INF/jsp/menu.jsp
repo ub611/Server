@@ -27,11 +27,11 @@
 	  sessionhref = "/signinForm.do";		//or goto SignIn
 %>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-    <a class="navbar-brand js-scroll-trigger" href=<%=sessionhref%>>		<!-- login으로 -->
-      <span class="d-block d-lg-none"><br>Pet Mate</span>
-      <span class="d-none d-lg-block">
-        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile.jpg" alt="">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav" >
+    <a class="navbar-brand js-scroll-trigger" href=<%=sessionhref%> >		<!-- login으로 -->
+      <span class="d-block d-lg-none" ><br>Pet Mate</span>
+      <span class="d-none d-lg-block" >
+        <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="https://sopt2.s3.ap-northeast-2.amazonaws.com/pet/KakaoTalk_Photo_2019-06-21-01-30-44.png" alt="">
       </span>
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

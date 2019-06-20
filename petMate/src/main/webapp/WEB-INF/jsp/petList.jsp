@@ -5,7 +5,7 @@
 <%
 	String u_idx = (String)session.getAttribute("u_idx");
 %>
-<%=u_idx%>
+
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 
 <div style="margin:40px">
@@ -14,12 +14,11 @@
           <span class="text-primary">Mate</span>
         </h1>
         <div class="subheading mb-5"> dayoung9650 / ub611  / jisuuuu  / HanSeonmin <br>
-          <a href="dayoung9650@email.com">dayoung9650@email.com</a>
+          <a href="dayoung9650@gmail.com">petMate@gmail.com</a>
         </div>
         <p class="lead mb-5"> Software System Development Term Project </p>
       </div>    
 </div>
-
 
 <div class="container" style="margin:20px">
   <div class="row">
