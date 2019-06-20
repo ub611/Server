@@ -12,13 +12,16 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.petMate.domain.Pet;
+import com.example.petMate.domain.PetImage;
 import com.amazonaws.services.waf.model.HTTPRequest;
 import com.example.petMate.domain.Adopt;
 import com.example.petMate.service.PetMateFacade;
@@ -38,8 +41,7 @@ public class PetController {
 	@RequestMapping(value="/adoptList.do", method=RequestMethod.GET)
 	public String listAdopts(Model model) throws Exception {
 
-		List<Adopt> adoptList = petMate.selectAdoptList();
-		logger.info("\n"+ adoptList.toString());
+//		List<Adopt> adoptList = petMate.selectAdoptList();
 		
 //		Map<Integer, List<String>> petInfos = new HashMap<>();
 //		for (Adopt adopt:  adoptList) {
@@ -51,9 +53,12 @@ public class PetController {
 //			petInfos.put(adopt.getA_idx(), petInfo); 
 //		}
 		
-		model.addAttribute("adoptList", adoptList);
+//		model.addAttribute("adoptList", adoptList);
 //		model.addAttribute("petList", petInfos);
 //		model.addAttribute("petImages", petImages);
+//		return "/adoptList";
+		// 다영
+		model.addAttribute("petList", petMate.getAllPetList());
 		return "/adoptList";
 	}
 	
@@ -72,10 +77,10 @@ public class PetController {
 		return "/petRegister";
 	}
 	@RequestMapping(value="/petRegister.do", method=RequestMethod.POST)
-	public String createPet(HttpServletRequest req, Pet pet, Model model) throws Exception { 
+	public String createPet(HttpServletRequest req, Pet pet, @RequestParam("pi_url") MultipartFile pi_url, Model model) throws Exception { 
 		
 		pet.setUser_u_idx(user_u_idx); //req.getSession().getAttribute("user_u_idx")
-		petMate.insertPet(pet);
+		petMate.insertPet(pet, pi_url);
 		
 		Adopt adopt = new Adopt();
 		adopt.setA_date(new Date());
@@ -98,9 +103,9 @@ public class PetController {
 		return "/petRegister";
 	}
 	@RequestMapping(value="/petEdit.do", method=RequestMethod.POST)
-	public String editPet(HttpServletRequest req, Model model) throws Exception { 
+	public String editPet(HttpServletRequest req, @RequestParam("pi_url") MultipartFile pi_url, Model model) throws Exception { 
 		logger.info("\n*****PetController::editPet:: " + req.getParameter("p_idx"));
-		
+		logger.info("\n" + String.valueOf(pi_url));
 		Pet pet = new Pet();
 		pet.setP_idx(Integer.parseInt(req.getParameter("p_idx")));
 		pet.setP_age(Integer.parseInt(req.getParameter("p_age")));
@@ -111,7 +116,7 @@ public class PetController {
 		
 		//logger.info("\n*****AdoptController::updateAdopt:: " + adopt.getA_content() + ":: " + adopt.getA_title());
 		
-		petMate.updatePet(pet);
+		petMate.updatePet(pet, pi_url);
 		
 		Adopt adopt = new Adopt();
 		adopt.setA_date(new Date());
@@ -141,9 +146,16 @@ public class PetController {
 	}
 	
 	// 유저가 등록한 펫 리스트
+//	@RequestMapping(value="/petList.do", method=RequestMethod.GET)
+//	public String listPets(@RequestParam int u_idx, Model model) throws Exception {
+//		model.addAttribute("petList", petMate.selectPetByUserIdx(u_idx)); 
+//		return "/petList";
+//	}
+	
+	// 유저가 등록한 펫 리스트
 	@RequestMapping(value="/petList.do", method=RequestMethod.GET)
-	public String listPets(@RequestParam int u_idx, Model model) throws Exception {
-		model.addAttribute("petList", petMate.selectPetByUserIdx(u_idx)); 
+	public String listAllPets(Model model) throws Exception {
+		model.addAttribute("petList", petMate.getAllPetList());
 		return "/petList";
 	}
 	

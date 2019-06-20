@@ -2,31 +2,31 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%
+	String u_idx = (String)session.getAttribute("u_idx");
+%>
+<%=u_idx%>
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
 
-<%-- <div class="container">
-  <div class="row">
-    <section id="pinBoot">
-      <c:forEach var="adopt" items="${adoptList}">
-         <article class="white-panel"><img src="https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy.jpg?imwidth=450" alt="">
-         	<h4><a href="/adoptDetail.do?a_idx=${adopt.a_idx}">${adopt.a_title}</a></h4>
-         		<p>${adopt.a_date}</p>
-         		<p>${adopt.a_content}</p>
-      	 </article>
-      </c:forEach>
-    </section>
-    <hr>
-  </div>
-</div> --%>
+<div style="margin:40px">
+      <div class="w-100">
+        <h1 class="mb-0">Pet
+          <span class="text-primary">Mate</span>
+        </h1>
+        <div class="subheading mb-5"> dayoung9650 / ub611  / jisuuuu  / HanSeonmin <br>
+          <a href="dayoung9650@email.com">dayoung9650@email.com</a>
+        </div>
+        <p class="lead mb-5"> Software System Development Term Project </p>
+      </div>    
+</div>
+
 
 <div class="container" style="margin:20px">
   <div class="row">
   <c:forEach var="pet" items="${petList}">
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-0 shadow">
-      
-        <img src="https://www.telegraph.co.uk/content/dam/Pets/spark/royal-canin/happy-puppy.jpg?imwidth=450" class="card-img-top" alt="...">
+        <img src="${pet.p_url}" class="card-img-top" alt="...">
         <div class="card-body text-center">
           <h5 class="card-title mb-0">${pet.p_name} :: ${pet.p_cate_detail}</h5>
           <div class="card-text text-black-50">Age :: ${pet.p_age}</div>
@@ -35,16 +35,29 @@
         </div>
       	<div style="margin:10px">
 		 <a href="/petEdit.do?p_idx=${pet.p_idx}"> edit</a>
-		 <a href="/petDeleteConfirm.do?p_idx=${pet.p_idx}">delete</a>
+		 <a href="/petDeleteConfirm.do?p_idx=${pet.p_idx}"  style="visibility: hidden">delete</a>
 	    </div>
       </div>
     </div>
   </c:forEach> 
   </div>
-  <!-- /.row -->
-
 </div>
 
+<div class="social-icons">
+          <a href="https://github.com/dayoung9650">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://github.com/ub611">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://github.com/jisuuuu">
+            <i class="fab fa-github"></i>
+          </a>
+         <a href="https://github.com/HanSeonmin">
+            <i class="fab fa-github"></i>
+          </a>
+</div>
+<!-- 
 <style>
 body {
  background-color:#eee;   
@@ -261,4 +274,4 @@ $(document).ready(function() {
 	    }
 
 	})(jQuery, window, document);
-</script>
+</script> -->

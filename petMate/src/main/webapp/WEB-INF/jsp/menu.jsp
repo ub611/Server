@@ -40,7 +40,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link js-scroll-trigger" href="/home.do">Home</a>
+          <a class="nav-link js-scroll-trigger" href="/petList.do">Home</a>
         </li>
          <li class="nav-item">
           <a class="nav-link js-scroll-trigger" href=<%=sessionhref%>>MyPage</a>

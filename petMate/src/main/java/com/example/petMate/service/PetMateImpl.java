@@ -228,7 +228,6 @@ public class PetMateImpl implements PetMateFacade {
 	@Override
 	public int insertAdopt(Adopt adopt) throws Exception {
 		logger1.info("\n*****PetMateImpl::insertAdopt:: " + adopt.getA_content() + ":: " + adopt.getA_title());
-		
 		return adoptDao.insertAdopt(adopt);
 	}
 
@@ -269,18 +268,36 @@ public class PetMateImpl implements PetMateFacade {
 	public int selectPetIdxLatest() throws Exception {
 		return petDao.selectPetIdxLatest();
 	}
+	
 	@Override
-	public int insertPet(Pet pet) throws Exception {
-		return petDao.insertPet(pet);
+	public int insertPet(Pet pet, MultipartFile pi_url) throws Exception {
+		pet.setP_url(s3FileUploadService.upload(pi_url, "pet"));
+		petDao.insertPet(pet);
+		
+		return 1;
 	}
 
 	@Override
-	public int updatePet(Pet pet) throws Exception {
-		return petDao.updatePet(pet);
+	public int updatePet(Pet pet, MultipartFile pi_url) throws Exception {
+		if(pi_url != null) {
+			logger1.info("\n*****PetMateImpl::insertAdopt:: 0" + pet.toString());
+			pet.setP_url(s3FileUploadService.upload(pi_url, "pet"));
+			logger1.info("\n*****PetMateImpl::insertAdopt::2 \n " + pet.toString());
+		}else {
+			pet.setP_url(petDao.selectUrlByIdx(pet.getP_idx()));
+		}
+		petDao.updatePet(pet);
+		return 1;
 	}
 
 	@Override
 	public int deletePet(int p_idx) throws Exception {
 		return petDao.deletePet(p_idx);
+	}
+
+	@Override
+	public List<Pet> getAllPetList() throws Exception {
+		// TODO Auto-generated method stub
+		return petDao.selectAllPets();
 	}
 }
