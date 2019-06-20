@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.petMate.command.MyPageAdoptCommand;
@@ -21,7 +22,6 @@ import com.example.petMate.command.MyPagePetCommand;
 import com.example.petMate.service.PetMateFacade;
 
 @Controller
-@RequestMapping("/mypage/{u_idx}")
 public class MyPageDetailController {
 	private static Logger logger = LoggerFactory.getLogger(MyPageDetailController.class);
 
@@ -32,28 +32,33 @@ public class MyPageDetailController {
 		this.petmate = petMate;
 	}
 	
-	@RequestMapping("/item.do")
-	public String getListItem(@PathVariable("u_idx")String userId, Model model) throws Exception{
+	@RequestMapping("/myPageItem")
+	public String getListItem(@RequestParam("u_idx") String userId, Model model) throws Exception{
 		List<MyPageItemCommand> itemList = petmate.getItem(userId);
 		List<MyPageBuyCommand> buyList = petmate.getBuyIamBuyer(userId);
 		model.addAttribute("itemList", itemList);
 		model.addAttribute("buyList", buyList);
-		model.addAttribute( "u_idx", userId);
-		logger.info(itemList.toString());
+		model.addAttribute("u_idx", userId);
+		logger.info("count of buyList " + buyList.size());
+		logger.info("count of itemList " + itemList.size());
+
 		logger.info(userId);
 		
 		return "/MyPageItem";
 	}
 	
-	@RequestMapping("/pet.do")
-	public String getLisPet(@PathVariable("u_idx")String userId, Model model) throws Exception{
+	@RequestMapping("/myPagePet")
+	public String getLisPet(@RequestParam("u_idx")String userId, Model model) throws Exception{
 		List<MyPagePetCommand> petList = petmate.getPet(userId);
 		List<MyPageAdoptCommand> adoptList = petmate.getIamAdopter(userId);
 		logger.info("After getPet");
 		model.addAttribute("petList", petList);
 		model.addAttribute("adoptList", adoptList);
 		model.addAttribute("u_idx", userId);
-		logger.info("After model attribute");
+		
+		logger.info("count of petList " + petList.size());
+		logger.info("count of adoptList " + adoptList.size());
+
 		return "/MyPagePet";
 	}
 }

@@ -19,6 +19,7 @@
       <input type="hidden" name="forwardAction"
         value='<c:url value="${signinForwar dAction}"/>' />
     </c:if> --%>
+    <p></p> <p></p> <p></p>  <p></p> <p></p> <p></p>  <p></p> <p></p> <p></p>  <p></p> <p></p> <p></p>
     <table>
       <tr>
         <td colspan="2">Please enter your username and password. <br />&nbsp;
@@ -36,11 +37,13 @@
         <td>&nbsp;</td>
         </tr>
     </table>
-    <button>login</button>
-  </form>
-  <a href='<c:url value="/signupForm.do"/>'> 
-     <button>join</button>
+   	 <input type="submit" value="LOGIN" class="btn btn-outline-primary slideup"> 
+    
+    <a href='<c:url value="/signupForm.do"/>'> 
+     <button type="button" class="btn btn-outline-primary slideup">JOIN</button>
   </a> 
+  </form>
+  
 </div>
 
 <%-- <%@ include file="IncludeBottom.jsp"%> --%>

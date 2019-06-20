@@ -144,6 +144,8 @@ $(document).ready(function() {
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 <% request.setCharacterEncoding("utf-8");%>
 <%
 	String u_idx = (String)session.getAttribute("u_idx");
@@ -164,17 +166,15 @@ $(document).ready(function() {
 <div style="margin:40px"><h2>Items </h2></div>
 <div style="margin:40px"><a href="itemsStep1.do">Item 등록하러 가깅!</a></div>
 
+<p></p>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<button type="button" onclick="location.href='/items.do?sort=0'" class="btn btn-outline-dark slideup">&nbsp;&nbsp;&nbsp;All&nbsp;&nbsp;&nbsp;</button>
+&nbsp;<button type="button" onclick="location.href='/items.do?sort=1'" class="btn btn-outline-dark slidedown">Food & Snack</button>
+&nbsp;<button type="button" onclick="location.href='/items.do?sort=2'" class="btn btn-outline-dark slideright">&nbsp;House&nbsp;</button>
+&nbsp;<button type="button" onclick="location.href='/items.do?sort=3'" class="btn btn-outline-dark slideleft">&nbsp;&nbsp;&nbsp;Toy&nbsp;&nbsp;&nbsp;</button>
+&nbsp;<button type="button" onclick="location.href='/items.do?sort=4'" class="btn btn-outline-dark slidetopright">&nbsp;&nbsp;&nbsp;Walk&nbsp;&nbsp;&nbsp;</button>
 
-	<div class="col">
-		<ul class="list-group">
-          <li class="list-group-item"><a href="/items.do?sort=0">All</a></li>
-          <li class="list-group-item"><a href="/items.do?sort=1" >Food & Snack</a></li>
-          <li class="list-group-item"><a href="/items.do?sort=2" >House</a></li>
-          <li class="list-group-item"><a href="/items.do?sort=3">Toy</a></li>
-          <li class="list-group-item"><a href="/items.do?sort=4" >Walk</a></li>
-        </ul>
-	</div>
-	</div>
+</div>
 
 <!-- </section>
  -->
