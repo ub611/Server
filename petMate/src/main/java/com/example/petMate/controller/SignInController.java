@@ -33,13 +33,13 @@ public class SignInController {
 			@RequestParam("password") String password,
 			@RequestParam(value="forwardAction", required=false) String forwardAction, Model model) throws Exception {
 		
-		logger.info("check user iputId = " + username);
 						
 		Account account = petMate.getAccount(username, password);
 		
+		
 		if (account == null) {
-			return new ModelAndView("Error", "message", 
-					"Invalid username or password.  Signon failed.");
+			logger.info("null");
+			return new ModelAndView("SignInForm", "message", new String("unvalid userInfo"));
 		}
 		else {
 			HttpSession session = request.getSession();
