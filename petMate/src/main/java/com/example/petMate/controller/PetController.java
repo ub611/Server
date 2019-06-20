@@ -41,8 +41,7 @@ public class PetController {
 	@RequestMapping(value="/adoptList.do", method=RequestMethod.GET)
 	public String listAdopts(Model model) throws Exception {
 
-		List<Adopt> adoptList = petMate.selectAdoptList();
-		logger.info("\n"+ adoptList.toString());
+//		List<Adopt> adoptList = petMate.selectAdoptList();
 		
 //		Map<Integer, List<String>> petInfos = new HashMap<>();
 //		for (Adopt adopt:  adoptList) {
@@ -54,9 +53,12 @@ public class PetController {
 //			petInfos.put(adopt.getA_idx(), petInfo); 
 //		}
 		
-		model.addAttribute("adoptList", adoptList);
+//		model.addAttribute("adoptList", adoptList);
 //		model.addAttribute("petList", petInfos);
 //		model.addAttribute("petImages", petImages);
+//		return "/adoptList";
+		// 다영
+		model.addAttribute("petList", petMate.getAllPetList());
 		return "/adoptList";
 	}
 	
@@ -144,9 +146,16 @@ public class PetController {
 	}
 	
 	// 유저가 등록한 펫 리스트
+//	@RequestMapping(value="/petList.do", method=RequestMethod.GET)
+//	public String listPets(@RequestParam int u_idx, Model model) throws Exception {
+//		model.addAttribute("petList", petMate.selectPetByUserIdx(u_idx)); 
+//		return "/petList";
+//	}
+	
+	// 유저가 등록한 펫 리스트
 	@RequestMapping(value="/petList.do", method=RequestMethod.GET)
-	public String listPets(@RequestParam int u_idx, Model model) throws Exception {
-		model.addAttribute("petList", petMate.selectPetByUserIdx(u_idx)); 
+	public String listAllPets(Model model) throws Exception {
+		model.addAttribute("petList", petMate.getAllPetList());
 		return "/petList";
 	}
 	

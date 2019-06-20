@@ -84,4 +84,7 @@ public interface PetMapper {
 	
 	@Select("SELECT p_url FROM pet WHERE p_idx=#{pet_p_idx}")
 	String selectUrlByIdx(@Param("pet_p_idx") int pet_p_idx);
+	
+	@Select("SELECT * FROM pet ORDER BY p_idx DESC")
+	List<Pet> selectAllPets();
 }

@@ -21,4 +21,5 @@ public interface PetDao {
 	int deletePetImage(int p_idx);
 	
 	String selectUrlByIdx(int p_idx);
+	List<Pet> selectAllPets();
 }

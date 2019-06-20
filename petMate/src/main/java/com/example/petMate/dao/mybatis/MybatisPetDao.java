@@ -80,6 +80,12 @@ public class MybatisPetDao implements PetDao {
 		// TODO Auto-generated method stub
 		return petMapper.selectUrlByIdx(p_idx);
 	}
+
+	@Override
+	public List<Pet> selectAllPets() {
+		// TODO Auto-generated method stub
+		return petMapper.selectAllPets();
+	}
 	
 	
 }

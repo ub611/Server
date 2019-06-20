@@ -294,4 +294,10 @@ public class PetMateImpl implements PetMateFacade {
 	public int deletePet(int p_idx) throws Exception {
 		return petDao.deletePet(p_idx);
 	}
+
+	@Override
+	public List<Pet> getAllPetList() throws Exception {
+		// TODO Auto-generated method stub
+		return petDao.selectAllPets();
+	}
 }

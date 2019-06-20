@@ -70,5 +70,6 @@ public interface PetMateFacade {
 	int updateAdopt(Adopt adopt) throws Exception;
 	int deleteAdopt(int a_idx) throws Exception;
 	int deleteAdoptByPet(int p_idx) throws Exception;
+	List<Pet> getAllPetList() throws Exception;
 
 }
