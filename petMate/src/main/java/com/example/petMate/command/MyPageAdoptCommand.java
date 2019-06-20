@@ -3,6 +3,7 @@ package com.example.petMate.command;
 import java.sql.Date;
 
 public class MyPageAdoptCommand {
+	private int a_idx;
 	private int p_age; 	//pet.p_age, 
 	private int p_gender;	//pet.p_gender, 
 	private String p_name;	//pet.p_name, 
@@ -18,9 +19,10 @@ public class MyPageAdoptCommand {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public MyPageAdoptCommand(int p_age, int p_gender, String p_name, int p_isInjection, String p_cate_detail,
+	public MyPageAdoptCommand(int a_idx, int p_age, int p_gender, String p_name, int p_isInjection, String p_cate_detail,
 			String owner_idx, String a_state, Date a_date, String c_name) {
 		super();
+		this.a_idx = a_idx;
 		this.p_age = p_age;
 		this.p_gender = p_gender;
 		this.p_name = p_name;
@@ -32,6 +34,14 @@ public class MyPageAdoptCommand {
 		this.c_name = c_name;
 	}
 	
+	public int getA_idx() {
+		return a_idx;
+	}
+
+	public void setA_idx(int a_idx) {
+		this.a_idx = a_idx;
+	}
+
 	public int getP_age() {
 		return p_age;
 	}

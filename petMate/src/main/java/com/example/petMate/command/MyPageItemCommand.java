@@ -3,6 +3,7 @@ package com.example.petMate.command;
 import java.sql.Date;
 
 public class MyPageItemCommand {
+	private int i_idx;
 	private String i_title;
 	private String i_price;
 	private int i_stock;
@@ -14,13 +15,23 @@ public class MyPageItemCommand {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MyPageItemCommand(String i_title, String i_price, int i_stock, String i_detail, Date i_date) {
+	public MyPageItemCommand(int i_idx, String i_title, String i_price, int i_stock, String i_detail, Date i_date) {
 		super();
+		this.i_idx = i_idx;
 		this.i_title = i_title;
 		this.i_price = i_price;
 		this.i_stock = i_stock;
 		this.i_detail = i_detail;
 		this.i_date = i_date;
+	}
+
+	
+	public int getI_idx() {
+		return i_idx;
+	}
+
+	public void setI_idx(int i_idx) {
+		this.i_idx = i_idx;
 	}
 
 	public String getI_title() {

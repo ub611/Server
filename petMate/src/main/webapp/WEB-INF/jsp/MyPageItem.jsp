@@ -20,13 +20,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css?ver=1">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js?ver=1"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js?ver=1"></script>
+
 <jsp:include page="/WEB-INF/jsp/menu.jsp" />
 
 <!------ Include the above in your HEAD tag ---------->
 </head>
-
-<!-- <h2 class="mb-5">MyPage</h2>
- -->
+ 
 <br>
 <br>
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -205,8 +204,16 @@ h2::after {
 </style>
 
 <body>
-<button type="button" onclick="location.href='/signoff.do'">logout</button>
-<button type="button" onclick="location.href='/mypage/${u_idx}/pet.do'">pet</button>
+
+<br><br> <p></p>
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+<button type="button" onclick="location.href='/myPagePet?u_idx=${u_idx}'" class="btn btn-outline-warning slidetopright">&nbsp;&nbsp;Pet&nbsp;&nbsp; </button>
+<button type="button" onclick="location.href='/chat.do'" class="btn btn-outline-warning slidetopright"> Chatting </button>
+&nbsp;&nbsp;
+<button type="button" onclick="location.href='/signoff.do'" class="btn btn-outline-danger slideleft"> Logout </button>
+
 <!--  adopt -->
 
 
@@ -243,7 +250,7 @@ h2::after {
 													<span>${item.i_price}won</span>
 												</p>
 												<p>${item.i_detail}</p>
-												<a href="#" class="btn btn-primary">GO TO DETAIL</a>
+												<a href="/items/detail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
 											</div>
 										</div>
 									</div>
@@ -268,7 +275,7 @@ h2::after {
 															<span>${item.i_price}won</span>
 														</p>
 														<p>${item.i_detail}</p>
-														<a href="#" class="btn btn-primary">GO TO DETAIL</a>
+														<a href="/items/detail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
 													</div>
 												</div>
 											</div>
@@ -291,17 +298,17 @@ h2::after {
 		</div>
 	</div>
 
-	<div class="container2">
+	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<h2>
-					List Of <b> buy</b>
+					List Of <b> Buy</b>
 				</h2>
-				<div id="myCarousel2" class="carousel slide2" data-ride="carousel2"
+				<div id="myCarousel2" class="carousel slide" data-ride="carousel"
 					data-interval="0">
 					<!-- Carousel indicators -->
 
-					<ol class="carousel-indicators2">
+					<ol class="carousel-indicators">
 						<li data-target="#myCarousel2" data-slide-to="0" class="active"></li>
 						<c:set var="size" value="${fn:length(buyList)}" />
 						<!-- 21 -->
@@ -311,9 +318,8 @@ h2::after {
 						</c:forEach>
 
 					</ol>
-
-					<div class="carousel-inner2">
-						<div class="item carousel-item active2">
+					<div class="carousel-inner">
+						<div class="item carousel-item active">
 							<div class="row">
 								<c:forEach var="item" items="${buyList}" begin="0" end="3">
 									<div class="col-sm-3">
@@ -322,25 +328,26 @@ h2::after {
 												<br> <br> <br>
 												<h4>${item.i_title}</h4>
 												<p class="item-price">
-													<span>${buy.i_price}won</span>
+													<span>${item.i_price}won</span>
 												</p>
 												<p>${item.i_detail}</p>
-												<br>
 												<p>${item.b_date}</p>
-												<a href="#" class="btn btn-primary">GO TO DETAIL</a>
+												<a href="/items/detail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
 											</div>
 										</div>
 									</div>
 								</c:forEach>
 							</div>
 						</div>
-						<c:forEach var="item" items="${itemList}" begin="4" end="${size}"
+						<c:forEach var="item" items="${buyList}" begin="4" end="${size}"
 							varStatus="status">
 							<c:if test="${status.index % 4 == 3}">
-								<div class="item carousel-item2">
+								<div class="item carousel-item">
 									<div class="row">
 										<c:set var="idx" value="${status.index}" />
-										<c:forEach var="item" items="${itemList}" begin="${idx-3}" end="${idx}">
+										<!-- 21 -->
+										<c:forEach var="item" items="${buyList}" begin="${idx-3}"
+											end="${idx}">
 											<div class="col-sm-3">
 												<div class="thumb-wrapper">
 													<div class="thumb-content">
@@ -350,7 +357,8 @@ h2::after {
 															<span>${item.i_price}won</span>
 														</p>
 														<p>${item.i_detail}</p>
-														<a href="#" class="btn btn-primary">GO TO DETAIL</a>
+														<p>${item.b_date}</p>
+														<a href="/items/detail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
 													</div>
 												</div>
 											</div>
@@ -359,6 +367,7 @@ h2::after {
 								</div>
 							</c:if>
 						</c:forEach>
+						<!-- Carousel controls -->
 						<a class="carousel-control left carousel-control-prev"
 							href="#myCarousel2" data-slide="prev"> <i
 							class="fa fa-angle-left"></i>

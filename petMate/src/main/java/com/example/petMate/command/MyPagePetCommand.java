@@ -1,6 +1,7 @@
 package com.example.petMate.command;
 
 public class MyPagePetCommand {
+	private int p_idx;
 	private int p_age;
 	private int p_gender;
 	private String p_name;
@@ -10,9 +11,10 @@ public class MyPagePetCommand {
 	//pet.p_age, pet.p_gender, pet.p_name, pet.p_isInjection, 
 	//pet.p_cate_detail, category.c_name*
 	
-	public MyPagePetCommand(int p_age, int p_gender, String p_name, int p_isInjection, String p_cate_detail,
+	public MyPagePetCommand(int p_idx, int p_age, int p_gender, String p_name, int p_isInjection, String p_cate_detail,
 			String c_name) {
 		super();
+		this.p_idx = p_idx;
 		this.p_age = p_age;
 		this.p_gender = p_gender;
 		this.p_name = p_name;
@@ -20,6 +22,18 @@ public class MyPagePetCommand {
 		this.p_cate_detail = p_cate_detail;
 		this.c_name = c_name;
 	}
+	
+	
+	public int getP_idx() {
+		return p_idx;
+	}
+
+
+	public void setP_idx(int p_idx) {
+		this.p_idx = p_idx;
+	}
+
+
 	public MyPagePetCommand() {
 		super();
 		// TODO Auto-generated constructor stub
