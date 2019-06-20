@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -59,17 +61,30 @@ public interface PetMapper {
 	String[] selectPetImageUrls(int p_idx);
 	
 	@Insert("INSERT INTO pet(p_age, p_gender, p_name, p_isInjection, p_cate, p_cate_detail, "
-			+ "user_u_idx, category_c_idx) "
-			+ "VALUES(#{p_age}, #{p_gender}, #{p_name}, #{p_isInjection}, #{p_cate}, #{p_cate_detail}, " 
-			+ "#{user_u_idx}, 0)")
-	int insertPet(Pet pet); 
+			+ "user_u_idx, category_c_idx, p_url) "
+			+ "VALUES(#{pet.p_age}, #{pet.p_gender}, #{pet.p_name}, #{pet.p_isInjection}, #{pet.p_cate}, #{pet.p_cate_detail}, " 
+			+ "#{pet.user_u_idx}, 0, #{pet.p_url})")
+	int insertPet(@Param("pet") Pet pet); 
 	
 	@Update({"UPDATE pet SET "
-			+ "p_age=#{p_age}, p_gender=#{p_gender}, p_isInjection=#{p_isInjection}, p_cate=#{p_cate}, p_cate_detail=#{p_cate_detail} "
-			+ "WHERE p_idx=#{p_idx}"})
-	int updatePet(Pet pet); 
+			+ "p_age=#{pet.p_age}, p_gender=#{pet.p_gender}, p_isInjection=#{pet.p_isInjection}, p_cate=#{pet.p_cate}, p_cate_detail=#{pet.p_cate_detail}, p_url= #{pet.p_url} "
+			+ "WHERE p_idx=#{pet.p_idx}"})
+	int updatePet(@Param("pet") Pet pet); 
 	
 	@Delete("DELETE FROM pet "
 			+ "WHERE p_idx=#{p_idx}")
-	int deletePet(int p_idx);
+	int deletePet(@Param("p_idx") int p_idx);
+	
+	@Insert("INSERT INTO pet_image(pet_p_idx, pi_url)  VALUES(#{pet_p_idx}, #{pi_url})")
+	int insertPetImage(@Param("pet_p_idx") int pet_p_idx, @Param("pi_url") String pi_url);
+	
+	@Delete("DELETE FROM pet_image "
+			+ "WHERE pet_p_idx=#{pet_p_idx}")
+	int deletePetImage(@Param("pet_p_idx") int pet_p_idx);
+	
+	@Select("SELECT p_url FROM pet WHERE p_idx=#{pet_p_idx}")
+	String selectUrlByIdx(@Param("pet_p_idx") int pet_p_idx);
+	
+	@Select("SELECT * FROM pet ORDER BY p_idx DESC")
+	List<Pet> selectAllPets();
 }

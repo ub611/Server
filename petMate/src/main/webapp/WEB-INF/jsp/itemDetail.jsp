@@ -1,34 +1,21 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page language ="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<% request.setCharacterEncoding("euc-kr");%>
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
- -->
- <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<%@ page language ="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8");%>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 <%
 	String u_idx = (String)session.getAttribute("u_idx");
 %>
-<%=u_idx%>
-
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    
 <%@include file="/WEB-INF/jsp/menu.jsp" %>
-
-<c:if test = "${u_idx eq item.user_u_idx}">
-	equal
-</c:if>
-
-
-<c:if test = "${ u_idx ne item.user_u_idx}">
-	Notequal
-</c:if>
 
  	<div class="container">
   					<div class="row">
@@ -206,7 +193,7 @@ img {
   background: #85ad00; }
 
 .blue {
-  background: #0076ad; }
+  background: #064; }
 
 .tooltip-inner {
   padding: 1.3em; }
