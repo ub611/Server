@@ -8,31 +8,34 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context" 
 	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
        	http://www.springframework.org/schema/beans/spring-beans.xsd
        	http://www.springframework.org/schema/context
        	http://www.springframework.org/schema/context/spring-context.xsd    	
        	http://www.springframework.org/schema/mvc			
-		http://www.springframework.org/schema/mvc/spring-mvc.xsd"> 
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/websocket
+       http://www.springframework.org/schema/websocket/spring-websocket.xsd"> 
        	
 	<context:component-scan base-package="com.example.petMate.controller"/>	
+	<context:component-scan base-package="com.example.petMate.chat"/>	
+	
  	<mvc:annotation-driven />
 <!--  	 <mvc:default-servlet-handler /> -->
  	<!-- <mvc:view-controller path="index.html" view-name="index" />  --> 
- 
+ 	
+ 	
+		<websocket:handlers>
+	      <websocket:mapping handler="chatHandler" path="/chat-ws" />
+	  </websocket:handlers>
+	  
+	 <bean id="chatHandler" class="com.example.petMate.chat.EchoHandler" />
+ 	
   	<mvc:view-controller path="/signinForm.do" view-name="SignInForm"/> 
   	<mvc:view-controller path="/signupForm.do" view-name="SignUpForm"/>
   	<mvc:view-controller path="/home.do" view-name="index"/>
   	
- 
- <!-- 
-	<mvc:interceptors>
-		<mvc:interceptor>
-    	    <mvc:mapping path="/signin.do"/>
-        	<bean class="com.example.petMate.controller.SignInInterceptor" />
-    	</mvc:interceptor>
-	</mvc:interceptors> -->
-
 	<!--  tiles view가 존재하지 않을 경우 JSP view 이용 -->
   	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -52,7 +55,9 @@
 	</property>
 </bean> -->
 
+
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"></bean>
+
 
  	<context:property-placeholder location="classpath:application.properties"/> 
 	<mvc:resources mapping="/resources/**" location="/resources/" />
@@ -61,4 +66,5 @@
     <mvc:resources mapping="/vendor/**" location="/vendor/"/>
     <mvc:resources mapping="/scss/**" location="/scss/"/>
     <mvc:resources mapping="/img/**" location="/img/"/>
+
 </beans>
