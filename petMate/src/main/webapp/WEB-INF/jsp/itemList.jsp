@@ -145,7 +145,9 @@ $(document).ready(function() {
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <% request.setCharacterEncoding("utf-8");%>
-
+<%
+	String u_idx = (String)session.getAttribute("u_idx");
+%>
 <!------ Include the above in your HEAD tag ---------->
 
 <jsp:include page="/WEB-INF/jsp/menu.jsp"/>
@@ -205,7 +207,14 @@ $(document).ready(function() {
           <div class="card-text text-black-50">${item.i_detail}</div>
           <div class="card-text text-black-50"><fmt:formatNumber value="${order.i_date}"
 pattern="yyyy/MM/dd hh:mm:ss"/></div>
+
         </div>
+        <div style="margin:20px">
+           <c:if test="${u_idx eq item.user_u_idx}">
+      	 	<a href="/petEdit.do?p_idx=${pet.p_idx}"> edit</a>
+		 	<a href="/petDeleteConfirm.do?p_idx=${pet.p_idx}">delete</a>           
+		 </c:if>
+		 </div>
       </div>
     </div>
   </c:forEach> 
