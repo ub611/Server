@@ -93,7 +93,9 @@ public class PetMateImpl implements PetMateFacade {
 		// TODO Auto-generated method stub
 		Item item = itemDao.getItemByItemIdx(itemIdx);
 		String[] urls = itemDao.getItemImageUrls(itemIdx);
-		item.setIi_url(urls);
+		if(urls.length!=0) {
+			item.setIi_url(urls);
+		}
 		return item;
 	}
 
@@ -104,8 +106,21 @@ public class PetMateImpl implements PetMateFacade {
 	}
 
 	@Override
-	public void updateItem(Item itemIdx, Item Item) {
+	public int updateItem(ItemCommand itemCommand) throws IOException {
 		// TODO Auto-generated method stub
+		itemDao.updateItem(itemCommand);
+		int i_idx =Integer.valueOf(itemCommand.getI_idx());
+
+		for(MultipartFile url : itemCommand.getIi_url()) {    
+			logger1.info("MultipartFile : " + url);
+			try {
+				itemDao.createItemImage(s3FileUploadService.upload(url, "item"), i_idx);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return i_idx;
 
 	}
 
@@ -142,5 +157,13 @@ public class PetMateImpl implements PetMateFacade {
 			itemDao.createItemImage(s3FileUploadService.upload(url, "item"), i_idx);
 		}
 		return i_idx;
+	}
+
+	@Override
+	@Transactional
+	public int deleteItem(int i_idx) throws IOException {
+		// TODO Auto-generated method stub
+		itemDao.deleteItemImages(i_idx);
+		return itemDao.deleteItem(i_idx);
 	}
 }

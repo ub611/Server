@@ -1,9 +1,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page language ="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<% request.setCharacterEncoding("euc-kr");%>
+
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ -->
+ <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+ <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
+<%
+	String u_idx = (String)session.getAttribute("u_idx");
+%>
+<%=u_idx%>
 
 <html>
   <head>
@@ -11,7 +20,17 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 <%@include file="/WEB-INF/jsp/menu.jsp" %>
- 				<div class="container">
+
+<c:if test = "${u_idx eq item.user_u_idx}">
+	equal
+</c:if>
+
+
+<c:if test = "${ u_idx ne item.user_u_idx}">
+	Notequal
+</c:if>
+
+ 	<div class="container">
   					<div class="row">
     				<section id="pinBoot">
      					<c:forEach var="url" items="${item.ii_url}">
@@ -20,8 +39,7 @@
     				</section>
    					<hr>
   					</div>	
-  				</div> 
-  							
+  				</div> 		
 	<div class="container">
 		<div class="card">
 			<div class="container-fliud">
@@ -34,7 +52,10 @@
 						<h4 class="price">current price: <span>${item.i_price}</span></h4>
 						<p class="vote"><strong>${item.i_stock}</strong>개 남았습니다!</p>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
+							<button class="add-to-cart btn btn-default" type="button" id="CartButton">add to cart</button>
+							<button class="add-to-cart btn btn-default" type="button" id="BuyButton">Buy</button>
+							<button class="add-to-cart btn btn-default" type="button" id="EditButton"><a href='<c:url value="edit.do"/>' >Edit</a></button>
+							<button class="add-to-cart btn btn-default" type="button" id="DeleteButton" onclick="real_delete();">Delete</button>
 						</div>
 					</div>
 				</div>
@@ -65,7 +86,7 @@ img {
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
           flex-direction: column; }
-  @media screen and (max-width: 996px) {
+  @media screen and (max-width: 996px) { 
     .preview {
       margin-bottom: 20px; } }
 
@@ -256,7 +277,33 @@ stylize any heading tags withing white-panel below
 </style>
   
 <script>
+function real_delete() {
+	if(confirm("정말 삭제하시겠습니까?")==true){
+		location.href="/items/delete/${item.i_idx}";
+		return true;
+	}else{
+		return false;
+	}
+}
+window.onload = buttonOnload;
+
+function buttonOnload(){
+	if("${u_idx}" == "${item.user_u_idx}"){
+		var cartButton = document.getElementById('CartButton'); 
+		cartButton.disabled = true;
+		var buyButton = document.getElementById('BuyButton'); 
+		buyButton.disabled = true;
+	}else{
+		var editButton = document.getElementById('EditButton'); 
+		editButton.disabled = true;
+		var deleteButton = document.getElementById('DeleteButton'); 
+		deleteButton.disabled = true;
+	}
+}
+</script>
+<script>
 $(document).ready(function() {
+
 	$('#pinBoot').pinterest_grid({
 	no_columns: 4,
 	padding_x: 10,

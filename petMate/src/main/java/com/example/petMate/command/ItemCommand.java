@@ -18,8 +18,28 @@ public class ItemCommand {
 	private List<MultipartFile> ii_url;
 	
 	private int i_category;
-	private int user_u_idx;
+	private String user_u_idx;
+	
+	
 
+	public ItemCommand() {
+		super();
+	}
+
+
+
+	public ItemCommand(String i_idx, String i_title, String i_price, int i_stock, String i_detail, Date i_date,
+			int i_category, String user_u_idx) {
+		super();
+		this.i_idx = i_idx;
+		this.i_title = i_title;
+		this.i_price = i_price;
+		this.i_stock = i_stock;
+		this.i_detail = i_detail;
+		this.i_date = i_date;
+		this.i_category = i_category;
+		this.user_u_idx = user_u_idx;
+	}
 
 
 
@@ -78,9 +98,6 @@ public class ItemCommand {
 		this.i_detail = i_detail;
 	}
 
-
-
-
 	public List<MultipartFile> getIi_url() {
 		return ii_url;
 	}
@@ -101,13 +118,18 @@ public class ItemCommand {
 		this.i_category = i_category;
 	}
 
-	public int getUser_u_idx() {
+
+	public String getUser_u_idx() {
 		return user_u_idx;
 	}
 
-	public void setUser_u_idx(int user_u_idx) {
+
+
+	public void setUser_u_idx(String user_u_idx) {
 		this.user_u_idx = user_u_idx;
 	}
+
+
 
 	public Date getI_date() {
 		return i_date;

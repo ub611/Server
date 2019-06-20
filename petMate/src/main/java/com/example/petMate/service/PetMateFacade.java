@@ -37,10 +37,12 @@ public interface PetMateFacade {
 
 	Item getItemByItemTitle(String itemTitle);// throws DataAccessException;
 
-	void updateItem(Item itemIdx, Item Item);// throws DataAccessException;
+	int updateItem(ItemCommand Item) throws IOException;// throws DataAccessException;
 
 	List<String> getItemnameList(); // throws DataAccessException;
 	
 	int createItem(ItemCommand itemCommand) throws IOException; //throws DataAccessException;
+	
+	int deleteItem(int i_idx) throws IOException; //throws DataAccessException;
 
 }
