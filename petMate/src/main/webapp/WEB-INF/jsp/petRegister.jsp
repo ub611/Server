@@ -46,7 +46,7 @@
               </div>                            
               <div>
               	<label class="form-label" for="p_age">Pet's age</label>
-                <input type="text" class="form-control" id="p_age" name="p_age" tabindex="2" required 
+                <input type="number" class="form-control" id="p_age" name="p_age" tabindex="2" required 
                 value="${pet.p_age}"/>
               </div>
               <hr/>

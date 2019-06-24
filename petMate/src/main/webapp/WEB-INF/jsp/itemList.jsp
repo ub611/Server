@@ -211,8 +211,8 @@ pattern="yyyy/MM/dd hh:mm:ss"/></div>
         </div>
         <div style="margin:20px">
            <c:if test="${u_idx eq item.user_u_idx}">
-      	 	<a href="/petEdit.do?p_idx=${pet.p_idx}"> edit</a>
-		 	<a href="/petDeleteConfirm.do?p_idx=${pet.p_idx}">delete</a>           
+      	 	<a href="/itemsEdit.do"> edit</a>
+		 	<a href="/items/delete/${item.i_idx}">delete</a>           
 		 </c:if>
 		 </div>
       </div>

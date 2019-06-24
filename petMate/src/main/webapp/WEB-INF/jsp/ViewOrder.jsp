@@ -5,6 +5,8 @@
 <!------ Include the above in your HEAD tag ---------->
 <jsp:include page = "/WEB-INF/jsp/menu.jsp"/>
 <%@page import="com.example.petMate.controller.OrderForm"%>
+<%@ page language ="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8");%>
 <%
 	OrderForm orderForm = (OrderForm)session.getAttribute("orderForm");
 %>

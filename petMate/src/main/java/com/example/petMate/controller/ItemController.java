@@ -178,7 +178,11 @@ public class ItemController {
 	 * Item 수정 Form 
 	 */
 	@RequestMapping("/itemsEdit.do")
-	public String editItemForm(@ModelAttribute("itemCommand") ItemCommand itemCommand) throws Exception {
+	public String editItemForm(@ModelAttribute("item") Item item,
+			@ModelAttribute("itemCommand") ItemCommand itemCommand, Model model) throws Exception {
+//		itemCommand = new ItemCommand(String.valueOf(item.getI_idx()), item.getI_title(),item.getI_price(), item.getI_stock(),
+//				item.getI_detail(), item.getI_date(), item.getI_category(), item.getUser_u_idx());
+//		model.addAttribute("itemCommand", itemCommand);
 		return "NewItemForm";
 	}
 	/*

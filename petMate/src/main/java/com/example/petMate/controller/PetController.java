@@ -34,7 +34,6 @@ public class PetController {
 	@Autowired
 	private PetMateFacade petMate;
 	
-	String user_u_idx = "2"; //req.getSession().getAttribute("u_idx")
 	
 	// 입양게시글 리스트
 	
@@ -64,10 +63,11 @@ public class PetController {
 	
 	// 입양게시글 상세보기
 	@RequestMapping(value="/adoptDetail.do", method=RequestMethod.GET)
-	public String detailAdopt(@RequestParam int a_idx, Model model) throws Exception {
-		Adopt adoptDetail = petMate.selectAdoptByIdx(a_idx);
-		model.addAttribute("adoptDetail", adoptDetail);
-		model.addAttribute("petDetail", petMate.selectPetByIdx(adoptDetail.getA_idx()));
+	public String detailAdopt(@RequestParam int p_idx, Model model) throws Exception {
+//		Adopt adoptDetail = petMate.selectAdoptByIdx(p_idx);
+		Pet petDetail = petMate.selectPetByIdx(p_idx);
+//		model.addAttribute("adoptDetail", petDetail);
+		model.addAttribute("petDetail", petDetail);
 		return "/adoptDetail";
 	}
 	
@@ -79,6 +79,8 @@ public class PetController {
 	@RequestMapping(value="/petRegister.do", method=RequestMethod.POST)
 	public String createPet(HttpServletRequest req, Pet pet, @RequestParam("pi_url") MultipartFile pi_url, Model model) throws Exception { 
 		
+		String user_u_idx =(String)req.getSession().getAttribute("u_idx");
+
 		pet.setUser_u_idx(user_u_idx); //req.getSession().getAttribute("user_u_idx")
 		petMate.insertPet(pet, pi_url);
 		
@@ -105,6 +107,8 @@ public class PetController {
 	@RequestMapping(value="/petEdit.do", method=RequestMethod.POST)
 	public String editPet(HttpServletRequest req, @RequestParam("pi_url") MultipartFile pi_url, Model model) throws Exception { 
 		logger.info("\n*****PetController::editPet:: " + req.getParameter("p_idx"));
+		String user_u_idx =(String)req.getSession().getAttribute("u_idx");
+
 		logger.info("\n" + String.valueOf(pi_url));
 		Pet pet = new Pet();
 		pet.setP_idx(Integer.parseInt(req.getParameter("p_idx")));
@@ -132,13 +136,17 @@ public class PetController {
 	
 	// 분양할 펫 삭제
 	@RequestMapping(value="/petDeleteConfirm.do", method=RequestMethod.GET)
-	public String removePetConfirm(@RequestParam int p_idx, Model model) throws Exception {
+	public String removePetConfirm(HttpServletRequest req, @RequestParam int p_idx, Model model) throws Exception {
+		String user_u_idx =(String)req.getSession().getAttribute("u_idx");
+
 		model.addAttribute("p_idx", p_idx);
 		model.addAttribute("u_idx", user_u_idx);
 		return "/petDelete";
 	}
 	@RequestMapping(value="/petDelete.do", method=RequestMethod.GET)
 	public String removePet(HttpServletRequest req) throws Exception {
+		String user_u_idx =(String)req.getSession().getAttribute("u_idx");
+
 		logger.info("\n"+req.getParameter("p_idx").toString());
 		petMate.deleteAdoptByPet(Integer.parseInt(req.getParameter("p_idx")));
 		petMate.deletePet(Integer.parseInt(req.getParameter("p_idx")));

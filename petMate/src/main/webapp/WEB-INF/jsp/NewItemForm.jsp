@@ -3,11 +3,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <% request.setCharacterEncoding("utf-8");%>
+<%@ page import="com.example.petMate.command.ItemCommand" %>
 <!------ Include the above in your HEAD tag ---------->
 
 <%@include file="/WEB-INF/jsp/menu.jsp" %>
 <h2 class="mb-5">New Item</h2>
-
+<%
+	ItemCommand itemCommand = (ItemCommand)session.getAttribute("itemCommand");
+%>
 
 <div class="container">
  <form class="form-horizontal" action="itemsStep1.do" method="post"  >

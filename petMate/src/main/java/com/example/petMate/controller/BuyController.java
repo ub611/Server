@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndViewDefiningException;
 
 import com.example.petMate.domain.Account;
 import com.example.petMate.domain.Cart;
+import com.example.petMate.domain.CartItem;
 import com.example.petMate.domain.Item;
 import com.example.petMate.domain.LineItem;
 import com.example.petMate.service.OrderFormValidator;
@@ -34,7 +35,7 @@ import com.example.petMate.service.PetMateFacade;
  * @modified by Changsup Park
  */
 @Controller
-@SessionAttributes("sessionCart")
+@SessionAttributes({"sessionCart", "sessionBuy"})
 public class BuyController {
 	private static Logger logger = LoggerFactory.getLogger(BuyController.class);
 	private static int buyIdx = 0;
@@ -102,6 +103,44 @@ public class BuyController {
 			throw new ModelAndViewDefiningException(modelAndView);
 		}
 	}
+	
+	@RequestMapping("/newOrderOne.do")
+	public String initNewOrderOne(HttpServletRequest request,
+			int i_idx,
+			@ModelAttribute("orderForm") OrderForm orderForm
+			) throws ModelAndViewDefiningException {
+		UserSession userSession = (UserSession) request.getSession().getAttribute("userSession");
+			// Re-read account from DB at team's request.
+			//Account account = petStore.getAccountById(userSession.getAccount().getU_idx());
+			
+			HttpSession isLogin  = request.getSession();
+			if(isLogin.getAttribute("u_idx") != null) {
+				Account account = petStore.getAccountById((String)isLogin.getAttribute("u_idx"));//Test
+				//Account account = petStore.getAccountById(userSession.getAccount().getU_idx());
+				orderForm = createOrderForm(account);
+				of = orderForm;
+				logger.info("orderForm:" + orderForm.getAccount().getU_idx() + " " + orderForm.getAccount().getU_address() + " " + orderForm.getAccount().getU_phone());
+				logger.info("of:" + of.getAccount().getU_idx() + " " + of.getAccount().getU_address() + " " + of.getAccount().getU_phone());
+				
+				
+				Item item = (petStore.getItemByItemIdx(i_idx));
+				orderForm.getBuy().addLineItem(new CartItem(petStore.getItemByItemIdx(i_idx), item.getI_stock() ));
+				
+				Calendar calendar = Calendar.getInstance();
+				java.util.Date date = calendar.getTime();
+				orderForm.getBuy().setB_date(date);
+				
+				request.getSession().setAttribute("orderForm", orderForm);
+				
+				logger.info("orderForm:" + orderForm.getAccount().getU_idx());
+				logger.info("of:" + of.getAccount().getU_idx() + " " + of.getAccount().getU_address() + " " + of.getAccount().getU_phone());
+				
+				return "NewOrderForm";	
+			}
+			else
+				return "SignInForm";
+	}
+	
 	
 	@RequestMapping("/newOrderSubmitted.do")
 	public String bindAndValidateOrder(HttpServletRequest request,
