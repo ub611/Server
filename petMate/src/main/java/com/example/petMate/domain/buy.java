@@ -78,10 +78,8 @@ public class buy implements Serializable{
 		seller_idx = account.getU_idx();
 	    b_date = new Date();
 
-	    
 	    b_amount = cart.getSubTotal();
 	    
-
 	    Iterator<CartItem> i = cart.getAllCartItems();
 	    while (i.hasNext()) {
 	    	CartItem cartItem = (CartItem) i.next();

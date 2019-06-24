@@ -24,7 +24,7 @@ public interface ItemMapper {
 	@Select("SELECT * FROM item WHERE i_category=#{sort} ORDER BY i_idx DESC")
 	List<Item> getItemListBy(int sort);
 	
-	@Select("SELECT * FROM item WHERE i_idx=#{item_idx} AND i_stock > 0 ORDER BY i_idx DESC")
+	@Select("SELECT * FROM item WHERE i_idx=#{item_idx} ORDER BY i_idx DESC")
 	Item getItemByItemIdx(int item_idx);
 
 	@Select("SELECT * FROM item WHERE i_title=#{item_title} ")

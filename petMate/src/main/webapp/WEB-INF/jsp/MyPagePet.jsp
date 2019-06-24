@@ -244,7 +244,7 @@ h2::after {
 										<p class="item-price"><span>${item.p_gender}살</span></p>
 										<p>${item.p_age}</p>
 										<p>${item.c_name}</p>
-										<a href="/petEdit?p_idx=${item.p_idx}" class="btn btn-primary">GO TO DETAIL</a>
+										<a href="adoptDetail.do?p_idx=${item.p_idx}" class="btn btn-primary">GO TO DETAIL</a>
 									</div>						
 								</div>
 							</div>
@@ -264,7 +264,7 @@ h2::after {
 													<p class="item-price"><span>${item.p_gender}살</span></p>
 													<p>${item.p_age}</p>
 													<p>${item.c_name}</p>
-													<a href="/petEdit?p_idx=${item.p_idx}" class="btn btn-primary">GO TO DETAIL</a>
+													<a href="/adoptDetail.do?p_idx=${item.p_idx}" class="btn btn-primary">GO TO DETAIL</a>
 												</div>						
 											</div>
 										</div>
@@ -315,7 +315,7 @@ h2::after {
 										<p class="item-price"><span>${item.p_age}살</span></p>
 										<p>${item.p_gender}</p>
 										<p>${item.a_date}</p>
-										<a href="/adoptDetail.do?a_idx${item.a_idx}" class="btn btn-primary">GO TO DETAIL</a>
+										<a href="#" class="btn btn-primary">GO TO DETAIL</a>
 									</div>						
 								</div>
 							</div>

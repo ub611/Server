@@ -277,7 +277,7 @@ h2::after {
 															<span>${item.i_price}won</span>
 														</p>
 														<p>${item.i_detail}</p>
-														<a href="/items/detail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
+														<a href="/itemsDetail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
 													</div>
 												</div>
 											</div>
@@ -334,7 +334,7 @@ h2::after {
 												</p>
 												<p>${item.i_detail}</p>
 												<p>${item.b_date}</p>
-												<a href="/items/detail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
+												<a href="/itemsDetail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
 											</div>
 										</div>
 									</div>
@@ -360,7 +360,7 @@ h2::after {
 														</p>
 														<p>${item.i_detail}</p>
 														<p>${item.b_date}</p>
-														<a href="/items/detail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
+														<a href="/itemsDetail?i_idx=${item.i_idx}" class="btn btn-primary">GO TO DETAIL</a>
 													</div>
 												</div>
 											</div>

@@ -20,6 +20,14 @@ public class CartItem implements Serializable {
 		this.item = item;
 	}
 	
+	public CartItem(Item item, int quantity) {
+		super();
+		this.item = item;
+		this.quantity = quantity;
+	}
+	public CartItem() {
+		super();
+	}
 	public int getQuantity() { return quantity; }
 	
 	public void setQuantity(int quantity) {
