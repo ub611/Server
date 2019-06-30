@@ -26,12 +26,12 @@
         </td>
       </tr>
       <tr>
-        <td>Username:</td>
-        <td><input type="text" name="username" size="20" value="5" /></td>
+        <td>ID:</td>
+        <td><input type="text" name="username" size="20" /></td>
       </tr>
       <tr>  
         <td>Password:</td>
-        <td><input type="password" name="password" size="20" value="pwd" /></td>
+        <td><input type="password" name="password" size="20" /></td>
       </tr>
       <tr>
         <td>&nbsp;</td>

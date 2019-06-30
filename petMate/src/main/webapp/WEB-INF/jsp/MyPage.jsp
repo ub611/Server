@@ -40,7 +40,9 @@
 			<div class="form-group">
 				<label class="col-md-4 control-label" for="textinput">ID</label>
 				<div class="col-md-4">
-					${AccountForm.account.u_idx} 
+					<input name="account.u_idx" class="form-control input-md"
+						id="u_idx" type="text" placeholder="id"
+						value="${AccountForm.account.u_idx}">
 				</div>
 			</div>
 

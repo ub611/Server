@@ -41,8 +41,17 @@
 						<h4 class="price">current price: <span><fmt:formatNumber value="${item.i_price}"  pattern="₩ #,##0"  /></span></h4>
 						<p class="vote"><strong>${item.i_stock}</strong>개 남았습니다!</p>
 						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button" id="CartButton">add to cart</button>
-							<button class="add-to-cart btn btn-default" type="button" id="BuyButton">Buy</button>
+							<button class="add-to-cart btn btn-default" type="button" id="CartButton">
+									<a href='<c:url value="/addCart.do">
+          								<c:param name="itemId" value="${item.i_idx}"/></c:url>'>add to cart
+          							</a>
+          					</button>
+          		
+							<button class="add-to-cart btn btn-default" type="button" id="BuyButton">
+							<a href='<c:url value="newOrderOne.do">
+											<c:param name="i_idx" value="${item.i_idx}"/></c:url>'>
+												Buy</a></button>
+											
 							<button class="add-to-cart btn btn-default" type="button" id="EditButton"><a href='<c:url value="itemsEdit.do"/>' >Edit</a></button>
 							<button class="add-to-cart btn btn-default" type="button" id="DeleteButton" onclick="real_delete();">Delete</button>
 						</div>
@@ -273,14 +282,16 @@ function real_delete() {
 	}else{
 		return false;
 	}
+
 }
 window.onload = buttonOnload;
 
 function buttonOnload(){
+	var cartButton = document.getElementById('CartButton'); 
+	var buyButton = document.getElementById('BuyButton'); 
+	
 	if("${u_idx}" == "${item.user_u_idx}"){
-		var cartButton = document.getElementById('CartButton'); 
 		cartButton.style.visibility = 'hidden';
-		var buyButton = document.getElementById('BuyButton'); 
 		buyButton.style.visibility = 'hidden';
 	}else{
 		var editButton = document.getElementById('EditButton'); 
@@ -288,11 +299,13 @@ function buttonOnload(){
 		var deleteButton = document.getElementById('DeleteButton'); 
 		deleteButton.style.visibility = 'hidden';
 	}
+	if("${item.i_stock}" == 0){
+		cartButton.style.visibility = 'hidden';
+		buyButton.style.visibility = 'hidden';
+	}
 }
-</script>
-<script>
-$(document).ready(function() {
 
+$(document).ready(function() {
 	$('#pinBoot').pinterest_grid({
 	no_columns: 4,
 	padding_x: 10,

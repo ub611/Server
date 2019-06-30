@@ -16,7 +16,8 @@
   <c:forEach var="pet" items="${petList}">
     <div class="col-xl-3 col-md-6 mb-4">
       <div class="card border-0 shadow">
-        <img src="${pet.p_url}" class="card-img-top" alt="...">
+      <a href="/adoptDetail.do?p_idx=${pet.p_idx}">   
+        <img src="${pet.p_url}" class="card-img-top" alt="..."> </a> 
         <div class="card-body text-center">
           <h5 class="card-title mb-0">${pet.p_name} :: ${pet.p_cate_detail}</h5>
           <div class="card-text text-black-50">Age :: ${pet.p_age}</div>
@@ -25,14 +26,24 @@
         </div>
         
 	    <div style="margin:10px" class=" text-center">
-	    <a href="/chat.do">Chating to Owner</a>  
+	    
+	    <c:choose>
+	     <c:when test="${u_idx ne pet.user_u_idx}">  
+	     	    <a href="/chat.do">Chating to Owner</a>  
+		 </c:when>
+		 
+		 <c:otherwise>
+		 	    
+	    		<div style="margin:10px">
+      				 <c:if test="${u_idx eq pet.user_u_idx}">
+      	 				<a href="/petEdit.do?p_idx=${pet.p_idx}"> edit   </a> 
+		 				<a href="/petDeleteConfirm.do?p_idx=${pet.p_idx}">delete</a>         
+		 			</c:if>
 	    </div>
-	    <div style="margin:10px">
-      	 <c:if test="${u_idx eq pet.user_u_idx}">
-      	 	<a href="/petEdit.do?p_idx=${pet.p_idx}"> edit   </a> 
-		 	<a href="/petDeleteConfirm.do?p_idx=${pet.p_idx}">delete</a>         
-		 </c:if>
-	    </div>
+		 </c:otherwise>
+		 </c:choose>
+		 </div>
+
 	    
 	    
       </div>

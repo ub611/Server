@@ -1,7 +1,10 @@
 package com.example.petMate.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class buy implements Serializable{
@@ -16,8 +19,8 @@ public class buy implements Serializable{
 	private String seller_idx;		
 	private String buyer_idx;	
 	
-	//item
-	private int item_idx;		//what item
+	//items
+	private List<LineItem> lineItems = new ArrayList<LineItem>();
 
 	public int getB_idx() {
 		return b_idx;
@@ -66,13 +69,30 @@ public class buy implements Serializable{
 	public void setBuyer_idx(String buyer_idx) {
 		this.buyer_idx = buyer_idx;
 	}
+	
+	public void setLineItems(List<LineItem> lineItems) { this.lineItems = lineItems; }
+	public List<LineItem> getLineItems() { return lineItems; }
+	
+	
+	public void initOrder(Account account, Cart cart) {
+		seller_idx = account.getU_idx();
+	    b_date = new Date();
 
-	public int getItem_idx() {
-		return item_idx;
-	}
+	    b_amount = cart.getSubTotal();
+	    
+	    Iterator<CartItem> i = cart.getAllCartItems();
+	    while (i.hasNext()) {
+	    	CartItem cartItem = (CartItem) i.next();
+	    	addLineItem(cartItem);
+	    }
+	  }
 
-	public void setItem_idx(int item_idx) {
-		this.item_idx = item_idx;
-	}
+	  public void addLineItem(CartItem cartItem) {
+	    LineItem lineItem = new LineItem(lineItems.size() + 1, cartItem);
+	    addLineItem(lineItem);
+	  }
 
+	  public void addLineItem(LineItem lineItem) {
+	    lineItems.add(lineItem);
+	  }
 }

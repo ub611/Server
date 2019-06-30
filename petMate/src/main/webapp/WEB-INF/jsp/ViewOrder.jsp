@@ -1,161 +1,50 @@
-<%@ include file="IncludeTop.jsp"%>
 
-<table id="main-menu">
-  <tr>
-    <td><a href='<c:url value="/shop/index.do"/>'>
-      <b><font color="black" size="2">&lt;&lt; Main Menu</font></b></a>
-    </td>
-  </tr>  
-</table>
-
-<div align="center">
-  <c:if test="${!empty message}">
-    <b><c:out value="${message}" /></b>
-  </c:if>
-  
-  <p></p>
-  <table class="n13">
-    <tr>
-      <td align="center" colspan="2"><font size="4">
-        <b>Order #<c:out value="${order.orderId}" /></b></font> <br />
-        <font size="3"><b>
-          <fmt:formatDate value="${order.orderDate}" pattern="yyyy/MM/dd hh:mm:ss" /></b>
-        </font></td>
-    </tr>
-    <tr>
-      <td colspan="2"><font color="green" size="4"><b>Payment Details</b></font></td>
-    </tr>
-    <tr>
-      <td>Card Type:</td>
-      <td><c:out value="${order.cardType}" /></td>
-    </tr>
-    <tr>
-      <td>Card Number:</td>
-      <td><c:out value="${order.creditCard}" /> 
-        <font color="red" size="2">* Fake number!</font></td>
-    </tr>
-    <tr>
-      <td>Expiry Date (MM/YYYY):</td>
-      <td><c:out value="${order.expiryDate}" /></td>
-    </tr>
-    <tr>
-      <td colspan="2"><font color="green" size="4"><b>Billing Address</b></font></td>
-    </tr>
-    <tr>
-      <td>First name:</td>
-      <td><c:out value="${order.billToFirstName}" /></td>
-    </tr>
-    <tr>
-      <td>Last name:</td>
-      <td><c:out value="${order.billToLastName}" /></td>
-    </tr>
-    <tr>
-      <td>Address 1:</td>
-      <td><c:out value="${order.billAddress1}" /></td>
-    </tr>
-    <tr>
-      <td>Address 2:</td>
-      <td><c:out value="${order.billAddress2}" /></td>
-    </tr>
-    <tr>
-      <td>City:</td>
-      <td><c:out value="${order.billCity}" /></td>
-    </tr>
-    <tr>
-      <td>State:</td>
-      <td><c:out value="${order.billState}" /></td>
-    </tr>
-    <tr>
-      <td>Zip:</td>
-      <td><c:out value="${order.billZip}" /></td>
-    </tr>
-    <tr>
-      <td>Country:</td>
-      <td><c:out value="${order.billCountry}" /></td>
-    </tr>
-    <tr>
-      <td colspan="2"><font color="green" size="4"><b>Shipping Address</b></font></td>
-    </tr>
-    <tr>
-      <td>First name:</td>
-      <td><c:out value="${order.shipToFirstName}" /></td>
-    </tr>
-    <tr>
-      <td>Last name:</td>
-      <td><c:out value="${order.shipToLastName}" /></td>
-    </tr>
-    <tr>
-      <td>Address 1:</td>
-      <td><c:out value="${order.shipAddress1}" /></td>
-    </tr>
-    <tr>
-      <td>Address 2:</td>
-      <td><c:out value="${order.shipAddress2}" /></td>
-    </tr>
-    <tr>
-      <td>City:</td>
-      <td><c:out value="${order.shipCity}" /></td>
-    </tr>
-    <tr>
-      <td>State:</td>
-      <td><c:out value="${order.shipState}" /></td>
-    </tr>
-    <tr>
-      <td>Zip:</td>
-      <td><c:out value="${order.shipZip}" /></td>
-    </tr>
-    <tr>
-      <td>Country:</td>
-      <td><c:out value="${order.shipCountry}" /></td>
-    </tr>
-    <tr>
-      <td>Courier:</td>
-      <td><c:out value="${order.courier}" /></td>
-    </tr>
-    <tr>
-      <td colspan="2"><b><font color="green" size="4">Status:</font> 
-        <c:out value="${order.status}" /></b></td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <table class="n23" style="width:100%">
-          <tr style="background-color:#CCCCCC;">
-            <td><b>Item ID</b></td>
-            <td><b>Description</b></td>
-            <td><b>Quantity</b></td>
-            <td><b>Price</b></td>
-            <td><b>Total Cost</b></td>
-          </tr>
-          <c:forEach var="lineItem" items="${order.lineItems}">
-            <tr>
-              <td>
-                <b><a href='<c:url value="/shop/viewItem.do">
-                  <c:param name="itemId" value="${lineItem.itemId}"/></c:url>'>
-                    <font color="black"><c:out value="${lineItem.itemId}" /></font>
-                </a></b></td>
-              <td>
-                <c:out value="${lineItem.item.attribute1}" />
-                <c:out value="${lineItem.item.attribute2}" /> 
-                <c:out value="${lineItem.item.attribute3}" />
-                <c:out value="${lineItem.item.attribute4}" /> 
-                <c:out value="${lineItem.item.attribute5}" />
-                <c:out value="${lineItem.item.product.name}" />                 
-              </td>
-              <td><c:out value="${lineItem.quantity}" /></td>
-              <td align="right"><fmt:formatNumber
-                  value="${lineItem.unitPrice}" pattern="$#,##0.00" /></td>
-              <td align="right"><fmt:formatNumber
-                  value="${lineItem.totalPrice}" pattern="$#,##0.00" /></td>
-            </tr>
-          </c:forEach>
-          <tr>
-            <td colspan="5" align="right"><b>Total: <fmt:formatNumber
-                value="${order.totalPrice}" pattern="$#,##0.00" /></b></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<%@ include file="IncludeBottom.jsp"%>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<jsp:include page = "/WEB-INF/jsp/menu.jsp"/>
+<%@page import="com.example.petMate.controller.OrderForm"%>
+<%@ page language ="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<% request.setCharacterEncoding("utf-8");%>
+<%
+	OrderForm orderForm = (OrderForm)session.getAttribute("orderForm");
+%>
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h2>Order Result</h2>
+            </div>
+            <div class="col-md-12" style="margin-top: 20px;">
+                <div class="pricing-table">
+                    <div class="panel panel-primary" style="border: none;">
+                        <div class="controle-header panel-heading panel-heading-landing">
+                            <h1 class="panel-title panel-title-landing">
+                                <font size="20"><%=orderForm.getBuy().getB_date() %></font>
+                            </h1>
+                        </div>
+                        <div class="panel-body panel-body-landing">
+                            <table class="table">
+                            <tr>
+                                    <td width="100px"><i class="fa fa-check"></i></td>
+                                    <td>Name: <%=orderForm.getAccount().getU_name() %></td>
+                                </tr>
+                                <tr>
+                                    <td width="100px"><i class="fa fa-check"></i></td>
+                                    <td>Phone: <%=orderForm.getAccount().getU_phone() %></td>
+                                </tr>
+                                <tr>
+                                    <td width="100px"><i class="fa fa-check"></i></td>
+                                    <td>Address: <%=orderForm.getAccount().getU_address() %></td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="panel-footer panel-footer-landing">
+                            <a href="/petList.do" class="btn btn-price btn-success btn-lg">HOME</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
