@@ -72,7 +72,6 @@
     
     // 전송 버튼 클릭시 발동
     function send() {
-        
         var nickname = $("#nickname").val();
         var msg = $("#message").val();
         wsocket.send("msg:"+nickname+":" + msg);
